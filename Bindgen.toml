@@ -1,0 +1,2 @@
+[IOKit]
+opaque_types = ["FndrOpaqueInfo", "HFSCatalogFolder", "HFSPlusCatalogFolder", "HFSCatalogFile", "HFSPlusCatalogFile"]
