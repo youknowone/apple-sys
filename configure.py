@@ -22,18 +22,20 @@ def framework_path(sdk_path):
 def find_framework_names(sdk_path):
     f_path = framework_path(sdk_path)
     pattern = f_path + "/*.framework"
-    blocklist = frozenset([
-        # framework not found
-        "CoreAudioTypes",
-        "CoreMIDIServer",
-        "DeviceActivity",
-        "DriverKit",
-        "Kernel",
-        "QTKit",
-        "RealityKit",
-        "Ruby",
-        "Tk",
-    ])
+    blocklist = frozenset(
+        [
+            # framework not found
+            "CoreAudioTypes",
+            "CoreMIDIServer",
+            "DeviceActivity",
+            "DriverKit",
+            "Kernel",
+            "QTKit",
+            "RealityKit",
+            "Ruby",
+            "Tk",
+        ]
+    )
     # print(pattern)
     for f_path in glob(pattern):
         name = os.path.basename(f_path).removesuffix(".framework")
@@ -102,12 +104,18 @@ def main(sdk_name):
         f.write(content)
 
     with open("test_script.sh", "w") as f:
-        for name in framework_names:
-            f.write(
-                f"echo {name} && cargo test --features {name} &> test.{name}.result && rm test.{name}.result\n"
+        f.write(
+            dedent(
+                f"""
+        names="{' '.join(framework_names)}"
+        for name in $names; do
+            echo $name && cargo test --features $name &> test.$name.result && rm test.$name.result
+        done
+        """
             )
+        )
 
-    print('generated:', ','.join(framework_names))
+    print("generated:", ",".join(framework_names))
 
 
 if __name__ == "__main__":

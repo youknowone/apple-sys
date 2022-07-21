@@ -1,18 +1,47 @@
 [default]
-opaque_types = ["FndrOpaqueInfo", "HFSCatalogFolder", "HFSPlusCatalogFolder", "HFSCatalogFile", "HFSPlusCatalogFile"]
+opaque_types = [
+    # rust-bindgen#2240
+    "FndrOpaqueInfo", "HFSCatalogFolder", "HFSPlusCatalogFolder", "HFSCatalogFile", "HFSPlusCatalogFile"
+]
 replacements = [
+    # Core glitches
     "pub type id = NSUnit; #=># ",
     "pub type id = *mut u64; #=># ",
-    "pub trait NSImage_: Sized + std::ops::Deref {} #=># ",
+
+    # Foundation name collisions
     "timezone: NSTimeZone, #=># timezone_: NSTimeZone,",
     "componentsInTimeZone : timezone #=># componentsInTimeZone : timezone_",
     "cString: *const ::std::os::raw::c_char, #=># c_string: *const ::std::os::raw::c_char,",
     "stringWithCString : cString #=># stringWithCString : c_string",
+
+    # caregory bug rust-bindgen#2241
+    "pub trait NSImage_: Sized + std::ops::Deref {} #=># ",
+
+    # AppKit name collisions
+    """invalidRect: NSRect #=># invalidRect_: NSRect,""",
+    """setNeedsDisplayInRect: invalidRect #=># setNeedsDisplayInRect: invalidRect_""",
+    """shadow: NSShadow #=># shadow_: NSShadow""",
+    """setShadow: shadow) #=># setShadow: shadow_)""",
+    """fraction: CGFloat #=># fraction_: CGFloat""",
+    """fraction : fraction #=># fraction : fraction_""",
+    """blendedColorWithFraction : fraction #=># blendedColorWithFraction : fraction_""",
+    """extend: BOOL #=># extend_: BOOL""",
+    """byExtendingSelection : extend) #=># byExtendingSelection : extend_)""",
+
+    # AppKit - very fragile - rust-bindgen#2241
+    """    }
+}
+impl NSScreen_ for NSScreen {}
+pub trait NSScreen_: Sized + std::ops::Deref { #=># }
+""",
+    """impl NSImage_ for NSImage {}\n\n #=># """,
 ]
 [Photos]
 replacements = [
     "pub type id = PHObject; #=># ",
 ]
+[PhotosUI]
+deps = "Photos"
 [SyncServices]
 replacements = [
     """formattedRecord: NSDictionary,
@@ -20,3 +49,25 @@ replacements = [
         recordId2: NSString,""",
     "newRecordIdentifier : recordId #=># newRecordIdentifier : recordId2",
 ]
+[GameplayKit]
+replacements = [
+    "pub type id = GKComponent; #=># ",
+    "pub type id = GKGridGraphNode; #=># ",
+    "pub type id = GKGraphNode2D; #=># ",
+    "pub type id = NSObject; #=># ",
+]
+[GameKit]
+deps = "GameplayKit"
+[JavaNativeFoundation]
+replacements = [
+    "as : javaExceptionType #=># r#as : javaExceptionType",
+]
+[PDFKit]
+replacements = [
+    ", PDFView: PDFView #=># , PDFView_: PDFView",
+    "setPDFView: PDFView #=># setPDFView: PDFView_",
+]
+[Quartz]
+deps = "PDFKit"
+[QuickLookUI]
+deps = "PDFKit"
