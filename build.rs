@@ -1,4 +1,37 @@
-use std::{collections::HashMap, env, path::PathBuf};
+use serde::Deserialize;
+use std::{collections::HashMap, env, io::Write, path::PathBuf};
+
+#[derive(Deserialize, Default)]
+struct Config {
+    #[serde(default)]
+    opaque_types: Vec<String>,
+    #[serde(default)]
+    blocklist_items: Vec<String>,
+    #[serde(default)]
+    replacements: Vec<String>,
+}
+
+impl Config {
+    fn chain<'a>(
+        &'a self,
+        default: &'a Self,
+        get: impl Fn(&Self) -> &Vec<String>,
+    ) -> impl Iterator<Item = &'a str> {
+        get(self)
+            .iter()
+            .chain(get(default).iter())
+            .map(String::as_str)
+    }
+    fn opaque_types<'a>(&'a self, default: &'a Self) -> impl Iterator<Item = &'a str> {
+        self.chain(default, |c| &c.opaque_types)
+    }
+    fn blocklist_items<'a>(&'a self, default: &'a Self) -> impl Iterator<Item = &'a str> {
+        self.chain(default, |c| &c.blocklist_items)
+    }
+    fn replacements<'a>(&'a self, default: &'a Self) -> impl Iterator<Item = &'a str> {
+        self.chain(default, |c| &c.replacements)
+    }
+}
 
 fn sdk_path() -> Result<String, std::io::Error> {
     use std::process::Command;
@@ -11,13 +44,14 @@ fn sdk_path() -> Result<String, std::io::Error> {
     Ok(prefix_str.trim_end().to_string())
 }
 
-fn load_config() -> HashMap<String, HashMap<String, Vec<String>>> {
+fn load_config() -> HashMap<String, Config> {
     toml::from_str(include_str!("Bindgen.toml")).expect("Bindgen.toml is corrupted")
 }
 
 fn build(
     framework: &str,
-    config: &HashMap<String, Vec<String>>,
+    config: &Config,
+    default: &Config,
     sdk_path: Option<&str>,
     target: Option<&str>,
     layout_tests: bool,
@@ -43,18 +77,10 @@ fn build(
         .layout_tests(layout_tests)
         .rustfmt_bindings(true);
 
-    for opaque_type in config
-        .get("opaque_types")
-        .map(|v| v.as_slice())
-        .unwrap_or(&[])
-    {
+    for opaque_type in config.opaque_types(default) {
         builder = builder.opaque_type(opaque_type);
     }
-    for blocklist_item in config
-        .get("blocklist_items")
-        .map(|v| v.as_slice())
-        .unwrap_or(&[])
-    {
+    for blocklist_item in config.blocklist_items(default) {
         builder = builder.blocklist_item(blocklist_item);
     }
 
@@ -66,16 +92,29 @@ fn build(
     // Get the cargo out directory.
     let out_dir = PathBuf::from(env::var("OUT_DIR").expect("env variable OUT_DIR not found"));
 
+    // TODO: find the best way to do this post-processing
+    let mut out = bindings.to_string();
+    for replacement in config.replacements(default) {
+        let (old, new) = replacement
+            .split_once(" #=># ")
+            .expect("Bindgen.toml is misformatted");
+        out = out.replace(old, new);
+    }
+
     // Write them to the crate root.
-    bindings
-        .write_to_file(out_dir.join(format!("{framework}.rs")))
+    let mut file = std::fs::File::create(out_dir.join(format!("{framework}.rs")))
+        .expect("could not open bindings file");
+    file.write_all(out.as_bytes())
         .expect("could not write bindings");
 }
 
 fn main() {
     let frameworks = include!("build_features.inc.rs");
     let config = load_config();
-    let empty_config = HashMap::new();
+    let empty_config = Config::default();
+    let default_config = config
+        .get("default")
+        .expect("[default] not fonud in Bindgen.toml");
 
     #[cfg(not(feature = "__allow_empty"))]
     if frameworks.is_empty() {
@@ -88,6 +127,7 @@ fn main() {
         build(
             framework,
             config.get(framework).unwrap_or(&empty_config),
+            default_config,
             directory.as_ref().map(String::as_str),
             target.as_ref().map(String::as_str),
             false,

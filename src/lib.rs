@@ -141,10 +141,6 @@ pub mod Collaboration {
 pub mod ColorSync {
     include!(concat!(env!("OUT_DIR"), "/ColorSync.rs"));
 }
-#[cfg(feature = "Combine")]
-pub mod Combine {
-    include!(concat!(env!("OUT_DIR"), "/Combine.rs"));
-}
 #[cfg(feature = "Contacts")]
 pub mod Contacts {
     include!(concat!(env!("OUT_DIR"), "/Contacts.rs"));
@@ -161,10 +157,6 @@ pub mod CoreAudio {
 pub mod CoreAudioKit {
     include!(concat!(env!("OUT_DIR"), "/CoreAudioKit.rs"));
 }
-#[cfg(feature = "CoreAudioTypes")]
-pub mod CoreAudioTypes {
-    include!(concat!(env!("OUT_DIR"), "/CoreAudioTypes.rs"));
-}
 #[cfg(feature = "CoreBluetooth")]
 pub mod CoreBluetooth {
     include!(concat!(env!("OUT_DIR"), "/CoreBluetooth.rs"));
@@ -172,10 +164,6 @@ pub mod CoreBluetooth {
 #[cfg(feature = "CoreData")]
 pub mod CoreData {
     include!(concat!(env!("OUT_DIR"), "/CoreData.rs"));
-}
-#[cfg(feature = "CoreDisplay")]
-pub mod CoreDisplay {
-    include!(concat!(env!("OUT_DIR"), "/CoreDisplay.rs"));
 }
 #[cfg(feature = "CoreFoundation")]
 pub mod CoreFoundation {
@@ -200,10 +188,6 @@ pub mod CoreLocation {
 #[cfg(feature = "CoreMIDI")]
 pub mod CoreMIDI {
     include!(concat!(env!("OUT_DIR"), "/CoreMIDI.rs"));
-}
-#[cfg(feature = "CoreMIDIServer")]
-pub mod CoreMIDIServer {
-    include!(concat!(env!("OUT_DIR"), "/CoreMIDIServer.rs"));
 }
 #[cfg(feature = "CoreML")]
 pub mod CoreML {
@@ -245,14 +229,6 @@ pub mod CoreVideo {
 pub mod CoreWLAN {
     include!(concat!(env!("OUT_DIR"), "/CoreWLAN.rs"));
 }
-#[cfg(feature = "CreateML")]
-pub mod CreateML {
-    include!(concat!(env!("OUT_DIR"), "/CreateML.rs"));
-}
-#[cfg(feature = "CryptoKit")]
-pub mod CryptoKit {
-    include!(concat!(env!("OUT_DIR"), "/CryptoKit.rs"));
-}
 #[cfg(feature = "CryptoTokenKit")]
 pub mod CryptoTokenKit {
     include!(concat!(env!("OUT_DIR"), "/CryptoTokenKit.rs"));
@@ -264,14 +240,6 @@ pub mod DVDPlayback {
 #[cfg(feature = "DataDetection")]
 pub mod DataDetection {
     include!(concat!(env!("OUT_DIR"), "/DataDetection.rs"));
-}
-#[cfg(feature = "DeveloperToolsSupport")]
-pub mod DeveloperToolsSupport {
-    include!(concat!(env!("OUT_DIR"), "/DeveloperToolsSupport.rs"));
-}
-#[cfg(feature = "DeviceActivity")]
-pub mod DeviceActivity {
-    include!(concat!(env!("OUT_DIR"), "/DeviceActivity.rs"));
 }
 #[cfg(feature = "DeviceCheck")]
 pub mod DeviceCheck {
@@ -292,10 +260,6 @@ pub mod DiscRecordingUI {
 #[cfg(feature = "DiskArbitration")]
 pub mod DiskArbitration {
     include!(concat!(env!("OUT_DIR"), "/DiskArbitration.rs"));
-}
-#[cfg(feature = "DriverKit")]
-pub mod DriverKit {
-    include!(concat!(env!("OUT_DIR"), "/DriverKit.rs"));
 }
 #[cfg(feature = "EventKit")]
 pub mod EventKit {
@@ -364,10 +328,6 @@ pub mod GameKit {
 #[cfg(feature = "GameplayKit")]
 pub mod GameplayKit {
     include!(concat!(env!("OUT_DIR"), "/GameplayKit.rs"));
-}
-#[cfg(feature = "GroupActivities")]
-pub mod GroupActivities {
-    include!(concat!(env!("OUT_DIR"), "/GroupActivities.rs"));
 }
 #[cfg(feature = "Hypervisor")]
 pub mod Hypervisor {
@@ -449,10 +409,6 @@ pub mod JavaScriptCore {
 pub mod Kerberos {
     include!(concat!(env!("OUT_DIR"), "/Kerberos.rs"));
 }
-#[cfg(feature = "Kernel")]
-pub mod Kernel {
-    include!(concat!(env!("OUT_DIR"), "/Kernel.rs"));
-}
 #[cfg(feature = "KernelManagement")]
 pub mod KernelManagement {
     include!(concat!(env!("OUT_DIR"), "/KernelManagement.rs"));
@@ -488,10 +444,6 @@ pub mod MLCompute {
 pub mod MailKit {
     include!(concat!(env!("OUT_DIR"), "/MailKit.rs"));
 }
-#[cfg(feature = "ManagedSettings")]
-pub mod ManagedSettings {
-    include!(concat!(env!("OUT_DIR"), "/ManagedSettings.rs"));
-}
 #[cfg(feature = "MapKit")]
 pub mod MapKit {
     include!(concat!(env!("OUT_DIR"), "/MapKit.rs"));
@@ -511,10 +463,6 @@ pub mod MediaPlayer {
 #[cfg(feature = "MediaToolbox")]
 pub mod MediaToolbox {
     include!(concat!(env!("OUT_DIR"), "/MediaToolbox.rs"));
-}
-#[cfg(feature = "Message")]
-pub mod Message {
-    include!(concat!(env!("OUT_DIR"), "/Message.rs"));
 }
 #[cfg(feature = "Metal")]
 pub mod Metal {
@@ -543,10 +491,6 @@ pub mod ModelIO {
 #[cfg(feature = "MultipeerConnectivity")]
 pub mod MultipeerConnectivity {
     include!(concat!(env!("OUT_DIR"), "/MultipeerConnectivity.rs"));
-}
-#[cfg(feature = "MusicKit")]
-pub mod MusicKit {
-    include!(concat!(env!("OUT_DIR"), "/MusicKit.rs"));
 }
 #[cfg(feature = "NaturalLanguage")]
 pub mod NaturalLanguage {
@@ -636,10 +580,6 @@ pub mod PreferencePanes {
 pub mod PushKit {
     include!(concat!(env!("OUT_DIR"), "/PushKit.rs"));
 }
-#[cfg(feature = "QTKit")]
-pub mod QTKit {
-    include!(concat!(env!("OUT_DIR"), "/QTKit.rs"));
-}
 #[cfg(feature = "Quartz")]
 pub mod Quartz {
     include!(concat!(env!("OUT_DIR"), "/Quartz.rs"));
@@ -660,21 +600,9 @@ pub mod QuickLookThumbnailing {
 pub mod QuickLookUI {
     include!(concat!(env!("OUT_DIR"), "/QuickLookUI.rs"));
 }
-#[cfg(feature = "RealityFoundation")]
-pub mod RealityFoundation {
-    include!(concat!(env!("OUT_DIR"), "/RealityFoundation.rs"));
-}
-#[cfg(feature = "RealityKit")]
-pub mod RealityKit {
-    include!(concat!(env!("OUT_DIR"), "/RealityKit.rs"));
-}
 #[cfg(feature = "ReplayKit")]
 pub mod ReplayKit {
     include!(concat!(env!("OUT_DIR"), "/ReplayKit.rs"));
-}
-#[cfg(feature = "Ruby")]
-pub mod Ruby {
-    include!(concat!(env!("OUT_DIR"), "/Ruby.rs"));
 }
 #[cfg(feature = "SafariServices")]
 pub mod SafariServices {
@@ -752,10 +680,6 @@ pub mod SwiftUI {
 pub mod SyncServices {
     include!(concat!(env!("OUT_DIR"), "/SyncServices.rs"));
 }
-#[cfg(feature = "System")]
-pub mod System {
-    include!(concat!(env!("OUT_DIR"), "/System.rs"));
-}
 #[cfg(feature = "SystemConfiguration")]
 pub mod SystemConfiguration {
     include!(concat!(env!("OUT_DIR"), "/SystemConfiguration.rs"));
@@ -768,17 +692,9 @@ pub mod SystemExtensions {
 pub mod TWAIN {
     include!(concat!(env!("OUT_DIR"), "/TWAIN.rs"));
 }
-#[cfg(feature = "TabularData")]
-pub mod TabularData {
-    include!(concat!(env!("OUT_DIR"), "/TabularData.rs"));
-}
 #[cfg(feature = "Tcl")]
 pub mod Tcl {
     include!(concat!(env!("OUT_DIR"), "/Tcl.rs"));
-}
-#[cfg(feature = "Tk")]
-pub mod Tk {
-    include!(concat!(env!("OUT_DIR"), "/Tk.rs"));
 }
 #[cfg(feature = "UniformTypeIdentifiers")]
 pub mod UniformTypeIdentifiers {
