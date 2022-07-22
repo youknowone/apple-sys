@@ -10,7 +10,16 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  bindgen:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      run: cargo test  --manifest-path=bindgen/Cargo.toml --verbose
+    - name: Tool
+      run: cargo run --features=bin --manifest-path=bindgen/Cargo.toml --verbose CoreFoundation --sdk macosx
+
+  sys:
     strategy:
       matrix:
         feature: [
@@ -202,4 +211,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: cargo build --verbose --features ${{ matrix.feature }}
+      run: cargo build  --manifest-path=sys/Cargo.toml --verbose --features ${{ matrix.feature }}
