@@ -22,9 +22,28 @@ def framework_path(sdk_path):
 def find_framework_names(sdk_path):
     f_path = framework_path(sdk_path)
     pattern = f_path + "/*.framework"
+    blocklist = frozenset(
+        [
+            # framework not found
+            "CoreAudioTypes",
+            "CoreMIDIServer",
+            "DeviceActivity",
+            "DriverKit",
+            "Kernel",
+            "QTKit",
+            "RealityKit",
+            "Ruby",
+            "Tk",
+        ]
+    )
     # print(pattern)
-    for f in glob(pattern):
-        name = os.path.basename(f).removesuffix(".framework")
+    for f_path in glob(pattern):
+        name = os.path.basename(f_path).removesuffix(".framework")
+        if name in blocklist:
+            continue
+        has_header = os.path.isdir(f"{f_path}/Versions/Current/Headers")
+        if not has_header:
+            continue
         if name.startswith("_"):
             continue
         yield name
@@ -56,7 +75,8 @@ def gen_cargo(names):
     DELIMITER = "# AUTO-GENERATED: DO NOT ADD ANYTHING BELOW THIS LINE"
     source = open("Cargo.toml", "r").read()
     top, _ = source.split(DELIMITER)
-    return f"""{top}{DELIMITER}\n""" + "\n".join(f"{name} = []" for name in names)
+    bottom = "\n".join(f"{name} = []" for name in names)
+    return f"""{top}{DELIMITER}\n{bottom}\n"""
 
 
 def gen_build(names):
@@ -83,20 +103,25 @@ def main(sdk_name):
         content = gen_build(framework_names)
         f.write(content)
 
+    with open("test_script.sh", "w") as f:
+        f.write(
+            dedent(
+                f"""
+        names="{' '.join(framework_names)}"
+        for name in $names; do
+            echo $name && cargo test --features $name &> test.$name.result && rm test.$name.result
+        done
+        """
+            )
+        )
+
+    print("generated:", ",".join(framework_names))
+
 
 if __name__ == "__main__":
     main("MacOSX")
+    subprocess.run(["cargo", "fmt"])
 
 
 def test_xcode_select_path():
     assert xcode_select_path().endswith("/Developer")
-
-
-# FRAMEWORK_PATH="${XCODE_PATH}/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks"
-# echo "listing from ${FRAMEWORK_PATH}"
-
-# for framework in "${FRAMEWORK_PATH}"/*.framework; do
-# 	framework=${framework##*/}
-# 	name=${framework%.framework}
-# 	echo $name
-# done
