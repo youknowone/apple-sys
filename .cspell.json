@@ -1,0 +1,40 @@
+// See: https://github.com/streetsidesoftware/cspell/tree/master/packages/cspell
+{
+  "version": "0.2",
+  // language - current active spelling language
+  "language": "en",
+  // dictionaries - list of the names of the dictionaries to use
+  "dictionaries": [
+    "en_US",
+    "softwareTerms",
+    "objective-c",
+    "rust"
+  ],
+  "ignorePaths": [
+    "*.toml"
+  ],
+  // words - list of words to be always considered correct
+  "words": [
+    "bindgen",
+    "rustfmt",
+    "blocklist",
+    "xcrun",
+    "isysroot",
+    "watchOS",
+    "thiserror",
+    "-fblocks",
+    "-fmodules"
+  ],
+  // flagWords - list of words to be always considered incorrect
+  "flagWords": [
+  ],
+  "ignoreRegExpList": [
+  ],
+  // languageSettings - allow for per programming language configuration settings.
+  "languageSettings": [
+    {
+      "languageId": "rust",
+      "locale": "en"
+    }
+  ]
+}

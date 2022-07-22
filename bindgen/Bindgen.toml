@@ -41,7 +41,7 @@ replacements = [
     "pub type id = PHObject; #=># ",
 ]
 [PhotosUI]
-deps = "Photos"
+deps = ["Photos"]
 [SyncServices]
 replacements = [
     """formattedRecord: NSDictionary,
@@ -57,7 +57,7 @@ replacements = [
     "pub type id = NSObject; #=># ",
 ]
 [GameKit]
-deps = "GameplayKit"
+deps = ["GameplayKit"]
 [JavaNativeFoundation]
 replacements = [
     "as : javaExceptionType #=># r#as : javaExceptionType",
@@ -68,6 +68,6 @@ replacements = [
     "setPDFView: PDFView #=># setPDFView: PDFView_",
 ]
 [Quartz]
-deps = "PDFKit"
+deps = ["PDFKit"]
 [QuickLookUI]
-deps = "PDFKit"
+deps = ["PDFKit"]

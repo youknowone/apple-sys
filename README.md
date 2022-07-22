@@ -25,6 +25,20 @@ use apple_sys::{CoreFoundation, IOKit};
 // IOKit::<any name>
 ```
 
+# apple-bindgen
+
+The bindgen tool is installable and generating the same result to apple-sys crates.
+
+To generate CoreFoundation bindings,
+```
+$ apple-bindgen CoreFoundation --sdk macosx
+```
+
+To generate UIKit bindings for iOS,
+```
+$ apple-bindgen UIKit --sdk iphoneos
+```
+
 # Why apple-sys?
 
 `apple-sys` contains auto-generated bindgen modules for Apple platforms. As long as we use the same versions of SDKs and bindgen, the result will be reproducible.
@@ -37,4 +51,4 @@ Then why do I use apple-sys? I created apple-sys for minor and unmanaged framewo
 # Contributing
 
 There are no plans for apple-sys to distribute generated or manually changed code. We shall just manage bindgen rules.
-Look in the project root directory's "Bindgen.toml" file.
+Look in the project root directory's "bindgen/Bindgen.toml" file.
