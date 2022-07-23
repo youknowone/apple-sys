@@ -1,6 +1,6 @@
 [package]
 name = "apple-bindgen"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 description = "bindgen helper for Apple frameworks"
 keywords = ["sys", "apple", "macos", "bindgen"]
@@ -9,7 +9,7 @@ authors = ["Jeong YunWon <jeong@youknowone.org>"]
 repository = "https://github.com/youknowone/apple-sys/"
 readme = "../README.md"
 license = "BSD-2-Clause"
-include = ["*.toml"]
+include = ["*.toml", "/src"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -25,6 +25,7 @@ thiserror = "1.0.31"
 clap = { version = "3.2.14", features = ["derive"], optional = true }
 
 [features]
+default = ["bin"]  # required-featues for apple-bindgen binary
 bin = ["clap"]
 
 [[bin]]

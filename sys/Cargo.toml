@@ -7,7 +7,7 @@ keywords = ["sys", "apple", "macos", "bindgen"]
 categories = ["api-bindings", "os::macos-apis"]
 authors = ["Jeong YunWon <jeong@youknowone.org>"]
 repository = "https://github.com/youknowone/apple-sys/"
-readme = "README.md"
+readme = "../README.md"
 license = "BSD-2-Clause"
 include = ["/src", "/*.rs"]
 
@@ -17,7 +17,7 @@ include = ["/src", "/*.rs"]
 objc = { version = "0.2.7", optional = true }
 
 [build-dependencies]
-apple-bindgen = { path = "../bindgen", version = "0.1.2" }
+apple-bindgen = { path = "../bindgen", version = "0.1.3", default-features=false }
 
 [features]
 default = ["objc"]
