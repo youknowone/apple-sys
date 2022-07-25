@@ -32,7 +32,7 @@ impl Builder {
         Self::new(
             framework,
             sdk,
-            ConfigMap::with_builtin_config().build(framework),
+            ConfigMap::with_builtin_config().framework_config(framework),
         )
     }
 
@@ -75,13 +75,11 @@ impl Builder {
         builder
     }
 
-    pub fn generate(&self) -> String {
+    pub fn generate(&self) -> Result<String, bindgen::BindgenError> {
         let bindgen_builder = self.bindgen_builder();
 
         // Generate the bindings.
-        let bindings = bindgen_builder
-            .generate()
-            .expect("unable to generate bindings");
+        let bindings = bindgen_builder.generate()?;
 
         // TODO: find the best way to do this post-processing
         let mut out = bindings.to_string();
@@ -91,6 +89,6 @@ impl Builder {
                 .expect("Bindgen.toml is malformed");
             out = out.replace(old, new);
         }
-        out
+        Ok(out)
     }
 }

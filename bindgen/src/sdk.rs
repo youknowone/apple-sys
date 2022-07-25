@@ -1,3 +1,5 @@
+// TODO: change this module to thin wrapper of apple_sdk::SdkPath and related utilities
+
 use apple_sdk::Platform;
 use std::{
     path::{Path, PathBuf},

@@ -23,7 +23,7 @@ fn main() {
         if let Ok(target) = std::env::var("TARGET") {
             builder = builder.target(target);
         }
-        let out = builder.generate();
+        let out = builder.generate().expect("binding generation failed");
 
         // Write them to the crate root.
         let mut file = std::fs::File::create(out_dir.join(format!("{framework}.rs")))

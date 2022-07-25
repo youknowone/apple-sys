@@ -1,3 +1,8 @@
+//! Generate Rust bindings for Apple frameworks.
+//!
+//! This projects only generate bindings to string.
+//! See [apple-sys](https://crates.io/crates/apple-sys) to import the result as a dependency.
+
 mod builder;
 mod config;
 mod sdk;

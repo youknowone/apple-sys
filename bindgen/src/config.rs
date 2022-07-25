@@ -1,5 +1,6 @@
 use serde::Deserialize;
 use std::collections::HashMap;
+use thiserror::Error;
 
 #[derive(Deserialize)]
 pub struct ConfigMap {
@@ -8,17 +9,21 @@ pub struct ConfigMap {
 }
 
 impl ConfigMap {
-    pub fn from_file(path: impl AsRef<std::path::Path>) -> Self {
-        let file = std::fs::read_to_string(path).expect("could not read config file");
-        toml::from_str(&file).expect("config file is corrupted")
+    pub fn from_str(content: &str) -> Result<Self, ConfigError> {
+        toml::from_str(&content).map_err(|e| ConfigError::TomlError(e))
+    }
+
+    pub fn from_file(path: impl AsRef<std::path::Path>) -> Result<Self, ConfigError> {
+        let content = std::fs::read_to_string(path).map_err(|e| ConfigError::OpenError(e))?;
+        Self::from_str(&content)
     }
 
     pub fn with_builtin_config() -> Self {
-        let file = include_str!("../Bindgen.toml");
-        toml::from_str(file).expect("config file is corrupted")
+        let content = include_str!("../Bindgen.toml");
+        Self::from_str(content).expect("Builtin config file is corrupted. This is bug.")
     }
 
-    pub fn build(&self, name: &str) -> Config {
+    pub fn framework_config(&self, name: &str) -> Config {
         let mut deps = Vec::new();
         if self.map.contains_key(name) {
             deps.push(name);
@@ -92,4 +97,13 @@ pub struct Config {
     pub replacements: Vec<String>,
     #[serde(default)]
     pub layout_tests: bool,
+}
+
+#[non_exhaustive]
+#[derive(Debug, Error)]
+pub enum ConfigError {
+    #[error("toml parsing error {0}")]
+    OpenError(std::io::Error),
+    #[error("toml parsing error {0}")]
+    TomlError(toml::de::Error),
 }

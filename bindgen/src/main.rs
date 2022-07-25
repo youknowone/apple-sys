@@ -66,6 +66,6 @@ fn main() {
     if let Some(target) = args.target {
         builder = builder.target(target);
     }
-    let out = builder.generate();
+    let out = builder.generate().expect("binding generation failed");
     println!("{}", out);
 }
