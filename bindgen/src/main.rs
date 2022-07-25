@@ -54,9 +54,8 @@ struct Args {
 fn main() {
     let args = Args::parse();
 
-    let mut builder = Builder::with_builtin_config(&args.framework)
-        .sdk(args.sdk)
-        .expect("sdk lookup failed");
+    let mut builder =
+        Builder::with_builtin_config(&args.framework, args.sdk).expect("sdk lookup failed");
     if args.verbose {
         eprintln!("config: {:?}", builder);
         eprintln!(

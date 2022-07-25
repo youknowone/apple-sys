@@ -18,9 +18,8 @@ fn main() {
     for framework in frameworks {
         println!("cargo:rustc-link-lib=framework={framework}");
 
-        let mut builder = Builder::with_builtin_config(framework)
-            .sdk("macosx")
-            .expect("sdk lookup failed");
+        let mut builder =
+            Builder::with_builtin_config(framework, "macosx").expect("sdk lookup failed");
         if let Ok(target) = std::env::var("TARGET") {
             builder = builder.target(target);
         }

@@ -6,33 +6,34 @@ pub use crate::{
 #[derive(Debug)]
 pub struct Builder {
     framework: String,
-    sdk: Option<SdkPath>,
+    sdk: SdkPath,
     target: Option<String>,
     config: Config,
 }
 
 impl Builder {
-    pub fn new(framework: &str, config: Config) -> Self {
-        Self {
+    pub fn new(
+        framework: &str,
+        sdk: impl TryInto<SdkPath, Error = SdkPathError>,
+        config: Config,
+    ) -> Result<Self, SdkPathError> {
+        Ok(Self {
             framework: framework.to_owned(),
-            sdk: None,
+            sdk: sdk.try_into()?,
             target: None,
             config,
-        }
+        })
     }
 
-    pub fn with_builtin_config(framework: &str) -> Self {
-        let framework = framework;
-        Self::new(framework, ConfigMap::with_builtin_config().build(framework))
-    }
-
-    pub fn sdk(
-        mut self,
-        path: impl TryInto<SdkPath, Error = SdkPathError>,
+    pub fn with_builtin_config(
+        framework: &str,
+        sdk: impl TryInto<SdkPath, Error = SdkPathError>,
     ) -> Result<Self, SdkPathError> {
-        assert!(self.sdk.is_none());
-        self.sdk = Some(path.try_into()?);
-        Ok(self)
+        Self::new(
+            framework,
+            sdk,
+            ConfigMap::with_builtin_config().build(framework),
+        )
     }
 
     pub fn target(mut self, target: impl AsRef<str>) -> Self {
@@ -52,8 +53,7 @@ impl Builder {
             clang_args.push(&target_arg);
         }
 
-        let sdk = self.sdk.as_ref().expect("sdk is not set");
-        clang_args.extend(&["-isysroot", sdk.path().to_str().unwrap()]);
+        clang_args.extend(&["-isysroot", self.sdk.path().to_str().unwrap()]);
 
         builder = builder
             .clang_args(&clang_args)
