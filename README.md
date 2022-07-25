@@ -28,6 +28,12 @@ use apple_sys::{CoreFoundation, IOKit};
 # apple-bindgen
 
 The bindgen tool is installable and generating the same result to apple-sys crates.
+To create a new `-sys` project, starting with `apple-bindgen` result will be a convenient way.
+
+Install:
+```
+$ cargo install apple-bindgen
+```
 
 To generate CoreFoundation bindings,
 ```
