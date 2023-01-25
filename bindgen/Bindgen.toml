@@ -52,6 +52,10 @@ replacements = [
         recordId2: NSString,""",
     "newRecordIdentifier : recordId #=># newRecordIdentifier : recordId2",
 ]
+[GameController]
+replacements = [
+    "pub type id = NSString; #=># ",
+]
 [GameplayKit]
 replacements = [
     "pub type id = GKComponent; #=># ",
