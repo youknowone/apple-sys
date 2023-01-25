@@ -3,6 +3,9 @@ opaque_types = [
     # rust-bindgen#2240
     "FndrOpaqueInfo", "HFSCatalogFolder", "HFSPlusCatalogFolder", "HFSCatalogFile", "HFSPlusCatalogFile"
 ]
+impl_debugs = [
+    "IORPCMessage",
+]
 replacements = [
     # Core glitches
     "pub type id = NSUnit; #=># ",
