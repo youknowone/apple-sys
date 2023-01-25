@@ -89,6 +89,20 @@ impl Builder {
                 .expect("Bindgen.toml is malformed");
             out = out.replace(old, new);
         }
+        for ty in &self.config.impl_debugs {
+            if out.contains(ty) {
+                out.push_str(&format!(
+                    r#"
+impl ::std::fmt::Debug for {ty} {{
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {{
+        f.debug_struct(stringify!(#ty))
+            .finish()
+    }}
+}}
+                "#
+                ));
+            }
+        }
         Ok(out)
     }
 }

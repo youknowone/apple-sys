@@ -62,17 +62,20 @@ impl<'a> FromIterator<&'a Config> for Config {
     fn from_iter<T: IntoIterator<Item = &'a Config>>(iter: T) -> Self {
         let mut opaque_types = Vec::new();
         let mut blocklist_items = Vec::new();
+        let mut impl_debugs = Vec::new();
         let mut replacements = Vec::new();
         let mut layout_tests = false;
         for config in iter {
             opaque_types.extend(config.opaque_types.iter().cloned());
             blocklist_items.extend(config.blocklist_items.iter().cloned());
+            impl_debugs.extend(config.impl_debugs.iter().cloned());
             replacements.extend(config.replacements.iter().cloned());
             layout_tests |= config.layout_tests;
         }
         Self {
             opaque_types,
             blocklist_items,
+            impl_debugs,
             replacements,
             layout_tests,
         }
@@ -93,6 +96,8 @@ pub struct Config {
     pub opaque_types: Vec<String>,
     #[serde(default)]
     pub blocklist_items: Vec<String>,
+    #[serde(default)]
+    pub impl_debugs: Vec<String>,
     #[serde(default)]
     pub replacements: Vec<String>,
     #[serde(default)]
