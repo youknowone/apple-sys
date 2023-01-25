@@ -34,6 +34,27 @@ impl NSScreen_ for NSScreen {}
 pub trait NSScreen_: Sized + std::ops::Deref { #=># }
 """,
     """impl NSImage_ for NSImage {}\n\n #=># """,
+
+    # UIKit
+    """unsafe fn dividerImageForLeftSegmentState_rightSegmentState_(
+        &self,
+        state: UIControlState,
+        state: UIControlState,
+    ) -> UIImage
+    where
+        <Self as std::ops::Deref>::Target: objc::Message + Sized,
+    {
+        msg_send ! (* self , dividerImageForLeftSegmentState : state rightSegmentState : state)
+    } #=># unsafe fn dividerImageForLeftSegmentState_rightSegmentState_(
+        &self,
+        leftState: UIControlState,
+        rightState: UIControlState,
+    ) -> UIImage
+    where
+        <Self as std::ops::Deref>::Target: objc::Message + Sized,
+    {
+        msg_send ! (* self , dividerImageForLeftSegmentState : leftState rightSegmentState : rightState)
+    }"""
 ]
 [SyncServices]
 replacements = [
@@ -54,4 +75,10 @@ replacements = [
 [Quartz]
 deps = ["PDFKit"]
 [QuickLookUI]
+deps = ["PDFKit"]
+
+# iOS
+[ARKit]
+deps = ["PDFKit"]
+[QuickLook]
 deps = ["PDFKit"]

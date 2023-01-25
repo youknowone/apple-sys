@@ -2,9 +2,20 @@ use apple_bindgen::Builder;
 use std::io::Write;
 
 fn main() {
-    println!("cargo:rerun-if-changed=build_features.inc.rs");
+    println!("cargo:rerun-if-changed=macos.inc.rs");
+    println!("cargo:rerun-if-changed=ios.inc.rs");
 
-    let frameworks = include!("build_features.inc.rs");
+    let target = std::env::var("TARGET").expect("env TARGET must be set");
+    let target_os = std::env::var("CARGO_CFG_TARGET_OS").unwrap();
+
+    let frameworks = match target_os.as_str() {
+        "macos" => include!("macos.inc.rs"),
+        "ios" => include!("ios.inc.rs"),
+        unknown => panic!("unexpected target_os: {}", unknown),
+    };
+
+    let platform = apple_sdk::Platform::from_target_triple(&target)
+        .expect("Unknown apple platform. please report it.");
 
     #[cfg(not(feature = "__allow_empty"))]
     if frameworks.is_empty() {
@@ -19,7 +30,7 @@ fn main() {
         println!("cargo:rustc-link-lib=framework={framework}");
 
         let mut builder =
-            Builder::with_builtin_config(framework, "macosx").expect("sdk lookup failed");
+            Builder::with_builtin_config(framework, &platform).expect("sdk lookup failed");
         if let Ok(target) = std::env::var("TARGET") {
             builder = builder.target(target);
         }

@@ -3,7 +3,7 @@ use apple_sdk::Platform;
 use clap::Parser;
 use std::{path::PathBuf, str::FromStr};
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 enum Sdk {
     Name(Platform),
     Path(SdkPath),
@@ -47,7 +47,7 @@ struct Args {
     target: Option<String>,
 
     /// Print build details
-    #[clap(short, long, takes_value = false)]
+    #[clap(short, long, num_args = 0)]
     verbose: bool,
 }
 

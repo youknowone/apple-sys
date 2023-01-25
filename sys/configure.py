@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import itertools
 from glob import glob
 from textwrap import dedent
 
@@ -22,27 +23,40 @@ def framework_path(sdk_path):
 def find_framework_names(sdk_path):
     f_path = framework_path(sdk_path)
     pattern = f_path + "/*.framework"
-    blocklist = frozenset(
-        [
-            # framework not found
-            "CoreAudioTypes",
-            "CoreMIDIServer",
-            "DeviceActivity",
-            "DriverKit",
-            "Kernel",
-            "QTKit",
-            "RealityKit",
-            "Ruby",
-            "Tk",
-            "vecLib",
-        ]
-    )
+    if 'MacOSX' in sdk_path:
+        blocklist = frozenset(
+            [
+                # framework not found
+                "CoreAudioTypes",
+                "CoreMIDIServer",
+                "DeviceActivity",
+                "DriverKit",
+                "Kernel",
+                "QTKit",
+                "RealityKit",
+                "Ruby",
+                "Tk",
+                "vecLib",
+            ]
+        )
+    elif 'iPhone' in sdk_path:
+        blocklist = frozenset(
+            [
+                # framework not found
+                "CoreAudioTypes",
+                "IOKit",
+                "RealityKit",
+            ]
+        )
+    else:
+        raise ValueError(f"blocklist is not set for: {sdk_path}")
+
     # print(pattern)
     for f_path in glob(pattern):
         name = os.path.basename(f_path).removesuffix(".framework")
         if name in blocklist:
             continue
-        has_header = os.path.isdir(f"{f_path}/Versions/Current/Headers")
+        has_header = os.path.isdir(f"{f_path}/Headers")
         if not has_header:
             continue
         if name.startswith("_"):
@@ -50,7 +64,7 @@ def find_framework_names(sdk_path):
         yield name
 
 
-def gen_lib(names):
+def gen_lib(names: dict[str, list[str]]):
     source = dedent(
         f"""
     //! apple-sys main module
@@ -64,10 +78,13 @@ def gen_lib(names):
     """
     )
 
-    def gen_module(name):
-        return f"""#[cfg(feature = "{name}")] pub mod {name} {{ include!(concat!(env!("OUT_DIR"), "/{name}.rs"));  }}"""
+    def gen_module(os, name):
+        return f"""#[cfg(all(target_os = "{os}", feature = "{name}"))] pub mod {name} {{ include!(concat!(env!("OUT_DIR"), "/{name}.rs"));  }}"""
 
-    source += "\n".join(gen_module(name) for name in names)
+    for platform, names in names.items():
+        os = target_os(platform)
+        source += "\n".join(gen_module(os, name) for name in names)
+        source += "\n"
 
     return source
 
@@ -76,21 +93,38 @@ def gen_cargo(names):
     DELIMITER = "# AUTO-GENERATED: DO NOT ADD ANYTHING BELOW THIS LINE"
     source = open("Cargo.toml", "r").read()
     top, _ = source.split(DELIMITER)
-    bottom = "\n".join(f"{name} = []" for name in names)
+
+    unique_names = sorted(frozenset(itertools.chain(*names.values())))
+    bottom = "\n".join(f"{name} = []" for name in unique_names)
     return f"""{top}{DELIMITER}\n{bottom}\n"""
 
 
 def gen_build(names):
-    body = "\n".join(f"""#[cfg(feature = "{name}")] "{name}",""" for name in names)
-    return f"""vec![
-        {body}
-    ]"""
+    parts = [f'    #[cfg(feature = "{name}")] "{name}",' for name in names]
+    body = "\n".join(parts)
+    return f'''vec![
+{body}
+]
+'''
 
 
-def main(sdk_name):
+def target_os(platform):
+    MAP = {
+        "MacOSX": "macos",
+        "iPhoneOS": "ios",
+        "iPhoneSimulator": "ios",
+    }
+    return MAP[platform]
+
+
+def main(sdk_names):
     xcode_path = os.environ.get("XCODE_PATH") or xcode_select_path()
-    sdk_path = make_sdk_path(sdk_name, xcode_path)
-    framework_names = sorted(find_framework_names(sdk_path))
+    framework_names = {
+        sdk_name: list(
+            sorted(find_framework_names(make_sdk_path(sdk_name, xcode_path)))
+        )
+        for sdk_name in sdk_names
+    }
 
     with open("src/lib.rs", "w") as f:
         content = gen_lib(framework_names)
@@ -100,27 +134,36 @@ def main(sdk_name):
     with open("Cargo.toml", "w") as f:
         f.write(content)
 
-    with open("build_features.inc.rs", "w") as f:
-        content = gen_build(framework_names)
-        f.write(content)
+    for platform, names in framework_names.items():
+        target = target_os(platform)
+        with open(f"{target}.inc.rs", "w") as f:
+            content = gen_build(names)
+            f.write(content)
 
-    with open("test_script.sh", "w") as f:
-        f.write(
-            dedent(
-                f"""
-        names="{' '.join(framework_names)}"
-        for name in $names; do
-            echo $name && cargo test --features $name &> test.$name.result && rm test.$name.result
-        done
-        """
+    for platform, names in framework_names.items():
+        with open(f"test_script.{platform}.sh", "w") as f:
+            target = ""
+            command = "test"
+            if platform == "iPhoneOS":
+                target = "--target aarch64-apple-ios"
+                command = "build"
+            f.write(
+                dedent(
+                    f"""
+                    names="{' '.join(names)}"
+                    for name in $names; do
+                        echo $name && cargo {command} {target} --features $name &> test.{platform}.$name.result && rm test.{platform}.$name.result
+                    done
+                    """
+                )
             )
-        )
 
-    print("generated:", ",".join(framework_names))
+    for platform, names in framework_names.items():
+        print(f"generated {platform}:", ",".join(names))
 
 
 if __name__ == "__main__":
-    main("MacOSX")
+    main(["MacOSX", "iPhoneOS"])
     subprocess.run(["cargo", "fmt"])
 
 
