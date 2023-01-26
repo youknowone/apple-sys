@@ -1,6 +1,6 @@
 [package]
 name = "apple-sys"
-version = "0.1.2"
+version = "0.2.0"
 edition = "2021"
 description = "The auto-managed -sys crate for Apple platforms using bindgen directly from build environment"
 keywords = ["sys", "apple", "macos", "bindgen"]
@@ -17,7 +17,7 @@ include = ["/src", "/*.rs"]
 objc = { version = "0.2.7", optional = true }
 
 [build-dependencies]
-apple-bindgen = { path = "../bindgen", version = "0.1.3", default-features=false }
+apple-bindgen = { path = "../bindgen", version = "0.2.0", default-features=false }
 apple-sdk = "0.4.0"
 
 [features]
