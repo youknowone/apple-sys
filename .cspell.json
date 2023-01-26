@@ -15,12 +15,14 @@
   ],
   // words - list of words to be always considered correct
   "words": [
+    "aarch64",
     "bindgen",
     "rustfmt",
     "blocklist",
     "xcrun",
     "isysroot",
-    "watchOS",
+    "WatchOS",
+    "TVOS",
     "thiserror",
     "-fblocks",
     "-fmodules"

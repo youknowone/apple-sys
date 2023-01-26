@@ -15,8 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Test
-      run: cargo test  --manifest-path=bindgen/Cargo.toml --verbose
-    - name: Tool
+      run: cargo test --manifest-path=bindgen/Cargo.toml --verbose
+    - name: Tool (macos)
       run: cargo run --features=bin --manifest-path=bindgen/Cargo.toml --verbose CoreFoundation --sdk macosx
 
   sys-macos:

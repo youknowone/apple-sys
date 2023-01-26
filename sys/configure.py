@@ -23,7 +23,7 @@ def framework_path(sdk_path):
 def find_framework_names(sdk_path):
     f_path = framework_path(sdk_path)
     pattern = f_path + "/*.framework"
-    if 'MacOSX' in sdk_path:
+    if "MacOSX" in sdk_path:
         blocklist = frozenset(
             [
                 # framework not found
@@ -37,15 +37,36 @@ def find_framework_names(sdk_path):
                 "Ruby",
                 "Tk",
                 "vecLib",
+                # not supported yet
+                "MetalPerformanceShaders",
+                "MetalPerformanceShadersGraph",
+                "WebKit",
             ]
         )
-    elif 'iPhone' in sdk_path:
+    elif "iPhone" in sdk_path:
         blocklist = frozenset(
             [
                 # framework not found
                 "CoreAudioTypes",
                 "IOKit",
                 "RealityKit",
+                # not supported yet
+                "MetalPerformanceShaders",
+                "MetalPerformanceShadersGraph",
+            ]
+        )
+    elif "Watch" in sdk_path:
+        blocklist = frozenset(
+            [
+                # framework not found
+                "CoreAudioTypes",
+            ]
+        )
+    elif "AppleTV" in sdk_path:
+        blocklist = frozenset(
+            [
+                # framework not found
+                "CoreAudioTypes",
             ]
         )
     else:
@@ -102,10 +123,10 @@ def gen_cargo(names):
 def gen_build(names):
     parts = [f'    #[cfg(feature = "{name}")] "{name}",' for name in names]
     body = "\n".join(parts)
-    return f'''vec![
+    return f"""vec![
 {body}
 ]
-'''
+"""
 
 
 def target_os(platform):
@@ -113,6 +134,10 @@ def target_os(platform):
         "MacOSX": "macos",
         "iPhoneOS": "ios",
         "iPhoneSimulator": "ios",
+        "WatchOS": "watchos",
+        "WatchSimulator": "watchos",
+        "AppleTVOS": "tvos",
+        "AppleTVSimulator": "tvos",
     }
     return MAP[platform]
 
@@ -142,17 +167,27 @@ def main(sdk_names):
 
     for platform, names in framework_names.items():
         with open(f"test_script.{platform}.sh", "w") as f:
-            target = ""
-            command = "test"
-            if platform == "iPhoneOS":
+            if platform == "MacOSX":
+                target = ""
+                command = "test"
+            elif platform == "iPhoneOS":
                 target = "--target aarch64-apple-ios"
                 command = "build"
+            elif platform == "WatchOS":
+                target = "--target aarch64-apple-watchos-sim"
+                command = "build"
+            elif platform == "AppleTVOS":
+                target = "--target aarch64-apple-tvos"
+                command = "build"
+            else:
+                assert False, "Unknown platform"
+
             f.write(
                 dedent(
                     f"""
                     names="{' '.join(names)}"
                     for name in $names; do
-                        echo $name && cargo {command} {target} --features $name &> test.{platform}.$name.result && rm test.{platform}.$name.result
+                        echo $name && cargo {command} {target} --features prebuilt,$name &> test.{platform}.$name.result && rm test.{platform}.$name.result
                     done
                     """
                 )
@@ -163,7 +198,7 @@ def main(sdk_names):
 
 
 if __name__ == "__main__":
-    main(["MacOSX", "iPhoneOS"])
+    main(["MacOSX", "iPhoneOS", "WatchOS", "AppleTVOS"])
     subprocess.run(["cargo", "fmt"])
 
 

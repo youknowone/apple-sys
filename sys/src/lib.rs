@@ -1434,3 +1434,651 @@ pub mod WidgetKit {
 pub mod iAd {
     include!(concat!(env!("OUT_DIR"), "/iAd.rs"));
 }
+#[cfg(all(target_os = "watchos", feature = "AVFAudio"))]
+pub mod AVFAudio {
+    include!(concat!(env!("OUT_DIR"), "/AVFAudio.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "AVFoundation"))]
+pub mod AVFoundation {
+    include!(concat!(env!("OUT_DIR"), "/AVFoundation.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "AVKit"))]
+pub mod AVKit {
+    include!(concat!(env!("OUT_DIR"), "/AVKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "Accelerate"))]
+pub mod Accelerate {
+    include!(concat!(env!("OUT_DIR"), "/Accelerate.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "Accessibility"))]
+pub mod Accessibility {
+    include!(concat!(env!("OUT_DIR"), "/Accessibility.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "AppIntents"))]
+pub mod AppIntents {
+    include!(concat!(env!("OUT_DIR"), "/AppIntents.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "AuthenticationServices"))]
+pub mod AuthenticationServices {
+    include!(concat!(env!("OUT_DIR"), "/AuthenticationServices.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CallKit"))]
+pub mod CallKit {
+    include!(concat!(env!("OUT_DIR"), "/CallKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "ClockKit"))]
+pub mod ClockKit {
+    include!(concat!(env!("OUT_DIR"), "/ClockKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CloudKit"))]
+pub mod CloudKit {
+    include!(concat!(env!("OUT_DIR"), "/CloudKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "ColorSync"))]
+pub mod ColorSync {
+    include!(concat!(env!("OUT_DIR"), "/ColorSync.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "Contacts"))]
+pub mod Contacts {
+    include!(concat!(env!("OUT_DIR"), "/Contacts.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreAudio"))]
+pub mod CoreAudio {
+    include!(concat!(env!("OUT_DIR"), "/CoreAudio.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreBluetooth"))]
+pub mod CoreBluetooth {
+    include!(concat!(env!("OUT_DIR"), "/CoreBluetooth.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreData"))]
+pub mod CoreData {
+    include!(concat!(env!("OUT_DIR"), "/CoreData.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreFoundation"))]
+pub mod CoreFoundation {
+    include!(concat!(env!("OUT_DIR"), "/CoreFoundation.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreGraphics"))]
+pub mod CoreGraphics {
+    include!(concat!(env!("OUT_DIR"), "/CoreGraphics.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreLocation"))]
+pub mod CoreLocation {
+    include!(concat!(env!("OUT_DIR"), "/CoreLocation.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreLocationUI"))]
+pub mod CoreLocationUI {
+    include!(concat!(env!("OUT_DIR"), "/CoreLocationUI.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreMIDI"))]
+pub mod CoreMIDI {
+    include!(concat!(env!("OUT_DIR"), "/CoreMIDI.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreML"))]
+pub mod CoreML {
+    include!(concat!(env!("OUT_DIR"), "/CoreML.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreMedia"))]
+pub mod CoreMedia {
+    include!(concat!(env!("OUT_DIR"), "/CoreMedia.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreMotion"))]
+pub mod CoreMotion {
+    include!(concat!(env!("OUT_DIR"), "/CoreMotion.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreServices"))]
+pub mod CoreServices {
+    include!(concat!(env!("OUT_DIR"), "/CoreServices.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreText"))]
+pub mod CoreText {
+    include!(concat!(env!("OUT_DIR"), "/CoreText.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreTransferable"))]
+pub mod CoreTransferable {
+    include!(concat!(env!("OUT_DIR"), "/CoreTransferable.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CoreVideo"))]
+pub mod CoreVideo {
+    include!(concat!(env!("OUT_DIR"), "/CoreVideo.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "CryptoTokenKit"))]
+pub mod CryptoTokenKit {
+    include!(concat!(env!("OUT_DIR"), "/CryptoTokenKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "DataDetection"))]
+pub mod DataDetection {
+    include!(concat!(env!("OUT_DIR"), "/DataDetection.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "DeviceCheck"))]
+pub mod DeviceCheck {
+    include!(concat!(env!("OUT_DIR"), "/DeviceCheck.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "EventKit"))]
+pub mod EventKit {
+    include!(concat!(env!("OUT_DIR"), "/EventKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "ExtensionFoundation"))]
+pub mod ExtensionFoundation {
+    include!(concat!(env!("OUT_DIR"), "/ExtensionFoundation.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "ExtensionKit"))]
+pub mod ExtensionKit {
+    include!(concat!(env!("OUT_DIR"), "/ExtensionKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "Foundation"))]
+pub mod Foundation {
+    include!(concat!(env!("OUT_DIR"), "/Foundation.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "GameKit"))]
+pub mod GameKit {
+    include!(concat!(env!("OUT_DIR"), "/GameKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "HealthKit"))]
+pub mod HealthKit {
+    include!(concat!(env!("OUT_DIR"), "/HealthKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "HomeKit"))]
+pub mod HomeKit {
+    include!(concat!(env!("OUT_DIR"), "/HomeKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "ImageIO"))]
+pub mod ImageIO {
+    include!(concat!(env!("OUT_DIR"), "/ImageIO.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "Intents"))]
+pub mod Intents {
+    include!(concat!(env!("OUT_DIR"), "/Intents.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "LocalAuthentication"))]
+pub mod LocalAuthentication {
+    include!(concat!(env!("OUT_DIR"), "/LocalAuthentication.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "MapKit"))]
+pub mod MapKit {
+    include!(concat!(env!("OUT_DIR"), "/MapKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "Matter"))]
+pub mod Matter {
+    include!(concat!(env!("OUT_DIR"), "/Matter.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "MediaPlayer"))]
+pub mod MediaPlayer {
+    include!(concat!(env!("OUT_DIR"), "/MediaPlayer.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "MobileCoreServices"))]
+pub mod MobileCoreServices {
+    include!(concat!(env!("OUT_DIR"), "/MobileCoreServices.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "NaturalLanguage"))]
+pub mod NaturalLanguage {
+    include!(concat!(env!("OUT_DIR"), "/NaturalLanguage.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "NearbyInteraction"))]
+pub mod NearbyInteraction {
+    include!(concat!(env!("OUT_DIR"), "/NearbyInteraction.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "Network"))]
+pub mod Network {
+    include!(concat!(env!("OUT_DIR"), "/Network.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "NetworkExtension"))]
+pub mod NetworkExtension {
+    include!(concat!(env!("OUT_DIR"), "/NetworkExtension.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "OSLog"))]
+pub mod OSLog {
+    include!(concat!(env!("OUT_DIR"), "/OSLog.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "PassKit"))]
+pub mod PassKit {
+    include!(concat!(env!("OUT_DIR"), "/PassKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "PhotosUI"))]
+pub mod PhotosUI {
+    include!(concat!(env!("OUT_DIR"), "/PhotosUI.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "PushKit"))]
+pub mod PushKit {
+    include!(concat!(env!("OUT_DIR"), "/PushKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "SafetyKit"))]
+pub mod SafetyKit {
+    include!(concat!(env!("OUT_DIR"), "/SafetyKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "SceneKit"))]
+pub mod SceneKit {
+    include!(concat!(env!("OUT_DIR"), "/SceneKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "Security"))]
+pub mod Security {
+    include!(concat!(env!("OUT_DIR"), "/Security.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "ShazamKit"))]
+pub mod ShazamKit {
+    include!(concat!(env!("OUT_DIR"), "/ShazamKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "SoundAnalysis"))]
+pub mod SoundAnalysis {
+    include!(concat!(env!("OUT_DIR"), "/SoundAnalysis.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "SpriteKit"))]
+pub mod SpriteKit {
+    include!(concat!(env!("OUT_DIR"), "/SpriteKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "StoreKit"))]
+pub mod StoreKit {
+    include!(concat!(env!("OUT_DIR"), "/StoreKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "SwiftUI"))]
+pub mod SwiftUI {
+    include!(concat!(env!("OUT_DIR"), "/SwiftUI.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "UIKit"))]
+pub mod UIKit {
+    include!(concat!(env!("OUT_DIR"), "/UIKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "UniformTypeIdentifiers"))]
+pub mod UniformTypeIdentifiers {
+    include!(concat!(env!("OUT_DIR"), "/UniformTypeIdentifiers.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "UserNotifications"))]
+pub mod UserNotifications {
+    include!(concat!(env!("OUT_DIR"), "/UserNotifications.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "UserNotificationsUI"))]
+pub mod UserNotificationsUI {
+    include!(concat!(env!("OUT_DIR"), "/UserNotificationsUI.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "WatchConnectivity"))]
+pub mod WatchConnectivity {
+    include!(concat!(env!("OUT_DIR"), "/WatchConnectivity.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "WatchKit"))]
+pub mod WatchKit {
+    include!(concat!(env!("OUT_DIR"), "/WatchKit.rs"));
+}
+#[cfg(all(target_os = "watchos", feature = "WidgetKit"))]
+pub mod WidgetKit {
+    include!(concat!(env!("OUT_DIR"), "/WidgetKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AVFAudio"))]
+pub mod AVFAudio {
+    include!(concat!(env!("OUT_DIR"), "/AVFAudio.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AVFoundation"))]
+pub mod AVFoundation {
+    include!(concat!(env!("OUT_DIR"), "/AVFoundation.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AVKit"))]
+pub mod AVKit {
+    include!(concat!(env!("OUT_DIR"), "/AVKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Accelerate"))]
+pub mod Accelerate {
+    include!(concat!(env!("OUT_DIR"), "/Accelerate.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Accessibility"))]
+pub mod Accessibility {
+    include!(concat!(env!("OUT_DIR"), "/Accessibility.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AdSupport"))]
+pub mod AdSupport {
+    include!(concat!(env!("OUT_DIR"), "/AdSupport.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AppIntents"))]
+pub mod AppIntents {
+    include!(concat!(env!("OUT_DIR"), "/AppIntents.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AppTrackingTransparency"))]
+pub mod AppTrackingTransparency {
+    include!(concat!(env!("OUT_DIR"), "/AppTrackingTransparency.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AudioToolbox"))]
+pub mod AudioToolbox {
+    include!(concat!(env!("OUT_DIR"), "/AudioToolbox.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AudioUnit"))]
+pub mod AudioUnit {
+    include!(concat!(env!("OUT_DIR"), "/AudioUnit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "AuthenticationServices"))]
+pub mod AuthenticationServices {
+    include!(concat!(env!("OUT_DIR"), "/AuthenticationServices.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "BackgroundTasks"))]
+pub mod BackgroundTasks {
+    include!(concat!(env!("OUT_DIR"), "/BackgroundTasks.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CFNetwork"))]
+pub mod CFNetwork {
+    include!(concat!(env!("OUT_DIR"), "/CFNetwork.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CloudKit"))]
+pub mod CloudKit {
+    include!(concat!(env!("OUT_DIR"), "/CloudKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ColorSync"))]
+pub mod ColorSync {
+    include!(concat!(env!("OUT_DIR"), "/ColorSync.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreAudio"))]
+pub mod CoreAudio {
+    include!(concat!(env!("OUT_DIR"), "/CoreAudio.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreBluetooth"))]
+pub mod CoreBluetooth {
+    include!(concat!(env!("OUT_DIR"), "/CoreBluetooth.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreData"))]
+pub mod CoreData {
+    include!(concat!(env!("OUT_DIR"), "/CoreData.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreFoundation"))]
+pub mod CoreFoundation {
+    include!(concat!(env!("OUT_DIR"), "/CoreFoundation.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreGraphics"))]
+pub mod CoreGraphics {
+    include!(concat!(env!("OUT_DIR"), "/CoreGraphics.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreHaptics"))]
+pub mod CoreHaptics {
+    include!(concat!(env!("OUT_DIR"), "/CoreHaptics.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreImage"))]
+pub mod CoreImage {
+    include!(concat!(env!("OUT_DIR"), "/CoreImage.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreLocation"))]
+pub mod CoreLocation {
+    include!(concat!(env!("OUT_DIR"), "/CoreLocation.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreMIDI"))]
+pub mod CoreMIDI {
+    include!(concat!(env!("OUT_DIR"), "/CoreMIDI.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreML"))]
+pub mod CoreML {
+    include!(concat!(env!("OUT_DIR"), "/CoreML.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreMedia"))]
+pub mod CoreMedia {
+    include!(concat!(env!("OUT_DIR"), "/CoreMedia.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreServices"))]
+pub mod CoreServices {
+    include!(concat!(env!("OUT_DIR"), "/CoreServices.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreSpotlight"))]
+pub mod CoreSpotlight {
+    include!(concat!(env!("OUT_DIR"), "/CoreSpotlight.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreText"))]
+pub mod CoreText {
+    include!(concat!(env!("OUT_DIR"), "/CoreText.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreTransferable"))]
+pub mod CoreTransferable {
+    include!(concat!(env!("OUT_DIR"), "/CoreTransferable.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CoreVideo"))]
+pub mod CoreVideo {
+    include!(concat!(env!("OUT_DIR"), "/CoreVideo.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "CryptoTokenKit"))]
+pub mod CryptoTokenKit {
+    include!(concat!(env!("OUT_DIR"), "/CryptoTokenKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "DataDetection"))]
+pub mod DataDetection {
+    include!(concat!(env!("OUT_DIR"), "/DataDetection.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "DeviceCheck"))]
+pub mod DeviceCheck {
+    include!(concat!(env!("OUT_DIR"), "/DeviceCheck.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "DeviceDiscoveryUI"))]
+pub mod DeviceDiscoveryUI {
+    include!(concat!(env!("OUT_DIR"), "/DeviceDiscoveryUI.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ExposureNotification"))]
+pub mod ExposureNotification {
+    include!(concat!(env!("OUT_DIR"), "/ExposureNotification.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ExtensionFoundation"))]
+pub mod ExtensionFoundation {
+    include!(concat!(env!("OUT_DIR"), "/ExtensionFoundation.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ExtensionKit"))]
+pub mod ExtensionKit {
+    include!(concat!(env!("OUT_DIR"), "/ExtensionKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ExternalAccessory"))]
+pub mod ExternalAccessory {
+    include!(concat!(env!("OUT_DIR"), "/ExternalAccessory.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Foundation"))]
+pub mod Foundation {
+    include!(concat!(env!("OUT_DIR"), "/Foundation.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "GLKit"))]
+pub mod GLKit {
+    include!(concat!(env!("OUT_DIR"), "/GLKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "GameController"))]
+pub mod GameController {
+    include!(concat!(env!("OUT_DIR"), "/GameController.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "GameKit"))]
+pub mod GameKit {
+    include!(concat!(env!("OUT_DIR"), "/GameKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "GameplayKit"))]
+pub mod GameplayKit {
+    include!(concat!(env!("OUT_DIR"), "/GameplayKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "HomeKit"))]
+pub mod HomeKit {
+    include!(concat!(env!("OUT_DIR"), "/HomeKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "IOSurface"))]
+pub mod IOSurface {
+    include!(concat!(env!("OUT_DIR"), "/IOSurface.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ImageIO"))]
+pub mod ImageIO {
+    include!(concat!(env!("OUT_DIR"), "/ImageIO.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Intents"))]
+pub mod Intents {
+    include!(concat!(env!("OUT_DIR"), "/Intents.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "IntentsUI"))]
+pub mod IntentsUI {
+    include!(concat!(env!("OUT_DIR"), "/IntentsUI.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "JavaScriptCore"))]
+pub mod JavaScriptCore {
+    include!(concat!(env!("OUT_DIR"), "/JavaScriptCore.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "LinkPresentation"))]
+pub mod LinkPresentation {
+    include!(concat!(env!("OUT_DIR"), "/LinkPresentation.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MLCompute"))]
+pub mod MLCompute {
+    include!(concat!(env!("OUT_DIR"), "/MLCompute.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MapKit"))]
+pub mod MapKit {
+    include!(concat!(env!("OUT_DIR"), "/MapKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Matter"))]
+pub mod Matter {
+    include!(concat!(env!("OUT_DIR"), "/Matter.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MediaAccessibility"))]
+pub mod MediaAccessibility {
+    include!(concat!(env!("OUT_DIR"), "/MediaAccessibility.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MediaPlayer"))]
+pub mod MediaPlayer {
+    include!(concat!(env!("OUT_DIR"), "/MediaPlayer.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MediaToolbox"))]
+pub mod MediaToolbox {
+    include!(concat!(env!("OUT_DIR"), "/MediaToolbox.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Metal"))]
+pub mod Metal {
+    include!(concat!(env!("OUT_DIR"), "/Metal.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MetalKit"))]
+pub mod MetalKit {
+    include!(concat!(env!("OUT_DIR"), "/MetalKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MetalPerformanceShaders"))]
+pub mod MetalPerformanceShaders {
+    include!(concat!(env!("OUT_DIR"), "/MetalPerformanceShaders.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MetalPerformanceShadersGraph"))]
+pub mod MetalPerformanceShadersGraph {
+    include!(concat!(env!("OUT_DIR"), "/MetalPerformanceShadersGraph.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MetricKit"))]
+pub mod MetricKit {
+    include!(concat!(env!("OUT_DIR"), "/MetricKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MobileCoreServices"))]
+pub mod MobileCoreServices {
+    include!(concat!(env!("OUT_DIR"), "/MobileCoreServices.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ModelIO"))]
+pub mod ModelIO {
+    include!(concat!(env!("OUT_DIR"), "/ModelIO.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "MultipeerConnectivity"))]
+pub mod MultipeerConnectivity {
+    include!(concat!(env!("OUT_DIR"), "/MultipeerConnectivity.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "NaturalLanguage"))]
+pub mod NaturalLanguage {
+    include!(concat!(env!("OUT_DIR"), "/NaturalLanguage.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Network"))]
+pub mod Network {
+    include!(concat!(env!("OUT_DIR"), "/Network.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "OSLog"))]
+pub mod OSLog {
+    include!(concat!(env!("OUT_DIR"), "/OSLog.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "OpenAL"))]
+pub mod OpenAL {
+    include!(concat!(env!("OUT_DIR"), "/OpenAL.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "OpenGLES"))]
+pub mod OpenGLES {
+    include!(concat!(env!("OUT_DIR"), "/OpenGLES.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "PHASE"))]
+pub mod PHASE {
+    include!(concat!(env!("OUT_DIR"), "/PHASE.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Photos"))]
+pub mod Photos {
+    include!(concat!(env!("OUT_DIR"), "/Photos.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "PhotosUI"))]
+pub mod PhotosUI {
+    include!(concat!(env!("OUT_DIR"), "/PhotosUI.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "QuartzCore"))]
+pub mod QuartzCore {
+    include!(concat!(env!("OUT_DIR"), "/QuartzCore.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ReplayKit"))]
+pub mod ReplayKit {
+    include!(concat!(env!("OUT_DIR"), "/ReplayKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "SceneKit"))]
+pub mod SceneKit {
+    include!(concat!(env!("OUT_DIR"), "/SceneKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Security"))]
+pub mod Security {
+    include!(concat!(env!("OUT_DIR"), "/Security.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "SharedWithYou"))]
+pub mod SharedWithYou {
+    include!(concat!(env!("OUT_DIR"), "/SharedWithYou.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "SharedWithYouCore"))]
+pub mod SharedWithYouCore {
+    include!(concat!(env!("OUT_DIR"), "/SharedWithYouCore.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "ShazamKit"))]
+pub mod ShazamKit {
+    include!(concat!(env!("OUT_DIR"), "/ShazamKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "SoundAnalysis"))]
+pub mod SoundAnalysis {
+    include!(concat!(env!("OUT_DIR"), "/SoundAnalysis.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "SpriteKit"))]
+pub mod SpriteKit {
+    include!(concat!(env!("OUT_DIR"), "/SpriteKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "StoreKit"))]
+pub mod StoreKit {
+    include!(concat!(env!("OUT_DIR"), "/StoreKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "SwiftUI"))]
+pub mod SwiftUI {
+    include!(concat!(env!("OUT_DIR"), "/SwiftUI.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "SystemConfiguration"))]
+pub mod SystemConfiguration {
+    include!(concat!(env!("OUT_DIR"), "/SystemConfiguration.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "TVMLKit"))]
+pub mod TVMLKit {
+    include!(concat!(env!("OUT_DIR"), "/TVMLKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "TVServices"))]
+pub mod TVServices {
+    include!(concat!(env!("OUT_DIR"), "/TVServices.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "TVUIKit"))]
+pub mod TVUIKit {
+    include!(concat!(env!("OUT_DIR"), "/TVUIKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "UIKit"))]
+pub mod UIKit {
+    include!(concat!(env!("OUT_DIR"), "/UIKit.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "UniformTypeIdentifiers"))]
+pub mod UniformTypeIdentifiers {
+    include!(concat!(env!("OUT_DIR"), "/UniformTypeIdentifiers.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "UserNotifications"))]
+pub mod UserNotifications {
+    include!(concat!(env!("OUT_DIR"), "/UserNotifications.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "UserNotificationsUI"))]
+pub mod UserNotificationsUI {
+    include!(concat!(env!("OUT_DIR"), "/UserNotificationsUI.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "VideoSubscriberAccount"))]
+pub mod VideoSubscriberAccount {
+    include!(concat!(env!("OUT_DIR"), "/VideoSubscriberAccount.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "VideoToolbox"))]
+pub mod VideoToolbox {
+    include!(concat!(env!("OUT_DIR"), "/VideoToolbox.rs"));
+}
+#[cfg(all(target_os = "tvos", feature = "Vision"))]
+pub mod Vision {
+    include!(concat!(env!("OUT_DIR"), "/Vision.rs"));
+}
