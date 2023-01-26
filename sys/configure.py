@@ -34,6 +34,7 @@ def find_framework_names(sdk_path):
             "RealityKit",
             "Ruby",
             "Tk",
+            "vecLib",
         ]
     )
     # print(pattern)

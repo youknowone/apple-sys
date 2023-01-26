@@ -22,6 +22,10 @@ pub mod AVFoundation {
 pub mod AVKit {
     include!(concat!(env!("OUT_DIR"), "/AVKit.rs"));
 }
+#[cfg(feature = "AVRouting")]
+pub mod AVRouting {
+    include!(concat!(env!("OUT_DIR"), "/AVRouting.rs"));
+}
 #[cfg(feature = "Accelerate")]
 pub mod Accelerate {
     include!(concat!(env!("OUT_DIR"), "/Accelerate.rs"));
@@ -45,6 +49,10 @@ pub mod AdSupport {
 #[cfg(feature = "AddressBook")]
 pub mod AddressBook {
     include!(concat!(env!("OUT_DIR"), "/AddressBook.rs"));
+}
+#[cfg(feature = "AppIntents")]
+pub mod AppIntents {
+    include!(concat!(env!("OUT_DIR"), "/AppIntents.rs"));
 }
 #[cfg(feature = "AppKit")]
 pub mod AppKit {
@@ -93,6 +101,10 @@ pub mod AutomaticAssessmentConfiguration {
 pub mod Automator {
     include!(concat!(env!("OUT_DIR"), "/Automator.rs"));
 }
+#[cfg(feature = "BackgroundAssets")]
+pub mod BackgroundAssets {
+    include!(concat!(env!("OUT_DIR"), "/BackgroundAssets.rs"));
+}
 #[cfg(feature = "BackgroundTasks")]
 pub mod BackgroundTasks {
     include!(concat!(env!("OUT_DIR"), "/BackgroundTasks.rs"));
@@ -104,10 +116,6 @@ pub mod BusinessChat {
 #[cfg(feature = "CFNetwork")]
 pub mod CFNetwork {
     include!(concat!(env!("OUT_DIR"), "/CFNetwork.rs"));
-}
-#[cfg(feature = "CHIP")]
-pub mod CHIP {
-    include!(concat!(env!("OUT_DIR"), "/CHIP.rs"));
 }
 #[cfg(feature = "CalendarStore")]
 pub mod CalendarStore {
@@ -221,6 +229,10 @@ pub mod CoreTelephony {
 pub mod CoreText {
     include!(concat!(env!("OUT_DIR"), "/CoreText.rs"));
 }
+#[cfg(feature = "CoreTransferable")]
+pub mod CoreTransferable {
+    include!(concat!(env!("OUT_DIR"), "/CoreTransferable.rs"));
+}
 #[cfg(feature = "CoreVideo")]
 pub mod CoreVideo {
     include!(concat!(env!("OUT_DIR"), "/CoreVideo.rs"));
@@ -277,13 +289,17 @@ pub mod ExecutionPolicy {
 pub mod ExposureNotification {
     include!(concat!(env!("OUT_DIR"), "/ExposureNotification.rs"));
 }
+#[cfg(feature = "ExtensionFoundation")]
+pub mod ExtensionFoundation {
+    include!(concat!(env!("OUT_DIR"), "/ExtensionFoundation.rs"));
+}
+#[cfg(feature = "ExtensionKit")]
+pub mod ExtensionKit {
+    include!(concat!(env!("OUT_DIR"), "/ExtensionKit.rs"));
+}
 #[cfg(feature = "ExternalAccessory")]
 pub mod ExternalAccessory {
     include!(concat!(env!("OUT_DIR"), "/ExternalAccessory.rs"));
-}
-#[cfg(feature = "FWAUserLib")]
-pub mod FWAUserLib {
-    include!(concat!(env!("OUT_DIR"), "/FWAUserLib.rs"));
 }
 #[cfg(feature = "FileProvider")]
 pub mod FileProvider {
@@ -328,6 +344,10 @@ pub mod GameKit {
 #[cfg(feature = "GameplayKit")]
 pub mod GameplayKit {
     include!(concat!(env!("OUT_DIR"), "/GameplayKit.rs"));
+}
+#[cfg(feature = "HealthKit")]
+pub mod HealthKit {
+    include!(concat!(env!("OUT_DIR"), "/HealthKit.rs"));
 }
 #[cfg(feature = "Hypervisor")]
 pub mod Hypervisor {
@@ -448,6 +468,10 @@ pub mod MailKit {
 pub mod MapKit {
     include!(concat!(env!("OUT_DIR"), "/MapKit.rs"));
 }
+#[cfg(feature = "Matter")]
+pub mod Matter {
+    include!(concat!(env!("OUT_DIR"), "/Matter.rs"));
+}
 #[cfg(feature = "MediaAccessibility")]
 pub mod MediaAccessibility {
     include!(concat!(env!("OUT_DIR"), "/MediaAccessibility.rs"));
@@ -467,6 +491,10 @@ pub mod MediaToolbox {
 #[cfg(feature = "Metal")]
 pub mod Metal {
     include!(concat!(env!("OUT_DIR"), "/Metal.rs"));
+}
+#[cfg(feature = "MetalFX")]
+pub mod MetalFX {
+    include!(concat!(env!("OUT_DIR"), "/MetalFX.rs"));
 }
 #[cfg(feature = "MetalKit")]
 pub mod MetalKit {
@@ -580,6 +608,10 @@ pub mod PreferencePanes {
 pub mod PushKit {
     include!(concat!(env!("OUT_DIR"), "/PushKit.rs"));
 }
+#[cfg(feature = "PushToTalk")]
+pub mod PushToTalk {
+    include!(concat!(env!("OUT_DIR"), "/PushToTalk.rs"));
+}
 #[cfg(feature = "Quartz")]
 pub mod Quartz {
     include!(concat!(env!("OUT_DIR"), "/Quartz.rs"));
@@ -607,6 +639,10 @@ pub mod ReplayKit {
 #[cfg(feature = "SafariServices")]
 pub mod SafariServices {
     include!(concat!(env!("OUT_DIR"), "/SafariServices.rs"));
+}
+#[cfg(feature = "SafetyKit")]
+pub mod SafetyKit {
+    include!(concat!(env!("OUT_DIR"), "/SafetyKit.rs"));
 }
 #[cfg(feature = "SceneKit")]
 pub mod SceneKit {
@@ -647,6 +683,14 @@ pub mod SensorKit {
 #[cfg(feature = "ServiceManagement")]
 pub mod ServiceManagement {
     include!(concat!(env!("OUT_DIR"), "/ServiceManagement.rs"));
+}
+#[cfg(feature = "SharedWithYou")]
+pub mod SharedWithYou {
+    include!(concat!(env!("OUT_DIR"), "/SharedWithYou.rs"));
+}
+#[cfg(feature = "SharedWithYouCore")]
+pub mod SharedWithYouCore {
+    include!(concat!(env!("OUT_DIR"), "/SharedWithYouCore.rs"));
 }
 #[cfg(feature = "ShazamKit")]
 pub mod ShazamKit {
@@ -696,6 +740,10 @@ pub mod TWAIN {
 pub mod Tcl {
     include!(concat!(env!("OUT_DIR"), "/Tcl.rs"));
 }
+#[cfg(feature = "ThreadNetwork")]
+pub mod ThreadNetwork {
+    include!(concat!(env!("OUT_DIR"), "/ThreadNetwork.rs"));
+}
 #[cfg(feature = "UniformTypeIdentifiers")]
 pub mod UniformTypeIdentifiers {
     include!(concat!(env!("OUT_DIR"), "/UniformTypeIdentifiers.rs"));
@@ -727,6 +775,10 @@ pub mod Virtualization {
 #[cfg(feature = "Vision")]
 pub mod Vision {
     include!(concat!(env!("OUT_DIR"), "/Vision.rs"));
+}
+#[cfg(feature = "VisionKit")]
+pub mod VisionKit {
+    include!(concat!(env!("OUT_DIR"), "/VisionKit.rs"));
 }
 #[cfg(feature = "WebKit")]
 pub mod WebKit {

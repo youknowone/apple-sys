@@ -23,6 +23,7 @@ apple-sdk = "0.1.0"
 thiserror = "1.0.31"
 
 clap = { version = "3.2.14", features = ["derive"], optional = true }
+regex = "1.7.1"
 
 [features]
 default = ["bin"]  # required-featues for apple-bindgen binary

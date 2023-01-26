@@ -83,12 +83,22 @@ impl Builder {
 
         // TODO: find the best way to do this post-processing
         let mut out = bindings.to_string();
+
+        // remove redundant and malformed definitions of `id`
+        out = out.replace("pub type id = *mut objc::runtime::Object", "PUB-TYPE-ID");
+        let re = regex::Regex::new("pub type id = .*;").unwrap();
+        out = re.replace_all(&mut out, "").into_owned();
+        out = out.replace("PUB-TYPE-ID", "pub type id = *mut objc::runtime::Object");
+
+        // Bindgen.toml `replacements`
         for replacement in &self.config.replacements {
             let (old, new) = replacement
                 .split_once(" #=># ")
                 .expect("Bindgen.toml is malformed");
             out = out.replace(old, new);
         }
+
+        // Bindgen.toml `impl_debugs`
         for ty in &self.config.impl_debugs {
             if out.contains(ty) {
                 out.push_str(&format!(
