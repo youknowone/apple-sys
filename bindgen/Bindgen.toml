@@ -7,10 +7,6 @@ impl_debugs = [
     "IORPCMessage",
 ]
 replacements = [
-    # Core glitches
-    "pub type id = NSUnit; #=># ",
-    "pub type id = *mut u64; #=># ",
-
     # Foundation name collisions
     "timezone: NSTimeZone, #=># timezone_: NSTimeZone,",
     "componentsInTimeZone : timezone #=># componentsInTimeZone : timezone_",
@@ -39,12 +35,6 @@ pub trait NSScreen_: Sized + std::ops::Deref { #=># }
 """,
     """impl NSImage_ for NSImage {}\n\n #=># """,
 ]
-[Photos]
-replacements = [
-    "pub type id = PHObject; #=># ",
-]
-[PhotosUI]
-deps = ["Photos"]
 [SyncServices]
 replacements = [
     """formattedRecord: NSDictionary,
@@ -52,19 +42,6 @@ replacements = [
         recordId2: NSString,""",
     "newRecordIdentifier : recordId #=># newRecordIdentifier : recordId2",
 ]
-[GameController]
-replacements = [
-    "pub type id = NSString; #=># ",
-]
-[GameplayKit]
-replacements = [
-    "pub type id = GKComponent; #=># ",
-    "pub type id = GKGridGraphNode; #=># ",
-    "pub type id = GKGraphNode2D; #=># ",
-    "pub type id = NSObject; #=># ",
-]
-[GameKit]
-deps = ["GameplayKit"]
 [JavaNativeFoundation]
 replacements = [
     "as : javaExceptionType #=># r#as : javaExceptionType",
