@@ -18,7 +18,7 @@ pub enum SdkPathError {
     XcrunError(std::io::Error),
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct SdkPath(PathBuf);
 
 impl SdkPath {

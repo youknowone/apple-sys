@@ -53,7 +53,13 @@ impl Builder {
             clang_args.push(&target_arg);
         }
 
-        clang_args.extend(&["-isysroot", self.sdk.path().to_str().unwrap()]);
+        clang_args.extend(&[
+            "-isysroot",
+            self.sdk
+                .path()
+                .to_str()
+                .expect("sdk path is not utf-8 representable"),
+        ]);
 
         builder = builder
             .clang_args(&clang_args)

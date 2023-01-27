@@ -6,793 +6,1431 @@
 #![allow(improper_ctypes)]
 #![allow(non_snake_case)]
 
-#[cfg(feature = "AGL")]
+#[cfg(all(target_os = "macos", feature = "AGL"))]
 pub mod AGL {
     include!(concat!(env!("OUT_DIR"), "/AGL.rs"));
 }
-#[cfg(feature = "AVFAudio")]
+#[cfg(all(target_os = "macos", feature = "AVFAudio"))]
 pub mod AVFAudio {
     include!(concat!(env!("OUT_DIR"), "/AVFAudio.rs"));
 }
-#[cfg(feature = "AVFoundation")]
+#[cfg(all(target_os = "macos", feature = "AVFoundation"))]
 pub mod AVFoundation {
     include!(concat!(env!("OUT_DIR"), "/AVFoundation.rs"));
 }
-#[cfg(feature = "AVKit")]
+#[cfg(all(target_os = "macos", feature = "AVKit"))]
 pub mod AVKit {
     include!(concat!(env!("OUT_DIR"), "/AVKit.rs"));
 }
-#[cfg(feature = "AVRouting")]
+#[cfg(all(target_os = "macos", feature = "AVRouting"))]
 pub mod AVRouting {
     include!(concat!(env!("OUT_DIR"), "/AVRouting.rs"));
 }
-#[cfg(feature = "Accelerate")]
+#[cfg(all(target_os = "macos", feature = "Accelerate"))]
 pub mod Accelerate {
     include!(concat!(env!("OUT_DIR"), "/Accelerate.rs"));
 }
-#[cfg(feature = "Accessibility")]
+#[cfg(all(target_os = "macos", feature = "Accessibility"))]
 pub mod Accessibility {
     include!(concat!(env!("OUT_DIR"), "/Accessibility.rs"));
 }
-#[cfg(feature = "Accounts")]
+#[cfg(all(target_os = "macos", feature = "Accounts"))]
 pub mod Accounts {
     include!(concat!(env!("OUT_DIR"), "/Accounts.rs"));
 }
-#[cfg(feature = "AdServices")]
+#[cfg(all(target_os = "macos", feature = "AdServices"))]
 pub mod AdServices {
     include!(concat!(env!("OUT_DIR"), "/AdServices.rs"));
 }
-#[cfg(feature = "AdSupport")]
+#[cfg(all(target_os = "macos", feature = "AdSupport"))]
 pub mod AdSupport {
     include!(concat!(env!("OUT_DIR"), "/AdSupport.rs"));
 }
-#[cfg(feature = "AddressBook")]
+#[cfg(all(target_os = "macos", feature = "AddressBook"))]
 pub mod AddressBook {
     include!(concat!(env!("OUT_DIR"), "/AddressBook.rs"));
 }
-#[cfg(feature = "AppIntents")]
+#[cfg(all(target_os = "macos", feature = "AppIntents"))]
 pub mod AppIntents {
     include!(concat!(env!("OUT_DIR"), "/AppIntents.rs"));
 }
-#[cfg(feature = "AppKit")]
+#[cfg(all(target_os = "macos", feature = "AppKit"))]
 pub mod AppKit {
     include!(concat!(env!("OUT_DIR"), "/AppKit.rs"));
 }
-#[cfg(feature = "AppTrackingTransparency")]
+#[cfg(all(target_os = "macos", feature = "AppTrackingTransparency"))]
 pub mod AppTrackingTransparency {
     include!(concat!(env!("OUT_DIR"), "/AppTrackingTransparency.rs"));
 }
-#[cfg(feature = "AppleScriptKit")]
+#[cfg(all(target_os = "macos", feature = "AppleScriptKit"))]
 pub mod AppleScriptKit {
     include!(concat!(env!("OUT_DIR"), "/AppleScriptKit.rs"));
 }
-#[cfg(feature = "AppleScriptObjC")]
+#[cfg(all(target_os = "macos", feature = "AppleScriptObjC"))]
 pub mod AppleScriptObjC {
     include!(concat!(env!("OUT_DIR"), "/AppleScriptObjC.rs"));
 }
-#[cfg(feature = "ApplicationServices")]
+#[cfg(all(target_os = "macos", feature = "ApplicationServices"))]
 pub mod ApplicationServices {
     include!(concat!(env!("OUT_DIR"), "/ApplicationServices.rs"));
 }
-#[cfg(feature = "AudioToolbox")]
+#[cfg(all(target_os = "macos", feature = "AudioToolbox"))]
 pub mod AudioToolbox {
     include!(concat!(env!("OUT_DIR"), "/AudioToolbox.rs"));
 }
-#[cfg(feature = "AudioUnit")]
+#[cfg(all(target_os = "macos", feature = "AudioUnit"))]
 pub mod AudioUnit {
     include!(concat!(env!("OUT_DIR"), "/AudioUnit.rs"));
 }
-#[cfg(feature = "AudioVideoBridging")]
+#[cfg(all(target_os = "macos", feature = "AudioVideoBridging"))]
 pub mod AudioVideoBridging {
     include!(concat!(env!("OUT_DIR"), "/AudioVideoBridging.rs"));
 }
-#[cfg(feature = "AuthenticationServices")]
+#[cfg(all(target_os = "macos", feature = "AuthenticationServices"))]
 pub mod AuthenticationServices {
     include!(concat!(env!("OUT_DIR"), "/AuthenticationServices.rs"));
 }
-#[cfg(feature = "AutomaticAssessmentConfiguration")]
+#[cfg(all(target_os = "macos", feature = "AutomaticAssessmentConfiguration"))]
 pub mod AutomaticAssessmentConfiguration {
     include!(concat!(
         env!("OUT_DIR"),
         "/AutomaticAssessmentConfiguration.rs"
     ));
 }
-#[cfg(feature = "Automator")]
+#[cfg(all(target_os = "macos", feature = "Automator"))]
 pub mod Automator {
     include!(concat!(env!("OUT_DIR"), "/Automator.rs"));
 }
-#[cfg(feature = "BackgroundAssets")]
+#[cfg(all(target_os = "macos", feature = "BackgroundAssets"))]
 pub mod BackgroundAssets {
     include!(concat!(env!("OUT_DIR"), "/BackgroundAssets.rs"));
 }
-#[cfg(feature = "BackgroundTasks")]
+#[cfg(all(target_os = "macos", feature = "BackgroundTasks"))]
 pub mod BackgroundTasks {
     include!(concat!(env!("OUT_DIR"), "/BackgroundTasks.rs"));
 }
-#[cfg(feature = "BusinessChat")]
+#[cfg(all(target_os = "macos", feature = "BusinessChat"))]
 pub mod BusinessChat {
     include!(concat!(env!("OUT_DIR"), "/BusinessChat.rs"));
 }
-#[cfg(feature = "CFNetwork")]
+#[cfg(all(target_os = "macos", feature = "CFNetwork"))]
 pub mod CFNetwork {
     include!(concat!(env!("OUT_DIR"), "/CFNetwork.rs"));
 }
-#[cfg(feature = "CalendarStore")]
+#[cfg(all(target_os = "macos", feature = "CalendarStore"))]
 pub mod CalendarStore {
     include!(concat!(env!("OUT_DIR"), "/CalendarStore.rs"));
 }
-#[cfg(feature = "CallKit")]
+#[cfg(all(target_os = "macos", feature = "CallKit"))]
 pub mod CallKit {
     include!(concat!(env!("OUT_DIR"), "/CallKit.rs"));
 }
-#[cfg(feature = "Carbon")]
+#[cfg(all(target_os = "macos", feature = "Carbon"))]
 pub mod Carbon {
     include!(concat!(env!("OUT_DIR"), "/Carbon.rs"));
 }
-#[cfg(feature = "ClassKit")]
+#[cfg(all(target_os = "macos", feature = "ClassKit"))]
 pub mod ClassKit {
     include!(concat!(env!("OUT_DIR"), "/ClassKit.rs"));
 }
-#[cfg(feature = "CloudKit")]
+#[cfg(all(target_os = "macos", feature = "CloudKit"))]
 pub mod CloudKit {
     include!(concat!(env!("OUT_DIR"), "/CloudKit.rs"));
 }
-#[cfg(feature = "Cocoa")]
+#[cfg(all(target_os = "macos", feature = "Cocoa"))]
 pub mod Cocoa {
     include!(concat!(env!("OUT_DIR"), "/Cocoa.rs"));
 }
-#[cfg(feature = "Collaboration")]
+#[cfg(all(target_os = "macos", feature = "Collaboration"))]
 pub mod Collaboration {
     include!(concat!(env!("OUT_DIR"), "/Collaboration.rs"));
 }
-#[cfg(feature = "ColorSync")]
+#[cfg(all(target_os = "macos", feature = "ColorSync"))]
 pub mod ColorSync {
     include!(concat!(env!("OUT_DIR"), "/ColorSync.rs"));
 }
-#[cfg(feature = "Contacts")]
+#[cfg(all(target_os = "macos", feature = "Contacts"))]
 pub mod Contacts {
     include!(concat!(env!("OUT_DIR"), "/Contacts.rs"));
 }
-#[cfg(feature = "ContactsUI")]
+#[cfg(all(target_os = "macos", feature = "ContactsUI"))]
 pub mod ContactsUI {
     include!(concat!(env!("OUT_DIR"), "/ContactsUI.rs"));
 }
-#[cfg(feature = "CoreAudio")]
+#[cfg(all(target_os = "macos", feature = "CoreAudio"))]
 pub mod CoreAudio {
     include!(concat!(env!("OUT_DIR"), "/CoreAudio.rs"));
 }
-#[cfg(feature = "CoreAudioKit")]
+#[cfg(all(target_os = "macos", feature = "CoreAudioKit"))]
 pub mod CoreAudioKit {
     include!(concat!(env!("OUT_DIR"), "/CoreAudioKit.rs"));
 }
-#[cfg(feature = "CoreBluetooth")]
+#[cfg(all(target_os = "macos", feature = "CoreBluetooth"))]
 pub mod CoreBluetooth {
     include!(concat!(env!("OUT_DIR"), "/CoreBluetooth.rs"));
 }
-#[cfg(feature = "CoreData")]
+#[cfg(all(target_os = "macos", feature = "CoreData"))]
 pub mod CoreData {
     include!(concat!(env!("OUT_DIR"), "/CoreData.rs"));
 }
-#[cfg(feature = "CoreFoundation")]
+#[cfg(all(target_os = "macos", feature = "CoreFoundation"))]
 pub mod CoreFoundation {
     include!(concat!(env!("OUT_DIR"), "/CoreFoundation.rs"));
 }
-#[cfg(feature = "CoreGraphics")]
+#[cfg(all(target_os = "macos", feature = "CoreGraphics"))]
 pub mod CoreGraphics {
     include!(concat!(env!("OUT_DIR"), "/CoreGraphics.rs"));
 }
-#[cfg(feature = "CoreHaptics")]
+#[cfg(all(target_os = "macos", feature = "CoreHaptics"))]
 pub mod CoreHaptics {
     include!(concat!(env!("OUT_DIR"), "/CoreHaptics.rs"));
 }
-#[cfg(feature = "CoreImage")]
+#[cfg(all(target_os = "macos", feature = "CoreImage"))]
 pub mod CoreImage {
     include!(concat!(env!("OUT_DIR"), "/CoreImage.rs"));
 }
-#[cfg(feature = "CoreLocation")]
+#[cfg(all(target_os = "macos", feature = "CoreLocation"))]
 pub mod CoreLocation {
     include!(concat!(env!("OUT_DIR"), "/CoreLocation.rs"));
 }
-#[cfg(feature = "CoreMIDI")]
+#[cfg(all(target_os = "macos", feature = "CoreMIDI"))]
 pub mod CoreMIDI {
     include!(concat!(env!("OUT_DIR"), "/CoreMIDI.rs"));
 }
-#[cfg(feature = "CoreML")]
+#[cfg(all(target_os = "macos", feature = "CoreML"))]
 pub mod CoreML {
     include!(concat!(env!("OUT_DIR"), "/CoreML.rs"));
 }
-#[cfg(feature = "CoreMedia")]
+#[cfg(all(target_os = "macos", feature = "CoreMedia"))]
 pub mod CoreMedia {
     include!(concat!(env!("OUT_DIR"), "/CoreMedia.rs"));
 }
-#[cfg(feature = "CoreMediaIO")]
+#[cfg(all(target_os = "macos", feature = "CoreMediaIO"))]
 pub mod CoreMediaIO {
     include!(concat!(env!("OUT_DIR"), "/CoreMediaIO.rs"));
 }
-#[cfg(feature = "CoreMotion")]
+#[cfg(all(target_os = "macos", feature = "CoreMotion"))]
 pub mod CoreMotion {
     include!(concat!(env!("OUT_DIR"), "/CoreMotion.rs"));
 }
-#[cfg(feature = "CoreServices")]
+#[cfg(all(target_os = "macos", feature = "CoreServices"))]
 pub mod CoreServices {
     include!(concat!(env!("OUT_DIR"), "/CoreServices.rs"));
 }
-#[cfg(feature = "CoreSpotlight")]
+#[cfg(all(target_os = "macos", feature = "CoreSpotlight"))]
 pub mod CoreSpotlight {
     include!(concat!(env!("OUT_DIR"), "/CoreSpotlight.rs"));
 }
-#[cfg(feature = "CoreTelephony")]
+#[cfg(all(target_os = "macos", feature = "CoreTelephony"))]
 pub mod CoreTelephony {
     include!(concat!(env!("OUT_DIR"), "/CoreTelephony.rs"));
 }
-#[cfg(feature = "CoreText")]
+#[cfg(all(target_os = "macos", feature = "CoreText"))]
 pub mod CoreText {
     include!(concat!(env!("OUT_DIR"), "/CoreText.rs"));
 }
-#[cfg(feature = "CoreTransferable")]
+#[cfg(all(target_os = "macos", feature = "CoreTransferable"))]
 pub mod CoreTransferable {
     include!(concat!(env!("OUT_DIR"), "/CoreTransferable.rs"));
 }
-#[cfg(feature = "CoreVideo")]
+#[cfg(all(target_os = "macos", feature = "CoreVideo"))]
 pub mod CoreVideo {
     include!(concat!(env!("OUT_DIR"), "/CoreVideo.rs"));
 }
-#[cfg(feature = "CoreWLAN")]
+#[cfg(all(target_os = "macos", feature = "CoreWLAN"))]
 pub mod CoreWLAN {
     include!(concat!(env!("OUT_DIR"), "/CoreWLAN.rs"));
 }
-#[cfg(feature = "CryptoTokenKit")]
+#[cfg(all(target_os = "macos", feature = "CryptoTokenKit"))]
 pub mod CryptoTokenKit {
     include!(concat!(env!("OUT_DIR"), "/CryptoTokenKit.rs"));
 }
-#[cfg(feature = "DVDPlayback")]
+#[cfg(all(target_os = "macos", feature = "DVDPlayback"))]
 pub mod DVDPlayback {
     include!(concat!(env!("OUT_DIR"), "/DVDPlayback.rs"));
 }
-#[cfg(feature = "DataDetection")]
+#[cfg(all(target_os = "macos", feature = "DataDetection"))]
 pub mod DataDetection {
     include!(concat!(env!("OUT_DIR"), "/DataDetection.rs"));
 }
-#[cfg(feature = "DeviceCheck")]
+#[cfg(all(target_os = "macos", feature = "DeviceCheck"))]
 pub mod DeviceCheck {
     include!(concat!(env!("OUT_DIR"), "/DeviceCheck.rs"));
 }
-#[cfg(feature = "DirectoryService")]
+#[cfg(all(target_os = "macos", feature = "DirectoryService"))]
 pub mod DirectoryService {
     include!(concat!(env!("OUT_DIR"), "/DirectoryService.rs"));
 }
-#[cfg(feature = "DiscRecording")]
+#[cfg(all(target_os = "macos", feature = "DiscRecording"))]
 pub mod DiscRecording {
     include!(concat!(env!("OUT_DIR"), "/DiscRecording.rs"));
 }
-#[cfg(feature = "DiscRecordingUI")]
+#[cfg(all(target_os = "macos", feature = "DiscRecordingUI"))]
 pub mod DiscRecordingUI {
     include!(concat!(env!("OUT_DIR"), "/DiscRecordingUI.rs"));
 }
-#[cfg(feature = "DiskArbitration")]
+#[cfg(all(target_os = "macos", feature = "DiskArbitration"))]
 pub mod DiskArbitration {
     include!(concat!(env!("OUT_DIR"), "/DiskArbitration.rs"));
 }
-#[cfg(feature = "EventKit")]
+#[cfg(all(target_os = "macos", feature = "EventKit"))]
 pub mod EventKit {
     include!(concat!(env!("OUT_DIR"), "/EventKit.rs"));
 }
-#[cfg(feature = "ExceptionHandling")]
+#[cfg(all(target_os = "macos", feature = "ExceptionHandling"))]
 pub mod ExceptionHandling {
     include!(concat!(env!("OUT_DIR"), "/ExceptionHandling.rs"));
 }
-#[cfg(feature = "ExecutionPolicy")]
+#[cfg(all(target_os = "macos", feature = "ExecutionPolicy"))]
 pub mod ExecutionPolicy {
     include!(concat!(env!("OUT_DIR"), "/ExecutionPolicy.rs"));
 }
-#[cfg(feature = "ExposureNotification")]
+#[cfg(all(target_os = "macos", feature = "ExposureNotification"))]
 pub mod ExposureNotification {
     include!(concat!(env!("OUT_DIR"), "/ExposureNotification.rs"));
 }
-#[cfg(feature = "ExtensionFoundation")]
+#[cfg(all(target_os = "macos", feature = "ExtensionFoundation"))]
 pub mod ExtensionFoundation {
     include!(concat!(env!("OUT_DIR"), "/ExtensionFoundation.rs"));
 }
-#[cfg(feature = "ExtensionKit")]
+#[cfg(all(target_os = "macos", feature = "ExtensionKit"))]
 pub mod ExtensionKit {
     include!(concat!(env!("OUT_DIR"), "/ExtensionKit.rs"));
 }
-#[cfg(feature = "ExternalAccessory")]
+#[cfg(all(target_os = "macos", feature = "ExternalAccessory"))]
 pub mod ExternalAccessory {
     include!(concat!(env!("OUT_DIR"), "/ExternalAccessory.rs"));
 }
-#[cfg(feature = "FileProvider")]
+#[cfg(all(target_os = "macos", feature = "FileProvider"))]
 pub mod FileProvider {
     include!(concat!(env!("OUT_DIR"), "/FileProvider.rs"));
 }
-#[cfg(feature = "FileProviderUI")]
+#[cfg(all(target_os = "macos", feature = "FileProviderUI"))]
 pub mod FileProviderUI {
     include!(concat!(env!("OUT_DIR"), "/FileProviderUI.rs"));
 }
-#[cfg(feature = "FinderSync")]
+#[cfg(all(target_os = "macos", feature = "FinderSync"))]
 pub mod FinderSync {
     include!(concat!(env!("OUT_DIR"), "/FinderSync.rs"));
 }
-#[cfg(feature = "ForceFeedback")]
+#[cfg(all(target_os = "macos", feature = "ForceFeedback"))]
 pub mod ForceFeedback {
     include!(concat!(env!("OUT_DIR"), "/ForceFeedback.rs"));
 }
-#[cfg(feature = "Foundation")]
+#[cfg(all(target_os = "macos", feature = "Foundation"))]
 pub mod Foundation {
     include!(concat!(env!("OUT_DIR"), "/Foundation.rs"));
 }
-#[cfg(feature = "GLKit")]
+#[cfg(all(target_os = "macos", feature = "GLKit"))]
 pub mod GLKit {
     include!(concat!(env!("OUT_DIR"), "/GLKit.rs"));
 }
-#[cfg(feature = "GLUT")]
+#[cfg(all(target_os = "macos", feature = "GLUT"))]
 pub mod GLUT {
     include!(concat!(env!("OUT_DIR"), "/GLUT.rs"));
 }
-#[cfg(feature = "GSS")]
+#[cfg(all(target_os = "macos", feature = "GSS"))]
 pub mod GSS {
     include!(concat!(env!("OUT_DIR"), "/GSS.rs"));
 }
-#[cfg(feature = "GameController")]
+#[cfg(all(target_os = "macos", feature = "GameController"))]
 pub mod GameController {
     include!(concat!(env!("OUT_DIR"), "/GameController.rs"));
 }
-#[cfg(feature = "GameKit")]
+#[cfg(all(target_os = "macos", feature = "GameKit"))]
 pub mod GameKit {
     include!(concat!(env!("OUT_DIR"), "/GameKit.rs"));
 }
-#[cfg(feature = "GameplayKit")]
+#[cfg(all(target_os = "macos", feature = "GameplayKit"))]
 pub mod GameplayKit {
     include!(concat!(env!("OUT_DIR"), "/GameplayKit.rs"));
 }
-#[cfg(feature = "HealthKit")]
+#[cfg(all(target_os = "macos", feature = "HealthKit"))]
 pub mod HealthKit {
     include!(concat!(env!("OUT_DIR"), "/HealthKit.rs"));
 }
-#[cfg(feature = "Hypervisor")]
+#[cfg(all(target_os = "macos", feature = "Hypervisor"))]
 pub mod Hypervisor {
     include!(concat!(env!("OUT_DIR"), "/Hypervisor.rs"));
 }
-#[cfg(feature = "ICADevices")]
+#[cfg(all(target_os = "macos", feature = "ICADevices"))]
 pub mod ICADevices {
     include!(concat!(env!("OUT_DIR"), "/ICADevices.rs"));
 }
-#[cfg(feature = "IMServicePlugIn")]
+#[cfg(all(target_os = "macos", feature = "IMServicePlugIn"))]
 pub mod IMServicePlugIn {
     include!(concat!(env!("OUT_DIR"), "/IMServicePlugIn.rs"));
 }
-#[cfg(feature = "IOBluetooth")]
+#[cfg(all(target_os = "macos", feature = "IOBluetooth"))]
 pub mod IOBluetooth {
     include!(concat!(env!("OUT_DIR"), "/IOBluetooth.rs"));
 }
-#[cfg(feature = "IOBluetoothUI")]
+#[cfg(all(target_os = "macos", feature = "IOBluetoothUI"))]
 pub mod IOBluetoothUI {
     include!(concat!(env!("OUT_DIR"), "/IOBluetoothUI.rs"));
 }
-#[cfg(feature = "IOKit")]
+#[cfg(all(target_os = "macos", feature = "IOKit"))]
 pub mod IOKit {
     include!(concat!(env!("OUT_DIR"), "/IOKit.rs"));
 }
-#[cfg(feature = "IOSurface")]
+#[cfg(all(target_os = "macos", feature = "IOSurface"))]
 pub mod IOSurface {
     include!(concat!(env!("OUT_DIR"), "/IOSurface.rs"));
 }
-#[cfg(feature = "IOUSBHost")]
+#[cfg(all(target_os = "macos", feature = "IOUSBHost"))]
 pub mod IOUSBHost {
     include!(concat!(env!("OUT_DIR"), "/IOUSBHost.rs"));
 }
-#[cfg(feature = "IdentityLookup")]
+#[cfg(all(target_os = "macos", feature = "IdentityLookup"))]
 pub mod IdentityLookup {
     include!(concat!(env!("OUT_DIR"), "/IdentityLookup.rs"));
 }
-#[cfg(feature = "ImageCaptureCore")]
+#[cfg(all(target_os = "macos", feature = "ImageCaptureCore"))]
 pub mod ImageCaptureCore {
     include!(concat!(env!("OUT_DIR"), "/ImageCaptureCore.rs"));
 }
-#[cfg(feature = "ImageIO")]
+#[cfg(all(target_os = "macos", feature = "ImageIO"))]
 pub mod ImageIO {
     include!(concat!(env!("OUT_DIR"), "/ImageIO.rs"));
 }
-#[cfg(feature = "InputMethodKit")]
+#[cfg(all(target_os = "macos", feature = "InputMethodKit"))]
 pub mod InputMethodKit {
     include!(concat!(env!("OUT_DIR"), "/InputMethodKit.rs"));
 }
-#[cfg(feature = "InstallerPlugins")]
+#[cfg(all(target_os = "macos", feature = "InstallerPlugins"))]
 pub mod InstallerPlugins {
     include!(concat!(env!("OUT_DIR"), "/InstallerPlugins.rs"));
 }
-#[cfg(feature = "InstantMessage")]
+#[cfg(all(target_os = "macos", feature = "InstantMessage"))]
 pub mod InstantMessage {
     include!(concat!(env!("OUT_DIR"), "/InstantMessage.rs"));
 }
-#[cfg(feature = "Intents")]
+#[cfg(all(target_os = "macos", feature = "Intents"))]
 pub mod Intents {
     include!(concat!(env!("OUT_DIR"), "/Intents.rs"));
 }
-#[cfg(feature = "IntentsUI")]
+#[cfg(all(target_os = "macos", feature = "IntentsUI"))]
 pub mod IntentsUI {
     include!(concat!(env!("OUT_DIR"), "/IntentsUI.rs"));
 }
-#[cfg(feature = "JavaNativeFoundation")]
+#[cfg(all(target_os = "macos", feature = "JavaNativeFoundation"))]
 pub mod JavaNativeFoundation {
     include!(concat!(env!("OUT_DIR"), "/JavaNativeFoundation.rs"));
 }
-#[cfg(feature = "JavaRuntimeSupport")]
+#[cfg(all(target_os = "macos", feature = "JavaRuntimeSupport"))]
 pub mod JavaRuntimeSupport {
     include!(concat!(env!("OUT_DIR"), "/JavaRuntimeSupport.rs"));
 }
-#[cfg(feature = "JavaScriptCore")]
+#[cfg(all(target_os = "macos", feature = "JavaScriptCore"))]
 pub mod JavaScriptCore {
     include!(concat!(env!("OUT_DIR"), "/JavaScriptCore.rs"));
 }
-#[cfg(feature = "Kerberos")]
+#[cfg(all(target_os = "macos", feature = "Kerberos"))]
 pub mod Kerberos {
     include!(concat!(env!("OUT_DIR"), "/Kerberos.rs"));
 }
-#[cfg(feature = "KernelManagement")]
+#[cfg(all(target_os = "macos", feature = "KernelManagement"))]
 pub mod KernelManagement {
     include!(concat!(env!("OUT_DIR"), "/KernelManagement.rs"));
 }
-#[cfg(feature = "LDAP")]
+#[cfg(all(target_os = "macos", feature = "LDAP"))]
 pub mod LDAP {
     include!(concat!(env!("OUT_DIR"), "/LDAP.rs"));
 }
-#[cfg(feature = "LatentSemanticMapping")]
+#[cfg(all(target_os = "macos", feature = "LatentSemanticMapping"))]
 pub mod LatentSemanticMapping {
     include!(concat!(env!("OUT_DIR"), "/LatentSemanticMapping.rs"));
 }
-#[cfg(feature = "LinkPresentation")]
+#[cfg(all(target_os = "macos", feature = "LinkPresentation"))]
 pub mod LinkPresentation {
     include!(concat!(env!("OUT_DIR"), "/LinkPresentation.rs"));
 }
-#[cfg(feature = "LocalAuthentication")]
+#[cfg(all(target_os = "macos", feature = "LocalAuthentication"))]
 pub mod LocalAuthentication {
     include!(concat!(env!("OUT_DIR"), "/LocalAuthentication.rs"));
 }
-#[cfg(feature = "LocalAuthenticationEmbeddedUI")]
+#[cfg(all(target_os = "macos", feature = "LocalAuthenticationEmbeddedUI"))]
 pub mod LocalAuthenticationEmbeddedUI {
     include!(concat!(
         env!("OUT_DIR"),
         "/LocalAuthenticationEmbeddedUI.rs"
     ));
 }
-#[cfg(feature = "MLCompute")]
+#[cfg(all(target_os = "macos", feature = "MLCompute"))]
 pub mod MLCompute {
     include!(concat!(env!("OUT_DIR"), "/MLCompute.rs"));
 }
-#[cfg(feature = "MailKit")]
+#[cfg(all(target_os = "macos", feature = "MailKit"))]
 pub mod MailKit {
     include!(concat!(env!("OUT_DIR"), "/MailKit.rs"));
 }
-#[cfg(feature = "MapKit")]
+#[cfg(all(target_os = "macos", feature = "MapKit"))]
 pub mod MapKit {
     include!(concat!(env!("OUT_DIR"), "/MapKit.rs"));
 }
-#[cfg(feature = "Matter")]
+#[cfg(all(target_os = "macos", feature = "Matter"))]
 pub mod Matter {
     include!(concat!(env!("OUT_DIR"), "/Matter.rs"));
 }
-#[cfg(feature = "MediaAccessibility")]
+#[cfg(all(target_os = "macos", feature = "MediaAccessibility"))]
 pub mod MediaAccessibility {
     include!(concat!(env!("OUT_DIR"), "/MediaAccessibility.rs"));
 }
-#[cfg(feature = "MediaLibrary")]
+#[cfg(all(target_os = "macos", feature = "MediaLibrary"))]
 pub mod MediaLibrary {
     include!(concat!(env!("OUT_DIR"), "/MediaLibrary.rs"));
 }
-#[cfg(feature = "MediaPlayer")]
+#[cfg(all(target_os = "macos", feature = "MediaPlayer"))]
 pub mod MediaPlayer {
     include!(concat!(env!("OUT_DIR"), "/MediaPlayer.rs"));
 }
-#[cfg(feature = "MediaToolbox")]
+#[cfg(all(target_os = "macos", feature = "MediaToolbox"))]
 pub mod MediaToolbox {
     include!(concat!(env!("OUT_DIR"), "/MediaToolbox.rs"));
 }
-#[cfg(feature = "Metal")]
+#[cfg(all(target_os = "macos", feature = "Metal"))]
 pub mod Metal {
     include!(concat!(env!("OUT_DIR"), "/Metal.rs"));
 }
-#[cfg(feature = "MetalFX")]
+#[cfg(all(target_os = "macos", feature = "MetalFX"))]
 pub mod MetalFX {
     include!(concat!(env!("OUT_DIR"), "/MetalFX.rs"));
 }
-#[cfg(feature = "MetalKit")]
+#[cfg(all(target_os = "macos", feature = "MetalKit"))]
 pub mod MetalKit {
     include!(concat!(env!("OUT_DIR"), "/MetalKit.rs"));
 }
-#[cfg(feature = "MetalPerformanceShaders")]
+#[cfg(all(target_os = "macos", feature = "MetalPerformanceShaders"))]
 pub mod MetalPerformanceShaders {
     include!(concat!(env!("OUT_DIR"), "/MetalPerformanceShaders.rs"));
 }
-#[cfg(feature = "MetalPerformanceShadersGraph")]
+#[cfg(all(target_os = "macos", feature = "MetalPerformanceShadersGraph"))]
 pub mod MetalPerformanceShadersGraph {
     include!(concat!(env!("OUT_DIR"), "/MetalPerformanceShadersGraph.rs"));
 }
-#[cfg(feature = "MetricKit")]
+#[cfg(all(target_os = "macos", feature = "MetricKit"))]
 pub mod MetricKit {
     include!(concat!(env!("OUT_DIR"), "/MetricKit.rs"));
 }
-#[cfg(feature = "ModelIO")]
+#[cfg(all(target_os = "macos", feature = "ModelIO"))]
 pub mod ModelIO {
     include!(concat!(env!("OUT_DIR"), "/ModelIO.rs"));
 }
-#[cfg(feature = "MultipeerConnectivity")]
+#[cfg(all(target_os = "macos", feature = "MultipeerConnectivity"))]
 pub mod MultipeerConnectivity {
     include!(concat!(env!("OUT_DIR"), "/MultipeerConnectivity.rs"));
 }
-#[cfg(feature = "NaturalLanguage")]
+#[cfg(all(target_os = "macos", feature = "NaturalLanguage"))]
 pub mod NaturalLanguage {
     include!(concat!(env!("OUT_DIR"), "/NaturalLanguage.rs"));
 }
-#[cfg(feature = "NearbyInteraction")]
+#[cfg(all(target_os = "macos", feature = "NearbyInteraction"))]
 pub mod NearbyInteraction {
     include!(concat!(env!("OUT_DIR"), "/NearbyInteraction.rs"));
 }
-#[cfg(feature = "NetFS")]
+#[cfg(all(target_os = "macos", feature = "NetFS"))]
 pub mod NetFS {
     include!(concat!(env!("OUT_DIR"), "/NetFS.rs"));
 }
-#[cfg(feature = "Network")]
+#[cfg(all(target_os = "macos", feature = "Network"))]
 pub mod Network {
     include!(concat!(env!("OUT_DIR"), "/Network.rs"));
 }
-#[cfg(feature = "NetworkExtension")]
+#[cfg(all(target_os = "macos", feature = "NetworkExtension"))]
 pub mod NetworkExtension {
     include!(concat!(env!("OUT_DIR"), "/NetworkExtension.rs"));
 }
-#[cfg(feature = "NotificationCenter")]
+#[cfg(all(target_os = "macos", feature = "NotificationCenter"))]
 pub mod NotificationCenter {
     include!(concat!(env!("OUT_DIR"), "/NotificationCenter.rs"));
 }
-#[cfg(feature = "OSAKit")]
+#[cfg(all(target_os = "macos", feature = "OSAKit"))]
 pub mod OSAKit {
     include!(concat!(env!("OUT_DIR"), "/OSAKit.rs"));
 }
-#[cfg(feature = "OSLog")]
+#[cfg(all(target_os = "macos", feature = "OSLog"))]
 pub mod OSLog {
     include!(concat!(env!("OUT_DIR"), "/OSLog.rs"));
 }
-#[cfg(feature = "OpenAL")]
+#[cfg(all(target_os = "macos", feature = "OpenAL"))]
 pub mod OpenAL {
     include!(concat!(env!("OUT_DIR"), "/OpenAL.rs"));
 }
-#[cfg(feature = "OpenCL")]
+#[cfg(all(target_os = "macos", feature = "OpenCL"))]
 pub mod OpenCL {
     include!(concat!(env!("OUT_DIR"), "/OpenCL.rs"));
 }
-#[cfg(feature = "OpenDirectory")]
+#[cfg(all(target_os = "macos", feature = "OpenDirectory"))]
 pub mod OpenDirectory {
     include!(concat!(env!("OUT_DIR"), "/OpenDirectory.rs"));
 }
-#[cfg(feature = "OpenGL")]
+#[cfg(all(target_os = "macos", feature = "OpenGL"))]
 pub mod OpenGL {
     include!(concat!(env!("OUT_DIR"), "/OpenGL.rs"));
 }
-#[cfg(feature = "PCSC")]
+#[cfg(all(target_os = "macos", feature = "PCSC"))]
 pub mod PCSC {
     include!(concat!(env!("OUT_DIR"), "/PCSC.rs"));
 }
-#[cfg(feature = "PDFKit")]
+#[cfg(all(target_os = "macos", feature = "PDFKit"))]
 pub mod PDFKit {
     include!(concat!(env!("OUT_DIR"), "/PDFKit.rs"));
 }
-#[cfg(feature = "PHASE")]
+#[cfg(all(target_os = "macos", feature = "PHASE"))]
 pub mod PHASE {
     include!(concat!(env!("OUT_DIR"), "/PHASE.rs"));
 }
-#[cfg(feature = "ParavirtualizedGraphics")]
+#[cfg(all(target_os = "macos", feature = "ParavirtualizedGraphics"))]
 pub mod ParavirtualizedGraphics {
     include!(concat!(env!("OUT_DIR"), "/ParavirtualizedGraphics.rs"));
 }
-#[cfg(feature = "PassKit")]
+#[cfg(all(target_os = "macos", feature = "PassKit"))]
 pub mod PassKit {
     include!(concat!(env!("OUT_DIR"), "/PassKit.rs"));
 }
-#[cfg(feature = "PencilKit")]
+#[cfg(all(target_os = "macos", feature = "PencilKit"))]
 pub mod PencilKit {
     include!(concat!(env!("OUT_DIR"), "/PencilKit.rs"));
 }
-#[cfg(feature = "Photos")]
+#[cfg(all(target_os = "macos", feature = "Photos"))]
 pub mod Photos {
     include!(concat!(env!("OUT_DIR"), "/Photos.rs"));
 }
-#[cfg(feature = "PhotosUI")]
+#[cfg(all(target_os = "macos", feature = "PhotosUI"))]
 pub mod PhotosUI {
     include!(concat!(env!("OUT_DIR"), "/PhotosUI.rs"));
 }
-#[cfg(feature = "PreferencePanes")]
+#[cfg(all(target_os = "macos", feature = "PreferencePanes"))]
 pub mod PreferencePanes {
     include!(concat!(env!("OUT_DIR"), "/PreferencePanes.rs"));
 }
-#[cfg(feature = "PushKit")]
+#[cfg(all(target_os = "macos", feature = "PushKit"))]
 pub mod PushKit {
     include!(concat!(env!("OUT_DIR"), "/PushKit.rs"));
 }
-#[cfg(feature = "PushToTalk")]
+#[cfg(all(target_os = "macos", feature = "PushToTalk"))]
 pub mod PushToTalk {
     include!(concat!(env!("OUT_DIR"), "/PushToTalk.rs"));
 }
-#[cfg(feature = "Quartz")]
+#[cfg(all(target_os = "macos", feature = "Quartz"))]
 pub mod Quartz {
     include!(concat!(env!("OUT_DIR"), "/Quartz.rs"));
 }
-#[cfg(feature = "QuartzCore")]
+#[cfg(all(target_os = "macos", feature = "QuartzCore"))]
 pub mod QuartzCore {
     include!(concat!(env!("OUT_DIR"), "/QuartzCore.rs"));
 }
-#[cfg(feature = "QuickLook")]
+#[cfg(all(target_os = "macos", feature = "QuickLook"))]
 pub mod QuickLook {
     include!(concat!(env!("OUT_DIR"), "/QuickLook.rs"));
 }
-#[cfg(feature = "QuickLookThumbnailing")]
+#[cfg(all(target_os = "macos", feature = "QuickLookThumbnailing"))]
 pub mod QuickLookThumbnailing {
     include!(concat!(env!("OUT_DIR"), "/QuickLookThumbnailing.rs"));
 }
-#[cfg(feature = "QuickLookUI")]
+#[cfg(all(target_os = "macos", feature = "QuickLookUI"))]
 pub mod QuickLookUI {
     include!(concat!(env!("OUT_DIR"), "/QuickLookUI.rs"));
 }
-#[cfg(feature = "ReplayKit")]
+#[cfg(all(target_os = "macos", feature = "ReplayKit"))]
 pub mod ReplayKit {
     include!(concat!(env!("OUT_DIR"), "/ReplayKit.rs"));
 }
-#[cfg(feature = "SafariServices")]
+#[cfg(all(target_os = "macos", feature = "SafariServices"))]
 pub mod SafariServices {
     include!(concat!(env!("OUT_DIR"), "/SafariServices.rs"));
 }
-#[cfg(feature = "SafetyKit")]
+#[cfg(all(target_os = "macos", feature = "SafetyKit"))]
 pub mod SafetyKit {
     include!(concat!(env!("OUT_DIR"), "/SafetyKit.rs"));
 }
-#[cfg(feature = "SceneKit")]
+#[cfg(all(target_os = "macos", feature = "SceneKit"))]
 pub mod SceneKit {
     include!(concat!(env!("OUT_DIR"), "/SceneKit.rs"));
 }
-#[cfg(feature = "ScreenCaptureKit")]
+#[cfg(all(target_os = "macos", feature = "ScreenCaptureKit"))]
 pub mod ScreenCaptureKit {
     include!(concat!(env!("OUT_DIR"), "/ScreenCaptureKit.rs"));
 }
-#[cfg(feature = "ScreenSaver")]
+#[cfg(all(target_os = "macos", feature = "ScreenSaver"))]
 pub mod ScreenSaver {
     include!(concat!(env!("OUT_DIR"), "/ScreenSaver.rs"));
 }
-#[cfg(feature = "ScreenTime")]
+#[cfg(all(target_os = "macos", feature = "ScreenTime"))]
 pub mod ScreenTime {
     include!(concat!(env!("OUT_DIR"), "/ScreenTime.rs"));
 }
-#[cfg(feature = "ScriptingBridge")]
+#[cfg(all(target_os = "macos", feature = "ScriptingBridge"))]
 pub mod ScriptingBridge {
     include!(concat!(env!("OUT_DIR"), "/ScriptingBridge.rs"));
 }
-#[cfg(feature = "Security")]
+#[cfg(all(target_os = "macos", feature = "Security"))]
 pub mod Security {
     include!(concat!(env!("OUT_DIR"), "/Security.rs"));
 }
-#[cfg(feature = "SecurityFoundation")]
+#[cfg(all(target_os = "macos", feature = "SecurityFoundation"))]
 pub mod SecurityFoundation {
     include!(concat!(env!("OUT_DIR"), "/SecurityFoundation.rs"));
 }
-#[cfg(feature = "SecurityInterface")]
+#[cfg(all(target_os = "macos", feature = "SecurityInterface"))]
 pub mod SecurityInterface {
     include!(concat!(env!("OUT_DIR"), "/SecurityInterface.rs"));
 }
-#[cfg(feature = "SensorKit")]
+#[cfg(all(target_os = "macos", feature = "SensorKit"))]
 pub mod SensorKit {
     include!(concat!(env!("OUT_DIR"), "/SensorKit.rs"));
 }
-#[cfg(feature = "ServiceManagement")]
+#[cfg(all(target_os = "macos", feature = "ServiceManagement"))]
 pub mod ServiceManagement {
     include!(concat!(env!("OUT_DIR"), "/ServiceManagement.rs"));
 }
-#[cfg(feature = "SharedWithYou")]
+#[cfg(all(target_os = "macos", feature = "SharedWithYou"))]
 pub mod SharedWithYou {
     include!(concat!(env!("OUT_DIR"), "/SharedWithYou.rs"));
 }
-#[cfg(feature = "SharedWithYouCore")]
+#[cfg(all(target_os = "macos", feature = "SharedWithYouCore"))]
 pub mod SharedWithYouCore {
     include!(concat!(env!("OUT_DIR"), "/SharedWithYouCore.rs"));
 }
-#[cfg(feature = "ShazamKit")]
+#[cfg(all(target_os = "macos", feature = "ShazamKit"))]
 pub mod ShazamKit {
     include!(concat!(env!("OUT_DIR"), "/ShazamKit.rs"));
 }
-#[cfg(feature = "Social")]
+#[cfg(all(target_os = "macos", feature = "Social"))]
 pub mod Social {
     include!(concat!(env!("OUT_DIR"), "/Social.rs"));
 }
-#[cfg(feature = "SoundAnalysis")]
+#[cfg(all(target_os = "macos", feature = "SoundAnalysis"))]
 pub mod SoundAnalysis {
     include!(concat!(env!("OUT_DIR"), "/SoundAnalysis.rs"));
 }
-#[cfg(feature = "Speech")]
+#[cfg(all(target_os = "macos", feature = "Speech"))]
 pub mod Speech {
     include!(concat!(env!("OUT_DIR"), "/Speech.rs"));
 }
-#[cfg(feature = "SpriteKit")]
+#[cfg(all(target_os = "macos", feature = "SpriteKit"))]
 pub mod SpriteKit {
     include!(concat!(env!("OUT_DIR"), "/SpriteKit.rs"));
 }
-#[cfg(feature = "StoreKit")]
+#[cfg(all(target_os = "macos", feature = "StoreKit"))]
 pub mod StoreKit {
     include!(concat!(env!("OUT_DIR"), "/StoreKit.rs"));
 }
-#[cfg(feature = "SwiftUI")]
+#[cfg(all(target_os = "macos", feature = "SwiftUI"))]
 pub mod SwiftUI {
     include!(concat!(env!("OUT_DIR"), "/SwiftUI.rs"));
 }
-#[cfg(feature = "SyncServices")]
+#[cfg(all(target_os = "macos", feature = "SyncServices"))]
 pub mod SyncServices {
     include!(concat!(env!("OUT_DIR"), "/SyncServices.rs"));
 }
-#[cfg(feature = "SystemConfiguration")]
+#[cfg(all(target_os = "macos", feature = "SystemConfiguration"))]
 pub mod SystemConfiguration {
     include!(concat!(env!("OUT_DIR"), "/SystemConfiguration.rs"));
 }
-#[cfg(feature = "SystemExtensions")]
+#[cfg(all(target_os = "macos", feature = "SystemExtensions"))]
 pub mod SystemExtensions {
     include!(concat!(env!("OUT_DIR"), "/SystemExtensions.rs"));
 }
-#[cfg(feature = "TWAIN")]
+#[cfg(all(target_os = "macos", feature = "TWAIN"))]
 pub mod TWAIN {
     include!(concat!(env!("OUT_DIR"), "/TWAIN.rs"));
 }
-#[cfg(feature = "Tcl")]
+#[cfg(all(target_os = "macos", feature = "Tcl"))]
 pub mod Tcl {
     include!(concat!(env!("OUT_DIR"), "/Tcl.rs"));
 }
-#[cfg(feature = "ThreadNetwork")]
+#[cfg(all(target_os = "macos", feature = "ThreadNetwork"))]
 pub mod ThreadNetwork {
     include!(concat!(env!("OUT_DIR"), "/ThreadNetwork.rs"));
 }
-#[cfg(feature = "UniformTypeIdentifiers")]
+#[cfg(all(target_os = "macos", feature = "UniformTypeIdentifiers"))]
 pub mod UniformTypeIdentifiers {
     include!(concat!(env!("OUT_DIR"), "/UniformTypeIdentifiers.rs"));
 }
-#[cfg(feature = "UserNotifications")]
+#[cfg(all(target_os = "macos", feature = "UserNotifications"))]
 pub mod UserNotifications {
     include!(concat!(env!("OUT_DIR"), "/UserNotifications.rs"));
 }
-#[cfg(feature = "UserNotificationsUI")]
+#[cfg(all(target_os = "macos", feature = "UserNotificationsUI"))]
 pub mod UserNotificationsUI {
     include!(concat!(env!("OUT_DIR"), "/UserNotificationsUI.rs"));
 }
-#[cfg(feature = "VideoDecodeAcceleration")]
+#[cfg(all(target_os = "macos", feature = "VideoDecodeAcceleration"))]
 pub mod VideoDecodeAcceleration {
     include!(concat!(env!("OUT_DIR"), "/VideoDecodeAcceleration.rs"));
 }
-#[cfg(feature = "VideoSubscriberAccount")]
+#[cfg(all(target_os = "macos", feature = "VideoSubscriberAccount"))]
 pub mod VideoSubscriberAccount {
     include!(concat!(env!("OUT_DIR"), "/VideoSubscriberAccount.rs"));
 }
-#[cfg(feature = "VideoToolbox")]
+#[cfg(all(target_os = "macos", feature = "VideoToolbox"))]
 pub mod VideoToolbox {
     include!(concat!(env!("OUT_DIR"), "/VideoToolbox.rs"));
 }
-#[cfg(feature = "Virtualization")]
+#[cfg(all(target_os = "macos", feature = "Virtualization"))]
 pub mod Virtualization {
     include!(concat!(env!("OUT_DIR"), "/Virtualization.rs"));
 }
-#[cfg(feature = "Vision")]
+#[cfg(all(target_os = "macos", feature = "Vision"))]
 pub mod Vision {
     include!(concat!(env!("OUT_DIR"), "/Vision.rs"));
 }
-#[cfg(feature = "VisionKit")]
+#[cfg(all(target_os = "macos", feature = "VisionKit"))]
 pub mod VisionKit {
     include!(concat!(env!("OUT_DIR"), "/VisionKit.rs"));
 }
-#[cfg(feature = "WebKit")]
+#[cfg(all(target_os = "macos", feature = "WebKit"))]
 pub mod WebKit {
     include!(concat!(env!("OUT_DIR"), "/WebKit.rs"));
 }
-#[cfg(feature = "WidgetKit")]
+#[cfg(all(target_os = "macos", feature = "WidgetKit"))]
 pub mod WidgetKit {
     include!(concat!(env!("OUT_DIR"), "/WidgetKit.rs"));
 }
-#[cfg(feature = "iTunesLibrary")]
+#[cfg(all(target_os = "macos", feature = "iTunesLibrary"))]
 pub mod iTunesLibrary {
     include!(concat!(env!("OUT_DIR"), "/iTunesLibrary.rs"));
 }
-#[cfg(feature = "vmnet")]
+#[cfg(all(target_os = "macos", feature = "vmnet"))]
 pub mod vmnet {
     include!(concat!(env!("OUT_DIR"), "/vmnet.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ARKit"))]
+pub mod ARKit {
+    include!(concat!(env!("OUT_DIR"), "/ARKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AVFAudio"))]
+pub mod AVFAudio {
+    include!(concat!(env!("OUT_DIR"), "/AVFAudio.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AVFoundation"))]
+pub mod AVFoundation {
+    include!(concat!(env!("OUT_DIR"), "/AVFoundation.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AVKit"))]
+pub mod AVKit {
+    include!(concat!(env!("OUT_DIR"), "/AVKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AVRouting"))]
+pub mod AVRouting {
+    include!(concat!(env!("OUT_DIR"), "/AVRouting.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Accelerate"))]
+pub mod Accelerate {
+    include!(concat!(env!("OUT_DIR"), "/Accelerate.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Accessibility"))]
+pub mod Accessibility {
+    include!(concat!(env!("OUT_DIR"), "/Accessibility.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Accounts"))]
+pub mod Accounts {
+    include!(concat!(env!("OUT_DIR"), "/Accounts.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ActivityKit"))]
+pub mod ActivityKit {
+    include!(concat!(env!("OUT_DIR"), "/ActivityKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AdServices"))]
+pub mod AdServices {
+    include!(concat!(env!("OUT_DIR"), "/AdServices.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AdSupport"))]
+pub mod AdSupport {
+    include!(concat!(env!("OUT_DIR"), "/AdSupport.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AddressBook"))]
+pub mod AddressBook {
+    include!(concat!(env!("OUT_DIR"), "/AddressBook.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AddressBookUI"))]
+pub mod AddressBookUI {
+    include!(concat!(env!("OUT_DIR"), "/AddressBookUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AppClip"))]
+pub mod AppClip {
+    include!(concat!(env!("OUT_DIR"), "/AppClip.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AppIntents"))]
+pub mod AppIntents {
+    include!(concat!(env!("OUT_DIR"), "/AppIntents.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AppTrackingTransparency"))]
+pub mod AppTrackingTransparency {
+    include!(concat!(env!("OUT_DIR"), "/AppTrackingTransparency.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AssetsLibrary"))]
+pub mod AssetsLibrary {
+    include!(concat!(env!("OUT_DIR"), "/AssetsLibrary.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AudioToolbox"))]
+pub mod AudioToolbox {
+    include!(concat!(env!("OUT_DIR"), "/AudioToolbox.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AudioUnit"))]
+pub mod AudioUnit {
+    include!(concat!(env!("OUT_DIR"), "/AudioUnit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AuthenticationServices"))]
+pub mod AuthenticationServices {
+    include!(concat!(env!("OUT_DIR"), "/AuthenticationServices.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "AutomaticAssessmentConfiguration"))]
+pub mod AutomaticAssessmentConfiguration {
+    include!(concat!(
+        env!("OUT_DIR"),
+        "/AutomaticAssessmentConfiguration.rs"
+    ));
+}
+#[cfg(all(target_os = "ios", feature = "BackgroundAssets"))]
+pub mod BackgroundAssets {
+    include!(concat!(env!("OUT_DIR"), "/BackgroundAssets.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "BackgroundTasks"))]
+pub mod BackgroundTasks {
+    include!(concat!(env!("OUT_DIR"), "/BackgroundTasks.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "BusinessChat"))]
+pub mod BusinessChat {
+    include!(concat!(env!("OUT_DIR"), "/BusinessChat.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CFNetwork"))]
+pub mod CFNetwork {
+    include!(concat!(env!("OUT_DIR"), "/CFNetwork.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CallKit"))]
+pub mod CallKit {
+    include!(concat!(env!("OUT_DIR"), "/CallKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CarPlay"))]
+pub mod CarPlay {
+    include!(concat!(env!("OUT_DIR"), "/CarPlay.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ClassKit"))]
+pub mod ClassKit {
+    include!(concat!(env!("OUT_DIR"), "/ClassKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ClockKit"))]
+pub mod ClockKit {
+    include!(concat!(env!("OUT_DIR"), "/ClockKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CloudKit"))]
+pub mod CloudKit {
+    include!(concat!(env!("OUT_DIR"), "/CloudKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ColorSync"))]
+pub mod ColorSync {
+    include!(concat!(env!("OUT_DIR"), "/ColorSync.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Contacts"))]
+pub mod Contacts {
+    include!(concat!(env!("OUT_DIR"), "/Contacts.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ContactsUI"))]
+pub mod ContactsUI {
+    include!(concat!(env!("OUT_DIR"), "/ContactsUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreAudio"))]
+pub mod CoreAudio {
+    include!(concat!(env!("OUT_DIR"), "/CoreAudio.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreAudioKit"))]
+pub mod CoreAudioKit {
+    include!(concat!(env!("OUT_DIR"), "/CoreAudioKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreBluetooth"))]
+pub mod CoreBluetooth {
+    include!(concat!(env!("OUT_DIR"), "/CoreBluetooth.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreData"))]
+pub mod CoreData {
+    include!(concat!(env!("OUT_DIR"), "/CoreData.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreFoundation"))]
+pub mod CoreFoundation {
+    include!(concat!(env!("OUT_DIR"), "/CoreFoundation.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreGraphics"))]
+pub mod CoreGraphics {
+    include!(concat!(env!("OUT_DIR"), "/CoreGraphics.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreHaptics"))]
+pub mod CoreHaptics {
+    include!(concat!(env!("OUT_DIR"), "/CoreHaptics.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreImage"))]
+pub mod CoreImage {
+    include!(concat!(env!("OUT_DIR"), "/CoreImage.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreLocation"))]
+pub mod CoreLocation {
+    include!(concat!(env!("OUT_DIR"), "/CoreLocation.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreLocationUI"))]
+pub mod CoreLocationUI {
+    include!(concat!(env!("OUT_DIR"), "/CoreLocationUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreMIDI"))]
+pub mod CoreMIDI {
+    include!(concat!(env!("OUT_DIR"), "/CoreMIDI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreML"))]
+pub mod CoreML {
+    include!(concat!(env!("OUT_DIR"), "/CoreML.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreMedia"))]
+pub mod CoreMedia {
+    include!(concat!(env!("OUT_DIR"), "/CoreMedia.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreMotion"))]
+pub mod CoreMotion {
+    include!(concat!(env!("OUT_DIR"), "/CoreMotion.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreNFC"))]
+pub mod CoreNFC {
+    include!(concat!(env!("OUT_DIR"), "/CoreNFC.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreServices"))]
+pub mod CoreServices {
+    include!(concat!(env!("OUT_DIR"), "/CoreServices.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreSpotlight"))]
+pub mod CoreSpotlight {
+    include!(concat!(env!("OUT_DIR"), "/CoreSpotlight.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreTelephony"))]
+pub mod CoreTelephony {
+    include!(concat!(env!("OUT_DIR"), "/CoreTelephony.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreText"))]
+pub mod CoreText {
+    include!(concat!(env!("OUT_DIR"), "/CoreText.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreTransferable"))]
+pub mod CoreTransferable {
+    include!(concat!(env!("OUT_DIR"), "/CoreTransferable.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CoreVideo"))]
+pub mod CoreVideo {
+    include!(concat!(env!("OUT_DIR"), "/CoreVideo.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "CryptoTokenKit"))]
+pub mod CryptoTokenKit {
+    include!(concat!(env!("OUT_DIR"), "/CryptoTokenKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "DataDetection"))]
+pub mod DataDetection {
+    include!(concat!(env!("OUT_DIR"), "/DataDetection.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "DeviceCheck"))]
+pub mod DeviceCheck {
+    include!(concat!(env!("OUT_DIR"), "/DeviceCheck.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "DeviceDiscoveryExtension"))]
+pub mod DeviceDiscoveryExtension {
+    include!(concat!(env!("OUT_DIR"), "/DeviceDiscoveryExtension.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "EventKit"))]
+pub mod EventKit {
+    include!(concat!(env!("OUT_DIR"), "/EventKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "EventKitUI"))]
+pub mod EventKitUI {
+    include!(concat!(env!("OUT_DIR"), "/EventKitUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ExposureNotification"))]
+pub mod ExposureNotification {
+    include!(concat!(env!("OUT_DIR"), "/ExposureNotification.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ExtensionFoundation"))]
+pub mod ExtensionFoundation {
+    include!(concat!(env!("OUT_DIR"), "/ExtensionFoundation.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ExtensionKit"))]
+pub mod ExtensionKit {
+    include!(concat!(env!("OUT_DIR"), "/ExtensionKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ExternalAccessory"))]
+pub mod ExternalAccessory {
+    include!(concat!(env!("OUT_DIR"), "/ExternalAccessory.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "FileProvider"))]
+pub mod FileProvider {
+    include!(concat!(env!("OUT_DIR"), "/FileProvider.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "FileProviderUI"))]
+pub mod FileProviderUI {
+    include!(concat!(env!("OUT_DIR"), "/FileProviderUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Foundation"))]
+pub mod Foundation {
+    include!(concat!(env!("OUT_DIR"), "/Foundation.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "GLKit"))]
+pub mod GLKit {
+    include!(concat!(env!("OUT_DIR"), "/GLKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "GSS"))]
+pub mod GSS {
+    include!(concat!(env!("OUT_DIR"), "/GSS.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "GameController"))]
+pub mod GameController {
+    include!(concat!(env!("OUT_DIR"), "/GameController.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "GameKit"))]
+pub mod GameKit {
+    include!(concat!(env!("OUT_DIR"), "/GameKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "GameplayKit"))]
+pub mod GameplayKit {
+    include!(concat!(env!("OUT_DIR"), "/GameplayKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "HealthKit"))]
+pub mod HealthKit {
+    include!(concat!(env!("OUT_DIR"), "/HealthKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "HealthKitUI"))]
+pub mod HealthKitUI {
+    include!(concat!(env!("OUT_DIR"), "/HealthKitUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "HomeKit"))]
+pub mod HomeKit {
+    include!(concat!(env!("OUT_DIR"), "/HomeKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "IOSurface"))]
+pub mod IOSurface {
+    include!(concat!(env!("OUT_DIR"), "/IOSurface.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "IdentityLookup"))]
+pub mod IdentityLookup {
+    include!(concat!(env!("OUT_DIR"), "/IdentityLookup.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "IdentityLookupUI"))]
+pub mod IdentityLookupUI {
+    include!(concat!(env!("OUT_DIR"), "/IdentityLookupUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ImageCaptureCore"))]
+pub mod ImageCaptureCore {
+    include!(concat!(env!("OUT_DIR"), "/ImageCaptureCore.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ImageIO"))]
+pub mod ImageIO {
+    include!(concat!(env!("OUT_DIR"), "/ImageIO.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Intents"))]
+pub mod Intents {
+    include!(concat!(env!("OUT_DIR"), "/Intents.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "IntentsUI"))]
+pub mod IntentsUI {
+    include!(concat!(env!("OUT_DIR"), "/IntentsUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "JavaScriptCore"))]
+pub mod JavaScriptCore {
+    include!(concat!(env!("OUT_DIR"), "/JavaScriptCore.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "LinkPresentation"))]
+pub mod LinkPresentation {
+    include!(concat!(env!("OUT_DIR"), "/LinkPresentation.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "LocalAuthentication"))]
+pub mod LocalAuthentication {
+    include!(concat!(env!("OUT_DIR"), "/LocalAuthentication.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "LocalAuthenticationEmbeddedUI"))]
+pub mod LocalAuthenticationEmbeddedUI {
+    include!(concat!(
+        env!("OUT_DIR"),
+        "/LocalAuthenticationEmbeddedUI.rs"
+    ));
+}
+#[cfg(all(target_os = "ios", feature = "MLCompute"))]
+pub mod MLCompute {
+    include!(concat!(env!("OUT_DIR"), "/MLCompute.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MapKit"))]
+pub mod MapKit {
+    include!(concat!(env!("OUT_DIR"), "/MapKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Matter"))]
+pub mod Matter {
+    include!(concat!(env!("OUT_DIR"), "/Matter.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MatterSupport"))]
+pub mod MatterSupport {
+    include!(concat!(env!("OUT_DIR"), "/MatterSupport.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MediaAccessibility"))]
+pub mod MediaAccessibility {
+    include!(concat!(env!("OUT_DIR"), "/MediaAccessibility.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MediaPlayer"))]
+pub mod MediaPlayer {
+    include!(concat!(env!("OUT_DIR"), "/MediaPlayer.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MediaSetup"))]
+pub mod MediaSetup {
+    include!(concat!(env!("OUT_DIR"), "/MediaSetup.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MediaToolbox"))]
+pub mod MediaToolbox {
+    include!(concat!(env!("OUT_DIR"), "/MediaToolbox.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MessageUI"))]
+pub mod MessageUI {
+    include!(concat!(env!("OUT_DIR"), "/MessageUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Messages"))]
+pub mod Messages {
+    include!(concat!(env!("OUT_DIR"), "/Messages.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Metal"))]
+pub mod Metal {
+    include!(concat!(env!("OUT_DIR"), "/Metal.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MetalFX"))]
+pub mod MetalFX {
+    include!(concat!(env!("OUT_DIR"), "/MetalFX.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MetalKit"))]
+pub mod MetalKit {
+    include!(concat!(env!("OUT_DIR"), "/MetalKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MetalPerformanceShaders"))]
+pub mod MetalPerformanceShaders {
+    include!(concat!(env!("OUT_DIR"), "/MetalPerformanceShaders.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MetalPerformanceShadersGraph"))]
+pub mod MetalPerformanceShadersGraph {
+    include!(concat!(env!("OUT_DIR"), "/MetalPerformanceShadersGraph.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MetricKit"))]
+pub mod MetricKit {
+    include!(concat!(env!("OUT_DIR"), "/MetricKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MobileCoreServices"))]
+pub mod MobileCoreServices {
+    include!(concat!(env!("OUT_DIR"), "/MobileCoreServices.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ModelIO"))]
+pub mod ModelIO {
+    include!(concat!(env!("OUT_DIR"), "/ModelIO.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "MultipeerConnectivity"))]
+pub mod MultipeerConnectivity {
+    include!(concat!(env!("OUT_DIR"), "/MultipeerConnectivity.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "NaturalLanguage"))]
+pub mod NaturalLanguage {
+    include!(concat!(env!("OUT_DIR"), "/NaturalLanguage.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "NearbyInteraction"))]
+pub mod NearbyInteraction {
+    include!(concat!(env!("OUT_DIR"), "/NearbyInteraction.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Network"))]
+pub mod Network {
+    include!(concat!(env!("OUT_DIR"), "/Network.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "NetworkExtension"))]
+pub mod NetworkExtension {
+    include!(concat!(env!("OUT_DIR"), "/NetworkExtension.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "NewsstandKit"))]
+pub mod NewsstandKit {
+    include!(concat!(env!("OUT_DIR"), "/NewsstandKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "NotificationCenter"))]
+pub mod NotificationCenter {
+    include!(concat!(env!("OUT_DIR"), "/NotificationCenter.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "OSLog"))]
+pub mod OSLog {
+    include!(concat!(env!("OUT_DIR"), "/OSLog.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "OpenAL"))]
+pub mod OpenAL {
+    include!(concat!(env!("OUT_DIR"), "/OpenAL.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "OpenGLES"))]
+pub mod OpenGLES {
+    include!(concat!(env!("OUT_DIR"), "/OpenGLES.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "PDFKit"))]
+pub mod PDFKit {
+    include!(concat!(env!("OUT_DIR"), "/PDFKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "PHASE"))]
+pub mod PHASE {
+    include!(concat!(env!("OUT_DIR"), "/PHASE.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "PassKit"))]
+pub mod PassKit {
+    include!(concat!(env!("OUT_DIR"), "/PassKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "PencilKit"))]
+pub mod PencilKit {
+    include!(concat!(env!("OUT_DIR"), "/PencilKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Photos"))]
+pub mod Photos {
+    include!(concat!(env!("OUT_DIR"), "/Photos.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "PhotosUI"))]
+pub mod PhotosUI {
+    include!(concat!(env!("OUT_DIR"), "/PhotosUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ProximityReader"))]
+pub mod ProximityReader {
+    include!(concat!(env!("OUT_DIR"), "/ProximityReader.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "PushKit"))]
+pub mod PushKit {
+    include!(concat!(env!("OUT_DIR"), "/PushKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "PushToTalk"))]
+pub mod PushToTalk {
+    include!(concat!(env!("OUT_DIR"), "/PushToTalk.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "QuartzCore"))]
+pub mod QuartzCore {
+    include!(concat!(env!("OUT_DIR"), "/QuartzCore.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "QuickLook"))]
+pub mod QuickLook {
+    include!(concat!(env!("OUT_DIR"), "/QuickLook.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "QuickLookThumbnailing"))]
+pub mod QuickLookThumbnailing {
+    include!(concat!(env!("OUT_DIR"), "/QuickLookThumbnailing.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ReplayKit"))]
+pub mod ReplayKit {
+    include!(concat!(env!("OUT_DIR"), "/ReplayKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "RoomPlan"))]
+pub mod RoomPlan {
+    include!(concat!(env!("OUT_DIR"), "/RoomPlan.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SafariServices"))]
+pub mod SafariServices {
+    include!(concat!(env!("OUT_DIR"), "/SafariServices.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SafetyKit"))]
+pub mod SafetyKit {
+    include!(concat!(env!("OUT_DIR"), "/SafetyKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SceneKit"))]
+pub mod SceneKit {
+    include!(concat!(env!("OUT_DIR"), "/SceneKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ScreenTime"))]
+pub mod ScreenTime {
+    include!(concat!(env!("OUT_DIR"), "/ScreenTime.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Security"))]
+pub mod Security {
+    include!(concat!(env!("OUT_DIR"), "/Security.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SensorKit"))]
+pub mod SensorKit {
+    include!(concat!(env!("OUT_DIR"), "/SensorKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SharedWithYou"))]
+pub mod SharedWithYou {
+    include!(concat!(env!("OUT_DIR"), "/SharedWithYou.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SharedWithYouCore"))]
+pub mod SharedWithYouCore {
+    include!(concat!(env!("OUT_DIR"), "/SharedWithYouCore.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ShazamKit"))]
+pub mod ShazamKit {
+    include!(concat!(env!("OUT_DIR"), "/ShazamKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Social"))]
+pub mod Social {
+    include!(concat!(env!("OUT_DIR"), "/Social.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SoundAnalysis"))]
+pub mod SoundAnalysis {
+    include!(concat!(env!("OUT_DIR"), "/SoundAnalysis.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Speech"))]
+pub mod Speech {
+    include!(concat!(env!("OUT_DIR"), "/Speech.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SpriteKit"))]
+pub mod SpriteKit {
+    include!(concat!(env!("OUT_DIR"), "/SpriteKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "StoreKit"))]
+pub mod StoreKit {
+    include!(concat!(env!("OUT_DIR"), "/StoreKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SwiftUI"))]
+pub mod SwiftUI {
+    include!(concat!(env!("OUT_DIR"), "/SwiftUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "SystemConfiguration"))]
+pub mod SystemConfiguration {
+    include!(concat!(env!("OUT_DIR"), "/SystemConfiguration.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "ThreadNetwork"))]
+pub mod ThreadNetwork {
+    include!(concat!(env!("OUT_DIR"), "/ThreadNetwork.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Twitter"))]
+pub mod Twitter {
+    include!(concat!(env!("OUT_DIR"), "/Twitter.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "UIKit"))]
+pub mod UIKit {
+    include!(concat!(env!("OUT_DIR"), "/UIKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "UniformTypeIdentifiers"))]
+pub mod UniformTypeIdentifiers {
+    include!(concat!(env!("OUT_DIR"), "/UniformTypeIdentifiers.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "UserNotifications"))]
+pub mod UserNotifications {
+    include!(concat!(env!("OUT_DIR"), "/UserNotifications.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "UserNotificationsUI"))]
+pub mod UserNotificationsUI {
+    include!(concat!(env!("OUT_DIR"), "/UserNotificationsUI.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "VideoSubscriberAccount"))]
+pub mod VideoSubscriberAccount {
+    include!(concat!(env!("OUT_DIR"), "/VideoSubscriberAccount.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "VideoToolbox"))]
+pub mod VideoToolbox {
+    include!(concat!(env!("OUT_DIR"), "/VideoToolbox.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "Vision"))]
+pub mod Vision {
+    include!(concat!(env!("OUT_DIR"), "/Vision.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "VisionKit"))]
+pub mod VisionKit {
+    include!(concat!(env!("OUT_DIR"), "/VisionKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "WatchConnectivity"))]
+pub mod WatchConnectivity {
+    include!(concat!(env!("OUT_DIR"), "/WatchConnectivity.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "WebKit"))]
+pub mod WebKit {
+    include!(concat!(env!("OUT_DIR"), "/WebKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "WidgetKit"))]
+pub mod WidgetKit {
+    include!(concat!(env!("OUT_DIR"), "/WidgetKit.rs"));
+}
+#[cfg(all(target_os = "ios", feature = "iAd"))]
+pub mod iAd {
+    include!(concat!(env!("OUT_DIR"), "/iAd.rs"));
 }
