@@ -1,7 +1,24 @@
-use apple_bindgen::Builder;
-use std::io::Write;
-
+#[cfg(not(feature = "prebuilt"))]
+#[cfg(not(feature = "bindgen"))]
 fn main() {
+    panic!("Either `prebuilt` or `bindgen` feature must be enabled.");
+}
+
+#[cfg(feature = "prebuilt")]
+fn main() {
+    #[cfg(feature = "__gen_prebuilt")]
+    panic!("`prebuilt` and `__gen_prebuilt` features are mutually exclusive.");
+
+    #[cfg(feature = "bindgen")]
+    panic!("`prebuilt` and `bindgen` features are mutually exclusive.");
+}
+
+#[cfg(not(feature = "prebuilt"))]
+#[cfg(feature = "bindgen")]
+fn main() {
+    use apple_bindgen::Builder;
+    use std::io::Write;
+
     println!("cargo:rerun-if-changed=macos.inc.rs");
     println!("cargo:rerun-if-changed=ios.inc.rs");
 
@@ -41,5 +58,15 @@ fn main() {
             .expect("could not open bindings file");
         file.write_all(out.as_bytes())
             .expect("could not write bindings");
+
+        #[cfg(feature = "__gen_prebuilt")]
+        {
+            let target_dir = target.replace("-", "_");
+            let path =
+                format!("../../apple-sys-prebuilt/{target_os}/src/{target_dir}/{framework}.rs");
+            let mut file = std::fs::File::create(path).expect("could not open bindings file");
+            file.write_all(out.as_bytes())
+                .expect("could not write bindings");
+        }
     }
 }
