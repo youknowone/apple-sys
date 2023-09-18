@@ -303,6 +303,7 @@ jobs:
           HealthKit,
           HealthKitUI,
           HomeKit,
+          IOKit,
           IOSurface,
           IdentityLookup,
           IdentityLookupUI,

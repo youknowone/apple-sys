@@ -1099,6 +1099,10 @@ pub mod HealthKitUI {
 pub mod HomeKit {
     include!(concat!(env!("OUT_DIR"), "/HomeKit.rs"));
 }
+#[cfg(all(target_os = "ios", feature = "IOKit"))]
+pub mod IOKit {
+    include!(concat!(env!("OUT_DIR"), "/IOKit.rs"));
+}
 #[cfg(all(target_os = "ios", feature = "IOSurface"))]
 pub mod IOSurface {
     include!(concat!(env!("OUT_DIR"), "/IOSurface.rs"));

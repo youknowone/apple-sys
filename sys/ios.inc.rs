@@ -74,6 +74,7 @@ vec![
     #[cfg(feature = "HealthKit")] "HealthKit",
     #[cfg(feature = "HealthKitUI")] "HealthKitUI",
     #[cfg(feature = "HomeKit")] "HomeKit",
+    #[cfg(feature = "IOKit")] "IOKit",
     #[cfg(feature = "IOSurface")] "IOSurface",
     #[cfg(feature = "IdentityLookup")] "IdentityLookup",
     #[cfg(feature = "IdentityLookupUI")] "IdentityLookupUI",
