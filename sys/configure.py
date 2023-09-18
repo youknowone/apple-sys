@@ -44,7 +44,6 @@ def find_framework_names(sdk_path):
             [
                 # framework not found
                 "CoreAudioTypes",
-                "IOKit",
                 "RealityKit",
             ]
         )
