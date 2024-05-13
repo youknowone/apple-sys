@@ -14,7 +14,7 @@ include = ["*.toml", "/src"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bindgen = "0.63"
+bindgen = "0.69"
 serde = { version = "1.0", features = ["derive"] }
 toml = "0.6"
 derive_more = { version = "0.99" }
