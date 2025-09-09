@@ -21,6 +21,7 @@ jobs:
 
   sys-macos:
     strategy:
+      fail-fast: false
       matrix:
         feature: [
           AGL,
@@ -110,7 +111,6 @@ jobs:
           HealthKit,
           Hypervisor,
           ICADevices,
-          IMServicePlugIn,
           IOBluetooth,
           IOBluetoothUI,
           IOKit,
@@ -124,7 +124,6 @@ jobs:
           InstantMessage,
           Intents,
           IntentsUI,
-          JavaNativeFoundation,
           JavaRuntimeSupport,
           JavaScriptCore,
           Kerberos,
@@ -247,11 +246,11 @@ jobs:
           AssetsLibrary,
           AudioToolbox,
           AudioUnit,
-          AuthenticationServices,
+          # AuthenticationServices,
           AutomaticAssessmentConfiguration,
           BackgroundAssets,
           BackgroundTasks,
-          BusinessChat,
+          # BusinessChat,
           CFNetwork,
           CallKit,
           CarPlay,
@@ -288,7 +287,6 @@ jobs:
           DeviceDiscoveryExtension,
           EventKit,
           EventKitUI,
-          ExposureNotification,
           ExtensionFoundation,
           ExtensionKit,
           ExternalAccessory,
