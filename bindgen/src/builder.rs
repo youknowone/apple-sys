@@ -1,5 +1,5 @@
 pub use crate::{
-    config::{Config, ConfigMap, FileConfig},
+    config::{Config, ConfigMap},
     sdk::{SdkPath, SdkPathError},
 };
 
@@ -64,7 +64,7 @@ impl Builder {
         builder = builder
             .clang_args(&clang_args)
             .layout_tests(self.config.layout_tests)
-            .rustfmt_bindings(true);
+            .formatter(bindgen::Formatter::Rustfmt);
 
         for opaque_type in &self.config.opaque_types {
             builder = builder.opaque_type(opaque_type);
