@@ -1,0 +1,13 @@
+[package]
+name = "apple-sys-prebuilt-iphoneos"
+version = "0.0.0"
+edition.workspace = true
+description = "Pre-generated iOS framework bindings for apple-sys"
+keywords = ["sys", "apple", "ios", "bindgen", "prebuilt"]
+categories = ["api-bindings", "os::macos-apis"]
+authors.workspace = true
+repository.workspace = true
+readme.workspace = true
+license.workspace = true
+links = "apple_sys_prebuilt_iphoneos"
+include = ["/src", "/build.rs", "/generated"]

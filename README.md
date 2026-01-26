@@ -1,22 +1,40 @@
 # apple-sys
 
 Apple platforms have a rather monotonous programming environment compared to other platforms. On several development machines, we will dependably obtain the same [bindgen](https://github.com/rust-lang/rust-bindgen) result. Then why not simply having bindgen configurations for the frameworks?
-# How to use?
+
+## Workspace Structure
+
+The workspace contains four crates:
+
+- **`apple-sys`** - The main crate with feature-gated bindings for 200+ Apple frameworks
+- **`apple-bindgen`** - CLI tool and library for generating framework bindings
+- **`apple-sys-prebuilt-macosx`** - Pre-generated macOS bindings for faster builds without local SDK. Do not manually use this crate. This is exposed over `prebuilt` feature of apple-sys.
+- **`apple-sys-prebuilt-iphoneos`** - Pre-generated iOS bindings used by `prebuilt` builds targeting iOS.
+
+## How to use?
 
 To add CoreFoundation and IOKit, try to run:
 ```sh
 $ cargo add apple-sys --features=CoreFoundation,IOKit
 ```
 
-If you are using older version of cargo, try to add to Cargo.toml:
+Or add to Cargo.toml:
 ```toml
-apple-sys = { version = "*", features=["CoreFoundation", "IOKit"] }
+apple-sys = { version = "0.3", features = ["CoreFoundation", "IOKit"] }
 ```
 
 The names of the features and the frameworks are same.
-To see the full list, check the project’s features in the Cargo.toml file.
- 
+To see the full list, check the project's features in the Cargo.toml file.
+
 The feature names are the module names. Everything is single-depth. There are no nested modules.
+
+### Symbol Ownership Policy
+
+`apple-sys` does not target framework-level self-contained re-exports.
+Symbols are exposed by their owning framework module, based on ownership analysis.
+Cross-framework references are imported internally for compilation, but not re-exported from dependent frameworks.
+
+For example, if an API in module `A` references a type owned by module `B`, use the type from `B` directly.
 
 ```rust
 use apple_sys::{CoreFoundation, IOKit};
@@ -25,7 +43,18 @@ use apple_sys::{CoreFoundation, IOKit};
 // IOKit::<any name>
 ```
 
-# apple-bindgen
+### Prebuilt Bindings
+
+By default, `apple-sys` generates bindings from your local SDK at build time. If you want faster builds without requiring Xcode SDK, enable the `prebuilt` feature:
+
+```toml
+apple-sys = { version = "0.3", features = ["CoreFoundation", "prebuilt"] }
+```
+
+Prebuilt bindings are available via `apple-sys-prebuilt-macosx` (macOS) and
+`apple-sys-prebuilt-iphoneos` (iOS).
+
+## apple-bindgen
 
 The bindgen tool is installable and generating the same result to apple-sys crates.
 To create a new `-sys` project, starting with `apple-bindgen` result will be a convenient way.
@@ -37,24 +66,41 @@ $ cargo install apple-bindgen
 
 To generate CoreFoundation bindings,
 ```
-$ apple-bindgen CoreFoundation --sdk macosx
+$ apple-bindgen generate CoreFoundation --sdk macosx
 ```
 
 To generate UIKit bindings for iOS,
 ```
-$ apple-bindgen UIKit --sdk iphoneos
+$ apple-bindgen generate UIKit --sdk iphoneos
 ```
 
-# Why apple-sys?
+To analyze framework dependencies,
+```
+$ apple-bindgen analyze-deps AppKit --sdk macosx
+```
+
+## Examples
+
+The `apple-sys` crate includes 188 examples demonstrating usage of various Apple frameworks. Each example targets a specific framework.
+
+```sh
+# Run an example (requires the corresponding framework features)
+$ cargo run --manifest-path=crates/apple-sys/Cargo.toml \
+    --example metal_devices --features Metal,prebuilt
+
+$ cargo run --manifest-path=crates/apple-sys/Cargo.toml \
+    --example foundation_sysinfo --features Foundation,prebuilt
+```
+
+## Why apple-sys?
 
 `apple-sys` contains auto-generated bindgen modules for Apple platforms. As long as we use the same versions of SDKs and bindgen, the result will be reproducible.
 
-# Why not apple-sys?
-Continually using the same SDKs doesn't sound realistic. I agree. Don’t trust apple-sys. Use the managed versions as best you can. For `CoreFoundation`, for instance, use [core-foundation-sys](https://github.com/servo/core-foundation-rs).
+## Why not apple-sys?
+Continually using the same SDKs doesn't sound realistic. I agree. Don't trust apple-sys. Use the managed versions as best you can. For `CoreFoundation`, for instance, use [core-foundation-sys](https://github.com/servo/core-foundation-rs).
 
 Then why do I use apple-sys? I created apple-sys for minor and unmanaged frameworks. apple-sys will be the last fallback.
 
-# Contributing
+## Contributing
 
-There are no plans for apple-sys to distribute generated or manually changed code. We shall just manage bindgen rules.
-Look in the project root directory's "bindgen/Bindgen.toml" file.
+This project manages bindgen rules, not generated code. Changes go in `crates/apple-bindgen/Bindgen.toml` for framework-specific fixes.

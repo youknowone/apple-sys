@@ -1,0 +1,1016 @@
+[package]
+name = "apple-sys"
+version.workspace = true
+edition.workspace = true
+description = "The auto-managed -sys crate for Apple platforms using bindgen directly from build environment"
+keywords = ["sys", "apple", "macos", "bindgen"]
+categories = ["api-bindings", "os::macos-apis"]
+authors.workspace = true
+repository.workspace = true
+readme.workspace = true
+license.workspace = true
+include = ["/src", "/*.rs"]
+autoexamples = false
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+libc = "0.2"
+objc2 = { version = "0.6" }
+apple-sys-prebuilt-macosx = { path = "../apple-sys-prebuilt-macosx", version = "0.0.0", optional = true }
+apple-sys-prebuilt-iphoneos = { path = "../apple-sys-prebuilt-iphoneos", version = "0.0.0", optional = true }
+
+[build-dependencies]
+apple-bindgen = { path = "../apple-bindgen", version = "0.3.0", default-features = false, optional = true }
+apple-sdk = { version = "0.4.0", optional = true }
+rayon = { version = "1.10", optional = true }
+
+[[example]]
+name = "matter_accessories"
+required-features = ["Matter", "prebuilt"]
+
+[[example]]
+name = "appkit_window"
+required-features = ["AppKit", "prebuilt"]
+
+[[example]]
+name = "metal_sparkle"
+required-features = ["AppKit", "QuartzCore", "prebuilt"]
+
+[[example]]
+name = "corefoundation_plist"
+required-features = ["CoreFoundation", "prebuilt"]
+
+[[example]]
+name = "coregraphics_pdf"
+required-features = ["CoreGraphics", "prebuilt"]
+
+[[example]]
+name = "coretext_fonts"
+required-features = ["CoreText", "prebuilt"]
+
+[[example]]
+name = "disk_arbitration_volumes"
+required-features = ["DiskArbitration", "prebuilt"]
+
+[[example]]
+name = "coremidi_devices"
+required-features = ["CoreMIDI", "prebuilt"]
+
+[[example]]
+name = "avfoundation_devices"
+required-features = ["AVFoundation", "prebuilt"]
+
+[[example]]
+name = "corewlan_wifi"
+required-features = ["CoreWLAN", "prebuilt"]
+
+[[example]]
+name = "foundation_sysinfo"
+required-features = ["Foundation", "prebuilt"]
+
+[[example]]
+name = "webkit_browser"
+required-features = ["WebKit", "prebuilt"]
+
+[[example]]
+name = "iokit_usb"
+required-features = ["IOKit", "prebuilt"]
+
+[[example]]
+name = "coreaudio_devices"
+required-features = ["CoreAudio", "Foundation", "prebuilt"]
+
+[[example]]
+name = "security_random"
+required-features = ["Foundation", "prebuilt"]
+
+[[example]]
+name = "sysconfig_network"
+required-features = ["SystemConfiguration", "Foundation", "Network", "prebuilt"]
+
+[[example]]
+name = "coreservices_filetypes"
+required-features = ["CoreServices", "prebuilt"]
+
+[[example]]
+name = "accelerate_vimage"
+required-features = ["Accelerate", "prebuilt"]
+
+[[example]]
+name = "imageio_metadata"
+required-features = ["ImageIO", "prebuilt"]
+
+[[example]]
+name = "corevideo_pixelbuffer"
+required-features = ["CoreVideo", "prebuilt"]
+
+[[example]]
+name = "opencl_devices"
+required-features = ["OpenCL", "Foundation", "prebuilt"]
+
+[[example]]
+name = "coremedia_time"
+required-features = ["CoreMedia", "prebuilt"]
+
+[[example]]
+name = "colorsync_profiles"
+required-features = ["ColorSync", "prebuilt"]
+
+[[example]]
+name = "videotoolbox_codecs"
+required-features = ["VideoToolbox", "prebuilt"]
+
+[[example]]
+name = "quartzcore_transforms"
+required-features = ["CoreData", "prebuilt"]
+
+[[example]]
+name = "network_endpoint"
+required-features = ["Network", "Foundation", "prebuilt"]
+
+[[example]]
+name = "netfs_probe"
+required-features = ["NetFS", "prebuilt"]
+
+[[example]]
+name = "metal_devices"
+required-features = ["Metal", "prebuilt"]
+
+[[example]]
+name = "openal_devices"
+required-features = ["OpenAL", "prebuilt"]
+
+[[example]]
+name = "opengl_info"
+required-features = ["OpenGL", "prebuilt"]
+
+[[example]]
+name = "cfnetwork_proxy"
+required-features = ["CFNetwork", "prebuilt"]
+
+[[example]]
+name = "pcsc_readers"
+required-features = ["PCSC", "prebuilt"]
+
+[[example]]
+name = "javascriptcore_eval"
+required-features = ["JavaScriptCore", "prebuilt"]
+
+[[example]]
+name = "latentsemantic_classify"
+required-features = ["LatentSemanticMapping", "prebuilt"]
+
+[[example]]
+name = "hypervisor_check"
+required-features = ["Hypervisor", "Foundation", "prebuilt"]
+
+[[example]]
+name = "naturallanguage_detect"
+required-features = ["NaturalLanguage", "prebuilt"]
+
+[[example]]
+name = "gameplaykit_random"
+required-features = ["GameplayKit", "prebuilt"]
+
+[[example]]
+name = "ituneslibrary_albums"
+required-features = ["iTunesLibrary", "prebuilt"]
+
+[[example]]
+name = "corespotlight_index"
+required-features = ["CoreSpotlight", "prebuilt"]
+
+[[example]]
+name = "scenekit_geometry"
+required-features = ["SceneKit", "prebuilt"]
+
+[[example]]
+name = "multipeer_browse"
+required-features = ["MultipeerConnectivity", "prebuilt"]
+
+[[example]]
+name = "localauthentication_check"
+required-features = ["LocalAuthentication", "prebuilt"]
+
+[[example]]
+name = "spritekit_actions"
+required-features = ["SpriteKit", "prebuilt"]
+
+[[example]]
+name = "audiotoolbox_components"
+required-features = ["AudioUnit", "prebuilt"]
+
+[[example]]
+name = "glkit_math"
+required-features = ["GLKit", "prebuilt"]
+
+[[example]]
+name = "eventkit_calendars"
+required-features = ["EventKit", "prebuilt"]
+
+[[example]]
+name = "vision_requests"
+required-features = ["Vision", "prebuilt"]
+
+[[example]]
+name = "speech_voices"
+required-features = ["AppKit", "prebuilt"]
+
+[[example]]
+name = "modelio_mesh"
+required-features = ["ModelIO", "prebuilt"]
+
+[[example]]
+name = "gamecontroller_list"
+required-features = ["GameController", "prebuilt"]
+
+[[example]]
+name = "pdfkit_create"
+required-features = ["PDFKit", "prebuilt"]
+
+[[example]]
+name = "storekit_review"
+required-features = ["StoreKit", "prebuilt"]
+
+[[example]]
+name = "opendirectory_users"
+required-features = ["OpenDirectory", "prebuilt"]
+
+[[example]]
+name = "corehaptics_pattern"
+required-features = ["CoreHaptics", "prebuilt"]
+
+[[example]]
+name = "mapkit_region"
+required-features = ["CoreData", "prebuilt"]
+
+[[example]]
+name = "dvdplayback_init"
+required-features = ["DVDPlayback", "prebuilt"]
+
+[[example]]
+name = "contacts_count"
+required-features = ["Contacts", "prebuilt"]
+
+[[example]]
+name = "iosurface_create"
+required-features = ["IOSurface", "prebuilt"]
+
+[[example]]
+name = "coreimage_filters"
+required-features = ["CoreData", "prebuilt"]
+
+[[example]]
+name = "corebluetooth_state"
+required-features = ["CoreBluetooth", "prebuilt"]
+
+[[example]]
+name = "cloudkit_container"
+required-features = ["CoreData", "prebuilt"]
+
+[[example]]
+name = "photos_authorization"
+required-features = ["Photos", "prebuilt"]
+
+[[example]]
+name = "uniformtypeidentifiers_types"
+required-features = ["UniformTypeIdentifiers", "prebuilt"]
+
+[[example]]
+name = "discrecording_devices"
+required-features = ["DiscRecording", "prebuilt"]
+
+[[example]]
+name = "osakit_languages"
+required-features = ["OSAKit", "prebuilt"]
+
+[[example]]
+name = "scriptingbridge_apps"
+required-features = ["ScriptingBridge", "AppKit", "prebuilt"]
+
+[[example]]
+name = "servicemanagement_jobs"
+required-features = ["ServiceManagement", "prebuilt"]
+
+[[example]]
+name = "screencapturekit_displays"
+required-features = ["ScreenCaptureKit", "prebuilt"]
+
+[[example]]
+name = "virtualization_check"
+required-features = ["Virtualization", "prebuilt"]
+
+[[example]]
+name = "linkpresentation_metadata"
+required-features = ["LinkPresentation", "prebuilt"]
+
+[[example]]
+name = "corelocation_check"
+required-features = ["CoreData", "prebuilt"]
+
+[[example]]
+name = "coreml_info"
+required-features = ["CoreML", "prebuilt"]
+
+[[example]]
+name = "gamekit_leaderboard"
+required-features = ["GameKit", "prebuilt"]
+
+[[example]]
+name = "nearbyinteraction_session"
+required-features = ["NearbyInteraction", "prebuilt"]
+
+[[example]]
+name = "pencilkit_drawing"
+required-features = ["PencilKit", "prebuilt"]
+
+[[example]]
+name = "iobluetooth_devices"
+required-features = ["IOBluetooth", "prebuilt"]
+
+[[example]]
+name = "mediaplayer_nowplaying"
+required-features = ["MediaPlayer", "prebuilt"]
+
+[[example]]
+name = "cryptotokenkit_smartcard"
+required-features = ["CryptoTokenKit", "prebuilt"]
+
+[[example]]
+name = "metrickit_manager"
+required-features = ["MetricKit", "prebuilt"]
+
+[[example]]
+name = "intents_vocabulary"
+required-features = ["Intents", "prebuilt"]
+
+[[example]]
+name = "quicklook_thumbnails"
+required-features = ["QuickLookThumbnailing", "prebuilt"]
+
+[[example]]
+name = "forcefeedback_check"
+required-features = ["ForceFeedback", "prebuilt"]
+
+[[example]]
+name = "avfaudio_engine"
+required-features = ["AVFAudio", "prebuilt"]
+
+[[example]]
+name = "avkit_player"
+required-features = ["AVKit", "prebuilt"]
+
+[[example]]
+name = "avrouting_controller"
+required-features = ["AVRouting", "prebuilt"]
+
+[[example]]
+name = "accessibility_api"
+required-features = ["Accessibility", "prebuilt"]
+
+[[example]]
+name = "accounts_store"
+required-features = ["Accounts", "prebuilt"]
+
+[[example]]
+name = "adservices_attribution"
+required-features = ["AdServices", "prebuilt"]
+
+[[example]]
+name = "adsupport_identifier"
+required-features = ["AdSupport", "prebuilt"]
+
+[[example]]
+name = "addressbook_people"
+required-features = ["CoreData", "prebuilt"]
+
+[[example]]
+name = "apptracking_status"
+required-features = ["AppTrackingTransparency", "prebuilt"]
+
+[[example]]
+name = "applescriptkit_plugin"
+required-features = ["AppleScriptKit", "prebuilt"]
+
+[[example]]
+name = "applicationservices_ats"
+required-features = ["ApplicationServices", "prebuilt"]
+
+[[example]]
+name = "avb_interface"
+required-features = ["AudioVideoBridging", "CoreData", "prebuilt"]
+
+[[example]]
+name = "authservices_session"
+required-features = ["AuthenticationServices", "prebuilt"]
+
+[[example]]
+name = "assessment_config"
+required-features = ["AutomaticAssessmentConfiguration", "prebuilt"]
+
+[[example]]
+name = "automator_actions"
+required-features = ["Automator", "prebuilt"]
+
+[[example]]
+name = "backgroundassets_download"
+required-features = ["BackgroundAssets", "prebuilt"]
+
+[[example]]
+name = "backgroundtasks_scheduler"
+required-features = ["BackgroundTasks", "prebuilt"]
+
+[[example]]
+name = "businesschat_action"
+required-features = ["BusinessChat", "prebuilt"]
+
+[[example]]
+name = "calendarstore_events"
+required-features = ["CalendarStore", "prebuilt"]
+
+[[example]]
+name = "callkit_directory"
+required-features = ["CallKit", "prebuilt"]
+
+[[example]]
+name = "carbon_gestalt"
+required-features = ["Carbon", "prebuilt"]
+
+[[example]]
+name = "cinematic_asset"
+required-features = ["Cinematic", "prebuilt"]
+
+[[example]]
+name = "classkit_context"
+required-features = ["ClassKit", "prebuilt"]
+
+[[example]]
+name = "collaboration_identity"
+required-features = ["Collaboration", "prebuilt"]
+
+[[example]]
+name = "compositorservices_check"
+required-features = ["CompositorServices", "prebuilt"]
+
+[[example]]
+name = "contactsui_picker"
+required-features = ["ContactsUI", "prebuilt"]
+
+[[example]]
+name = "coreaudiokit_views"
+required-features = ["CoreAudioKit", "prebuilt"]
+
+[[example]]
+name = "coremediaio_extensions"
+required-features = ["CoreMediaIO", "prebuilt"]
+
+[[example]]
+name = "coremotion_activity"
+required-features = ["CoreMotion", "CoreData", "prebuilt"]
+
+[[example]]
+name = "coretelephony_carrier"
+required-features = ["CoreTelephony", "prebuilt"]
+
+[[example]]
+name = "devicecheck_attest"
+required-features = ["DeviceCheck", "prebuilt"]
+
+[[example]]
+name = "devicediscovery_session"
+required-features = ["DeviceDiscoveryExtension", "prebuilt"]
+
+[[example]]
+name = "directoryservice_open"
+required-features = ["DirectoryService", "prebuilt"]
+
+[[example]]
+name = "discrecordingui_panels"
+required-features = ["DiscRecordingUI", "prebuilt"]
+
+[[example]]
+name = "exceptionhandling_handler"
+required-features = ["ExceptionHandling", "prebuilt"]
+
+[[example]]
+name = "executionpolicy_tool"
+required-features = ["ExecutionPolicy", "prebuilt"]
+
+[[example]]
+name = "extensionkit_host"
+required-features = ["ExtensionKit", "prebuilt"]
+
+[[example]]
+name = "externalaccessory_manager"
+required-features = ["ExternalAccessory", "prebuilt"]
+
+[[example]]
+name = "fskit_volumes"
+required-features = ["FSKit", "prebuilt"]
+
+[[example]]
+name = "fileprovider_domain"
+required-features = ["FileProvider", "prebuilt"]
+
+[[example]]
+name = "fileproviderui_action"
+required-features = ["FileProviderUI", "prebuilt"]
+
+[[example]]
+name = "findersync_controller"
+required-features = ["FinderSync", "prebuilt"]
+
+[[example]]
+name = "glut_init"
+required-features = ["GLUT", "prebuilt"]
+
+[[example]]
+name = "gss_credentials"
+required-features = ["GSS", "prebuilt"]
+
+[[example]]
+name = "gamesave_directory"
+required-features = ["GameSave", "prebuilt"]
+
+[[example]]
+name = "healthkit_store"
+required-features = ["HealthKit", "prebuilt"]
+
+[[example]]
+name = "icadevices_list"
+required-features = ["ICADevices", "prebuilt"]
+
+[[example]]
+name = "iobluetooth_ui"
+required-features = ["IOBluetoothUI", "prebuilt"]
+
+[[example]]
+name = "iousbhost_device"
+required-features = ["IOUSBHost", "prebuilt"]
+
+[[example]]
+name = "identitylookup_filter"
+required-features = ["IdentityLookup", "prebuilt"]
+
+[[example]]
+name = "imagecapturecore_browser"
+required-features = ["ImageCaptureCore", "prebuilt"]
+
+[[example]]
+name = "inputmethodkit_server"
+required-features = ["InputMethodKit", "prebuilt"]
+
+[[example]]
+name = "installerplugins_pane"
+required-features = ["InstallerPlugins", "prebuilt"]
+
+[[example]]
+name = "instantmessage_status"
+required-features = ["InstantMessage", "CoreData", "prebuilt"]
+
+[[example]]
+name = "intentsui_shortcut"
+required-features = ["IntentsUI", "prebuilt"]
+
+[[example]]
+name = "javaruntimesupport_check"
+required-features = ["JavaRuntimeSupport", "prebuilt"]
+
+[[example]]
+name = "kerberos_context"
+required-features = ["Kerberos", "Foundation", "prebuilt"]
+
+[[example]]
+name = "localauth_embedded"
+required-features = ["LocalAuthenticationEmbeddedUI", "prebuilt"]
+
+[[example]]
+name = "mlcompute_device"
+required-features = ["MLCompute", "prebuilt"]
+
+[[example]]
+name = "mailkit_extension"
+required-features = ["MailKit", "prebuilt"]
+
+[[example]]
+name = "mediaaccessibility_captions"
+required-features = ["MediaAccessibility", "prebuilt"]
+
+[[example]]
+name = "mediaextension_format"
+required-features = ["MediaExtension", "prebuilt"]
+
+[[example]]
+name = "medialibrary_sources"
+required-features = ["MediaLibrary", "prebuilt"]
+
+[[example]]
+name = "mediatoolbox_tap"
+required-features = ["MediaToolbox", "prebuilt"]
+
+[[example]]
+name = "metalfx_scaler"
+required-features = ["MetalFX", "CoreData", "prebuilt"]
+
+[[example]]
+name = "metalkit_view"
+required-features = ["MetalKit", "prebuilt"]
+
+[[example]]
+name = "mps_image"
+required-features = ["MetalPerformanceShaders", "prebuilt"]
+
+[[example]]
+name = "mpsgraph_tensor"
+required-features = ["MetalPerformanceShadersGraph", "prebuilt"]
+
+[[example]]
+name = "networkextension_vpn"
+required-features = ["NetworkExtension", "prebuilt"]
+
+[[example]]
+name = "notificationcenter_widget"
+required-features = ["NotificationCenter", "prebuilt"]
+
+[[example]]
+name = "oslog_entries"
+required-features = ["OSLog", "prebuilt"]
+
+[[example]]
+name = "phase_engine"
+required-features = ["PHASE", "prebuilt"]
+
+[[example]]
+name = "paravirtualizedgfx_device"
+required-features = ["ParavirtualizedGraphics", "prebuilt"]
+
+[[example]]
+name = "passkit_library"
+required-features = ["PassKit", "prebuilt"]
+
+[[example]]
+name = "photosui_picker"
+required-features = ["PhotosUI", "prebuilt"]
+
+[[example]]
+name = "preferencepanes_pane"
+required-features = ["PreferencePanes", "prebuilt"]
+
+[[example]]
+name = "pushkit_registry"
+required-features = ["PushKit", "prebuilt"]
+
+[[example]]
+name = "quartz_composer"
+required-features = ["Quartz", "prebuilt"]
+
+[[example]]
+name = "quicklook_generator"
+required-features = ["QuickLook", "prebuilt"]
+
+[[example]]
+name = "quicklookui_panel"
+required-features = ["QuickLookUI", "prebuilt"]
+
+[[example]]
+name = "replaykit_recorder"
+required-features = ["ReplayKit", "prebuilt"]
+
+[[example]]
+name = "safetykit_crash"
+required-features = ["SafetyKit", "CoreData", "prebuilt"]
+
+[[example]]
+name = "screensaver_view"
+required-features = ["ScreenSaver", "prebuilt"]
+
+[[example]]
+name = "screentime_config"
+required-features = ["ScreenTime", "prebuilt"]
+
+[[example]]
+name = "securityfoundation_auth"
+required-features = ["SecurityFoundation", "prebuilt"]
+
+[[example]]
+name = "securityinterface_panel"
+required-features = ["SecurityInterface", "prebuilt"]
+
+[[example]]
+name = "securityui_cert"
+required-features = ["SecurityUI", "prebuilt"]
+
+[[example]]
+name = "sensitivecontentanalysis_check"
+required-features = ["SensitiveContentAnalysis", "prebuilt"]
+
+[[example]]
+name = "sensorkit_fetch"
+required-features = ["SensorKit", "prebuilt"]
+
+[[example]]
+name = "sharedwithyou_highlights"
+required-features = ["SharedWithYou", "prebuilt"]
+
+[[example]]
+name = "sharedwithyoucore_collab"
+required-features = ["SharedWithYouCore", "prebuilt"]
+
+[[example]]
+name = "shazamkit_session"
+required-features = ["ShazamKit", "prebuilt"]
+
+[[example]]
+name = "social_compose"
+required-features = ["Social", "prebuilt"]
+
+[[example]]
+name = "soundanalysis_classifier"
+required-features = ["SoundAnalysis", "prebuilt"]
+
+[[example]]
+name = "speech_recognizer"
+required-features = ["Speech", "prebuilt"]
+
+[[example]]
+name = "symbols_effects"
+required-features = ["Symbols", "prebuilt"]
+
+[[example]]
+name = "syncservices_client"
+required-features = ["SyncServices", "prebuilt"]
+
+[[example]]
+name = "systemextensions_request"
+required-features = ["SystemExtensions", "prebuilt"]
+
+[[example]]
+name = "twain_scan"
+required-features = ["TWAIN", "prebuilt"]
+
+[[example]]
+name = "tcl_interp"
+required-features = ["Tcl", "prebuilt"]
+
+[[example]]
+name = "threadnetwork_credentials"
+required-features = ["ThreadNetwork", "prebuilt"]
+
+[[example]]
+name = "usernotifications_center"
+required-features = ["CoreData", "prebuilt"]
+
+[[example]]
+name = "usernotificationsui_content"
+required-features = ["UserNotificationsUI", "prebuilt"]
+
+[[example]]
+name = "videodecodeaccel_session"
+required-features = ["VideoDecodeAcceleration", "prebuilt"]
+
+[[example]]
+name = "videosubscriber_manager"
+required-features = ["VideoSubscriberAccount", "prebuilt"]
+
+[[example]]
+name = "vmnet_shared"
+required-features = ["vmnet", "Foundation", "prebuilt"]
+
+[features]
+default = ["bindgen"]
+bindgen = ["dep:apple-bindgen", "dep:apple-sdk", "dep:rayon"]
+prebuilt = ["dep:apple-sys-prebuilt-macosx", "dep:apple-sys-prebuilt-iphoneos"]
+__allow_empty = []
+
+# AUTO-GENERATED: DO NOT ADD ANYTHING BELOW THIS LINE
+ARKit = ["AVFoundation"]
+AVFAudio = ["AudioToolbox", "CoreMedia"]
+AVFoundation = ["AVFAudio", "MediaToolbox"]
+AVKit = ["AVFoundation", "AVRouting", "Cocoa"]
+AVRouting = ["Network", "UniformTypeIdentifiers"]
+Accelerate = ["AddressBook", "CoreVideo"]
+Accessibility = ["Foundation"]
+AccessorySetupKit = ["CoreBluetooth", "UIKit"]
+Accounts = ["Foundation"]
+AdServices = ["Foundation"]
+AdSupport = ["Foundation"]
+AddressBook = ["AVFoundation", "AppKit", "Carbon", "CloudKit", "CoreData", "CoreImage", "CoreText", "CoreVideo", "Foundation", "ImageIO", "Metal", "OpenCL", "OpenGL", "OpenGLES", "QuartzCore", "Symbols", "UIKit", "UniformTypeIdentifiers"]
+AddressBookUI = ["AddressBook", "UIKit"]
+AppClip = ["CoreLocation"]
+AppKit = ["CoreData", "Intents", "QuartzCore", "Symbols", "UniformTypeIdentifiers"]
+AppTrackingTransparency = ["Foundation"]
+AppleScriptKit = ["Cocoa"]
+AppleScriptObjC = ["Foundation"]
+ApplicationServices = ["AppKit", "ColorSync", "CoreText", "ImageIO", "Metal"]
+AssetsLibrary = ["Foundation"]
+Assignables = ["Foundation"]
+AudioToolbox = ["AppKit", "CoreAudio", "CoreMIDI", "UIKit"]
+AudioUnit = ["AudioToolbox"]
+AudioVideoBridging = ["Foundation", "Network"]
+AuthenticationServices = ["AppKit", "LocalAuthentication"]
+AutomaticAssessmentConfiguration = ["Foundation"]
+Automator = ["OSAKit"]
+BackgroundAssets = ["Foundation"]
+BackgroundTasks = ["Foundation"]
+BrowserEngineCore = ["AVFAudio"]
+BrowserEngineKit = ["AVFoundation", "BrowserEngineCore"]
+BrowserKit = ["Foundation"]
+BusinessChat = ["Cocoa"]
+CFNetwork = ["CoreFoundation", "CoreText"]
+CalendarStore = ["AppKit"]
+CallKit = ["AVFAudio"]
+CarPlay = ["MapKit"]
+Carbon = ["AppKit"]
+Cinematic = ["AVFoundation"]
+ClassKit = ["Foundation"]
+ClockKit = ["UIKit"]
+CloudKit = ["CoreData", "CoreLocation"]
+Cocoa = ["AppKit"]
+Collaboration = ["AppKit"]
+ColorSync = ["CoreFoundation", "CoreGraphics"]
+CompositorServices = ["ARKit"]
+Contacts = ["Foundation"]
+ContactsUI = ["AppKit", "Contacts"]
+CoreAudio = ["CoreFoundation", "CoreServices", "CoreText", "Foundation", "IOKit", "Security"]
+CoreAudioKit = ["AVFoundation", "AudioUnit", "Cocoa"]
+CoreBluetooth = ["Foundation"]
+CoreData = ["CoreSpotlight", "UIKit"]
+CoreFoundation = ["CFNetwork", "ColorSync", "CoreGraphics", "CoreServices", "CoreText", "Foundation"]
+CoreGraphics = ["IOKit"]
+CoreHaptics = ["AVFAudio"]
+CoreImage = ["CoreML"]
+CoreLocation = ["Contacts", "CoreData"]
+CoreLocationUI = ["UIKit"]
+CoreMIDI = ["Foundation"]
+CoreML = ["CoreVideo"]
+CoreMedia = ["CoreAudio", "CoreVideo"]
+CoreMediaIO = ["CoreMedia"]
+CoreMotion = ["CoreLocation"]
+CoreNFC = ["Foundation"]
+CoreServices = ["ApplicationServices", "CFNetwork", "DiskArbitration", "Security"]
+CoreSpotlight = ["UniformTypeIdentifiers"]
+CoreTelephony = ["Foundation"]
+CoreText = ["CoreGraphics"]
+CoreVideo = ["ApplicationServices", "OpenGL", "OpenGLES"]
+CoreWLAN = ["SecurityFoundation"]
+CryptoTokenKit = ["Foundation"]
+DVDPlayback = ["ApplicationServices"]
+DataDetection = ["Foundation"]
+DeviceCheck = ["Foundation"]
+DeviceDiscoveryExtension = ["Network", "UniformTypeIdentifiers"]
+DeviceDiscoveryUI = ["Network", "UIKit"]
+DirectoryService = ["CoreFoundation"]
+DiscRecording = ["Foundation"]
+DiscRecordingUI = ["Carbon", "Cocoa", "DiscRecording"]
+DiskArbitration = ["IOKit"]
+EventKit = ["AddressBook", "MapKit"]
+EventKitUI = ["EventKit", "UIKit"]
+ExceptionHandling = ["Foundation"]
+ExecutionPolicy = ["Foundation"]
+ExposureNotification = ["Foundation"]
+ExtensionKit = ["AppKit"]
+ExternalAccessory = ["UIKit"]
+FSKit = ["Foundation"]
+FileProvider = ["UniformTypeIdentifiers"]
+FileProviderUI = ["AppKit", "FileProvider"]
+FinderSync = ["AppKit"]
+ForceFeedback = ["IOKit"]
+Foundation = ["CoreGraphics", "CoreServices"]
+GLKit = ["AppKit", "ModelIO"]
+GLUT = ["OpenGL"]
+GSS = ["CoreFoundation", "Kerberos"]
+GameController = ["AppKit", "CoreHaptics"]
+GameKit = ["GameController", "GameplayKit", "MetalKit"]
+GameSave = ["AppKit"]
+GameplayKit = ["SceneKit"]
+HealthKit = ["UniformTypeIdentifiers"]
+HealthKitUI = ["HealthKit", "UIKit"]
+HomeKit = ["Matter", "UIKit"]
+Hypervisor = ["DiskArbitration"]
+ICADevices = ["IOBluetooth"]
+IOBluetooth = ["CoreAudio", "CoreBluetooth"]
+IOBluetoothUI = ["Cocoa", "IOBluetooth"]
+IOKit = ["CoreFoundation"]
+IOSurface = ["IOKit"]
+IOUSBHost = ["Foundation"]
+IdentityLookup = ["Foundation"]
+IdentityLookupUI = ["IdentityLookup", "UIKit"]
+ImageCaptureCore = ["Cocoa"]
+ImageIO = ["CoreGraphics"]
+InputMethodKit = ["Carbon", "Cocoa"]
+InstallerPlugins = ["Cocoa"]
+InstantMessage = ["AddressBook", "CoreVideo"]
+Intents = ["EventKit", "UserNotifications"]
+IntentsUI = ["AppKit"]
+JavaRuntimeSupport = ["Cocoa"]
+JavaScriptCore = ["Foundation"]
+Kerberos = ["CoreFoundation", "GSS", "Network"]
+LatentSemanticMapping = ["Carbon"]
+LinkPresentation = ["AppKit"]
+LocalAuthentication = ["Foundation"]
+LocalAuthenticationEmbeddedUI = ["AppKit", "LocalAuthentication"]
+LockedCameraCapture = ["Foundation"]
+MLCompute = ["Metal"]
+MailKit = ["AppKit"]
+MapKit = ["AppKit"]
+Matter = ["Foundation"]
+MediaAccessibility = ["CoreText", "Foundation", "IOSurface"]
+MediaExtension = ["AVFoundation", "VideoToolbox"]
+MediaLibrary = ["AppKit"]
+MediaPlayer = ["AVFoundation"]
+MediaSetup = ["UIKit"]
+MediaToolbox = ["AudioToolbox", "CoreMedia"]
+MessageUI = ["Messages"]
+Messages = ["UIKit"]
+Metal = ["Foundation", "IOSurface"]
+MetalFX = ["Metal", "ModelIO"]
+MetalKit = ["AppKit", "ModelIO"]
+MetalPerformancePrimitives = []
+MetalPerformanceShaders = ["Metal", "ModelIO"]
+MetalPerformanceShadersGraph = ["MetalPerformanceShaders"]
+MetricKit = ["Foundation"]
+MobileCoreServices = ["CoreServices"]
+ModelIO = ["Foundation"]
+MultipeerConnectivity = ["Cocoa"]
+NaturalLanguage = ["CoreML"]
+NearbyInteraction = ["ARKit", "ModelIO"]
+NetFS = ["CoreFoundation"]
+Network = ["Security"]
+NetworkExtension = ["AccessorySetupKit", "Network", "SystemConfiguration"]
+NotificationCenter = ["AppKit"]
+OSAKit = ["Carbon", "Cocoa"]
+OSLog = ["Foundation"]
+OpenAL = []
+OpenCL = ["CoreFoundation", "CoreGraphics", "OpenGL"]
+OpenDirectory = ["SecurityFoundation"]
+OpenGL = ["AddressBook", "OpenCL"]
+OpenGLES = ["Foundation", "IOSurface"]
+PCSC = []
+PDFKit = ["Cocoa"]
+PHASE = ["AVFoundation", "ModelIO"]
+ParavirtualizedGraphics = ["AppKit"]
+PassKit = ["AddressBook", "AppKit", "Contacts"]
+PencilKit = ["Cocoa"]
+Photos = ["AVFoundation"]
+PhotosUI = ["MapKit", "Photos"]
+PreferencePanes = ["Cocoa"]
+PushKit = ["Foundation"]
+PushToTalk = ["AVFAudio"]
+Quartz = ["ImageCaptureCore", "QuickLookUI"]
+QuartzCore = ["CoreImage"]
+QuickLook = ["ApplicationServices"]
+QuickLookThumbnailing = ["AppKit", "QuickLook", "UIKit"]
+QuickLookUI = ["PDFKit", "QuickLook"]
+ReplayKit = ["AVFoundation"]
+SafariServices = ["AppKit", "BrowserEngineKit"]
+SafetyKit = ["CoreLocation"]
+SceneKit = ["JavaScriptCore", "SpriteKit"]
+ScreenCaptureKit = ["AVFoundation", "AppKit"]
+ScreenSaver = ["AppKit"]
+ScreenTime = ["AppKit"]
+ScriptingBridge = ["ApplicationServices"]
+Security = ["CoreFoundation"]
+SecurityFoundation = ["Foundation"]
+SecurityInterface = ["Cocoa", "SecurityFoundation"]
+SecurityUI = ["AppKit", "UIKit"]
+SensitiveContentAnalysis = ["AVFoundation", "VideoToolbox"]
+SensorKit = ["ARKit", "CoreLocation", "SoundAnalysis", "Speech"]
+ServiceManagement = ["Foundation"]
+ServicesAccountLinking = ["Foundation"]
+SharedWithYou = ["AppKit", "SharedWithYouCore"]
+SharedWithYouCore = ["Foundation"]
+ShazamKit = ["AVFoundation"]
+Social = ["Accounts", "AppKit"]
+SoundAnalysis = ["AVFAudio", "CoreML"]
+Speech = ["AVFoundation"]
+SpriteKit = ["AVFoundation", "Cocoa", "GLKit", "SceneKit"]
+StickerKit = ["OSLog"]
+StoreKit = ["AppKit", "BackgroundAssets"]
+SwiftUI = ["AppKit"]
+Symbols = ["Foundation"]
+SyncServices = ["CoreData"]
+SystemConfiguration = ["Network", "NetworkExtension", "Security"]
+SystemExtensions = ["Foundation"]
+TWAIN = []
+Tcl = ["CoreFoundation"]
+ThreadNetwork = ["Foundation"]
+TouchController = ["GameController", "MetalKit"]
+TranslationUIProvider = ["Foundation"]
+Twitter = ["Social", "UIKit"]
+UIKit = ["CloudKit", "FileProvider", "Intents", "LinkPresentation"]
+UniformTypeIdentifiers = ["Foundation"]
+UserNotifications = ["CoreLocation"]
+UserNotificationsUI = ["AppKit", "UserNotifications"]
+VideoDecodeAcceleration = ["CoreVideo"]
+VideoSubscriberAccount = ["ExternalAccessory", "UIKit"]
+VideoToolbox = ["CoreMedia"]
+Virtualization = ["Cocoa", "vmnet"]
+Vision = ["AVFoundation", "ModelIO"]
+VisionKit = ["UIKit"]
+WatchConnectivity = ["Foundation"]
+WebKit = ["AppKit", "JavaScriptCore", "Network"]
+WidgetKit = ["Foundation"]
+iAd = ["Foundation"]
+iTunesLibrary = ["AppKit"]
+vmnet = ["CoreFoundation"]

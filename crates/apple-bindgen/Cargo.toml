@@ -1,0 +1,35 @@
+[package]
+name = "apple-bindgen"
+version.workspace = true
+edition.workspace = true
+description = "bindgen helper for Apple frameworks"
+keywords = ["sys", "apple", "macos", "bindgen"]
+categories = ["api-bindings", "os::macos-apis"]
+authors.workspace = true
+repository.workspace = true
+readme.workspace = true
+license.workspace = true
+include = ["*.toml", "/src"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bindgen = "0.72"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.6"
+derive_more = { version = "0.99" }
+apple-sdk = "0.4"
+thiserror = "1.0"
+regex = "1.7"
+syn = { version = "2", features = ["full", "parsing", "visit"] }
+quote = "1"
+
+clap = { version = "4.1", features = ["derive"], optional = true }
+
+[features]
+default = ["bin"]  # required-featues for apple-bindgen binary
+bin = ["clap"]
+
+[[bin]]
+name = "apple-bindgen"    
+required-features = ["bin"] 

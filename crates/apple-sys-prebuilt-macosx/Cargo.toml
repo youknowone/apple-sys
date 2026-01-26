@@ -1,0 +1,13 @@
+[package]
+name = "apple-sys-prebuilt-macosx"
+version = "0.0.0"
+edition.workspace = true
+description = "Pre-generated macOS framework bindings for apple-sys"
+keywords = ["sys", "apple", "macos", "bindgen", "prebuilt"]
+categories = ["api-bindings", "os::macos-apis"]
+authors.workspace = true
+repository.workspace = true
+readme.workspace = true
+license.workspace = true
+links = "apple_sys_prebuilt_macosx"
+include = ["/src", "/build.rs", "/generated"]
