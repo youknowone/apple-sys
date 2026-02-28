@@ -4,8 +4,10 @@
 //! for 2D game development.
 
 use apple_sys::AppKit::*;
-use apple_sys::CoreFoundation::CGSize;
+use apple_sys::CoreFoundation::{CGSize, INSObject};
+use apple_sys::Foundation::{INSArray, NSArray, NSArray_NSArrayCreation, NSAutoreleasePool};
 use apple_sys::SpriteKit::*;
+use apple_sys::objc::id;
 
 mod common;
 

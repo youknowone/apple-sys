@@ -3,7 +3,10 @@
 //! Shows current SSID, BSSID, signal strength, channel, and lists
 //! all supported channels grouped by band.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::CoreWLAN::*;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool, NSSet_NSExtendedSet};
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

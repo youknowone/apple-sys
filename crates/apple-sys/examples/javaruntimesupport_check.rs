@@ -3,7 +3,10 @@
 //! Creates JRSUI renderer and control objects, queries font rendering style
 //! properties, and checks scroll-to-click preference.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
 use apple_sys::JavaRuntimeSupport::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

@@ -3,7 +3,9 @@
 //! Gets NSExceptionHandler.defaultExceptionHandler and inspects its
 //! exception handling mask and related settings.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::ExceptionHandling::*;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 mod common;
 use common::nsobj_to_string;

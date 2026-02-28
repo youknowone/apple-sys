@@ -3,7 +3,13 @@
 //! Uses GKRandomSource, GKARC4RandomSource, and GKMersenneTwisterRandomSource
 //! to produce random integers and demonstrate shuffling.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{
+    INSArray, INSMutableArray, INSNumber, NSArray, NSAutoreleasePool, NSMutableArray, NSNumber,
+    NSNumber_NSNumberCreation,
+};
 use apple_sys::GameplayKit::*;
+use apple_sys::objc::id;
 
 fn main() {
     unsafe {

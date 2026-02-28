@@ -1,7 +1,10 @@
 //! Verify SoundAnalysis bindings by creating an SNClassifySoundRequest
 //! and querying its properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, INSError, NSAutoreleasePool, NSError};
 use apple_sys::SoundAnalysis::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

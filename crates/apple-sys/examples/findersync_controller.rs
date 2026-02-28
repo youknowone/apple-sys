@@ -3,7 +3,12 @@
 //! Gets FIFinderSyncController.defaultController and queries
 //! directoryURLs and toolbar item properties.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::FinderSync::*;
+use apple_sys::Foundation::{
+    INSArray, INSURL, NSAutoreleasePool, NSSet, NSSet_NSExtendedSet, NSSet_NSSetCreation, NSURL,
+};
+use apple_sys::objc::{BOOL, id};
 
 mod common;
 use common::nsobj_to_string;

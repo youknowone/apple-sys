@@ -5,6 +5,10 @@
 
 use apple_sys::AudioToolbox::*;
 use apple_sys::AudioUnit::*;
+use apple_sys::CoreFoundation::{
+    CFRelease, CFStringEncoding, CFStringGetCString, CFStringGetLength,
+    CFStringGetMaximumSizeForEncoding, CFStringRef,
+};
 use std::ptr;
 
 const UTF8_ENCODING: CFStringEncoding = 0x08000100;

@@ -3,7 +3,9 @@
 //! Creates FPUIActionExtensionContext and FPUIActionExtensionViewController,
 //! and exercises their generated bindings including the FPUIErrorDomain constant.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::FileProviderUI::*;
+use apple_sys::Foundation::{INSError, NSAutoreleasePool, NSDictionary, NSError};
 
 mod common;
 use common::nsobj_to_string;

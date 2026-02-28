@@ -3,7 +3,9 @@
 //! Creates a DDDevice with basic parameters and checks class availability
 //! for DDDiscoverySession and related types.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::DeviceDiscoveryExtension::*;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::UniformTypeIdentifiers::UTType;
 mod common;
 use common::nsobj_to_string;

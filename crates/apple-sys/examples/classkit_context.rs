@@ -4,6 +4,8 @@
 //! and queries active context and delegate state.
 
 use apple_sys::ClassKit::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 mod common;
 use common::nsobj_to_string;

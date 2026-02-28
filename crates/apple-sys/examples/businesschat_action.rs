@@ -4,6 +4,8 @@
 //! extern constants (BCParameterNameIntent, etc.).
 
 use apple_sys::BusinessChat::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 mod common;
 use common::nsobj_to_string;

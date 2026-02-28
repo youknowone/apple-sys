@@ -3,7 +3,10 @@
 //! Creates EXHostViewController and EXAppExtensionBrowserViewController,
 //! exercises their bindings, and tests NSError creation for the extension domain.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::ExtensionKit::*;
+use apple_sys::Foundation::{INSError, NSAutoreleasePool, NSDictionary, NSError};
+use apple_sys::objc::id;
 use objc2::msg_send;
 
 mod common;

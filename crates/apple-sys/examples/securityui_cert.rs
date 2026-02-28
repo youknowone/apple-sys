@@ -1,6 +1,8 @@
 //! Verify SecurityUI bindings by exercising SFCertificatePresentation
 //! creation and property access.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::SecurityUI::*;
 
 mod common;

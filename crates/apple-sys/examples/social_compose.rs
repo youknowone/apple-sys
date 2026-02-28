@@ -1,7 +1,10 @@
 //! Verify Social framework bindings by creating an SLRequest
 //! and exercising SLComposeServiceViewController.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSURL, NSAutoreleasePool, NSDictionary, NSURL};
 use apple_sys::Social::*;
+use apple_sys::objc::id;
 use objc2::msg_send;
 
 mod common;

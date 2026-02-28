@@ -3,6 +3,8 @@
 //! Retrieves the shared preview panel and checks its full-screen state
 //! and current controller information.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::QuickLookUI::*;
 
 mod common;

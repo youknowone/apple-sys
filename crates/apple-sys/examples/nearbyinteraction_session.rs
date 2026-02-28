@@ -3,6 +3,8 @@
 //! Uses NISession and NIDeviceCapability to query
 //! UWB hardware support and measurement capabilities.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::NearbyInteraction::*;
 
 use objc2::runtime::AnyObject;

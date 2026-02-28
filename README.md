@@ -97,6 +97,7 @@ $ cargo run --manifest-path=crates/apple-sys/Cargo.toml \
 `apple-sys` contains auto-generated bindgen modules for Apple platforms. As long as we use the same versions of SDKs and bindgen, the result will be reproducible.
 
 ## Why not apple-sys?
+
 Continually using the same SDKs doesn't sound realistic. I agree. Don't trust apple-sys. Use the managed versions as best you can. For `CoreFoundation`, for instance, use [core-foundation-sys](https://github.com/servo/core-foundation-rs).
 
 Then why do I use apple-sys? I created apple-sys for minor and unmanaged frameworks. apple-sys will be the last fallback.

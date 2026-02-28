@@ -3,6 +3,11 @@
 //! Uses SMCopyAllJobDictionaries to list registered
 //! launch daemons and agents.
 
+use apple_sys::CoreFoundation::{
+    CFArrayGetCount, CFArrayGetValueAtIndex, CFDictionaryGetValue, CFDictionaryRef,
+    CFNumberGetValue, CFNumberRef, CFRelease, CFStringCreateWithCString, CFStringEncoding,
+    CFStringGetCString, CFStringGetLength, CFStringGetMaximumSizeForEncoding, CFStringRef,
+};
 use apple_sys::ServiceManagement::*;
 
 const UTF8_ENCODING: CFStringEncoding = 0x08000100;

@@ -3,7 +3,9 @@
 //! Queries CMMotionActivityManager, CMPedometer, and CMAltimeter for
 //! hardware capability availability.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::CoreMotion::*;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 fn main() {
     unsafe {

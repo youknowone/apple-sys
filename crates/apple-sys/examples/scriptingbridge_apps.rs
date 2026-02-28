@@ -4,7 +4,10 @@
 //! ScriptingBridge framework access.
 
 use apple_sys::AppKit::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSArray, NSAutoreleasePool};
 use apple_sys::ScriptingBridge::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

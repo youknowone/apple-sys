@@ -1,6 +1,8 @@
 //! Verify ThreadNetwork bindings by creating a THClient and
 //! inspecting THCredentials properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::ThreadNetwork::*;
 
 mod common;

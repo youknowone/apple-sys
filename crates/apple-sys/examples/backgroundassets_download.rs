@@ -3,6 +3,9 @@
 //! Accesses BADownloadManager shared instance and queries current downloads.
 
 use apple_sys::BackgroundAssets::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, INSError, NSAutoreleasePool, NSError};
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

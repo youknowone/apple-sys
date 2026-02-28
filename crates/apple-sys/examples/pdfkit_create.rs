@@ -2,7 +2,13 @@
 //!
 //! Demonstrates PDFDocument, PDFPage creation, and metadata access.
 
+use apple_sys::CoreFoundation::{INSObject, PNSObject};
+use apple_sys::Foundation::{
+    INSArray, INSData, INSMutableDictionary, NSArray, NSAutoreleasePool, NSDictionary,
+    NSDictionary_NSExtendedDictionary, NSMutableDictionary, NSString,
+};
 use apple_sys::PDFKit::*;
+use apple_sys::objc::id;
 mod common;
 use common::nsstring;
 use common::nsstring_to_string;

@@ -3,6 +3,10 @@
 //! Queries AVBInterface for available AVB-capable Ethernet interfaces
 //! and displays their names and properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool, NSString};
+use apple_sys::objc::id;
+
 use apple_sys::AudioVideoBridging::*;
 
 mod common;

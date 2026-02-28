@@ -3,6 +3,8 @@
 //! Demonstrates MetalFX framework by creating MTLFXTemporalScalerDescriptor
 //! and MTLFXSpatialScalerDescriptor and inspecting their properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::MetalFX::*;
 
 mod common;

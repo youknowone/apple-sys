@@ -1,7 +1,10 @@
 //! Verify SystemExtensions bindings by getting the shared manager
 //! and workspace, and querying system extension info.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSError, INSSet, NSAutoreleasePool, NSError};
 use apple_sys::SystemExtensions::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

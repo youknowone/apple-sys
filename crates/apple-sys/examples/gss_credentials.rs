@@ -4,6 +4,10 @@
 //! buffer set management, and GSSNameCreateDisplayString
 //! for Apple's high-level GSS API.
 
+use apple_sys::CoreFoundation::{
+    CFRelease, CFStringEncoding, CFStringGetCString, CFStringGetLength,
+    CFStringGetMaximumSizeForEncoding, CFStringRef,
+};
 use apple_sys::GSS::*;
 use std::ptr;
 

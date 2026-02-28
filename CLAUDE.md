@@ -6,9 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 apple-sys is a Rust FFI bindings generator for Apple frameworks. It provides auto-generated bindgen bindings for 200+ Apple frameworks (CoreFoundation, UIKit, AVFoundation, AppKit, etc.) across macOS and iOS platforms.
 
-The workspace contains two crates:
-- **crates/apple-sys/** - The main `apple-sys` crate with pre-generated, feature-gated bindings
-- **crates/apple-bindgen/** - The `apple-bindgen` CLI tool for generating framework bindings
+The workspace contains four crates:
+- **crates/apple-sys/** - The main `apple-sys` crate with feature-gated bindings for 200+ Apple frameworks
+- **crates/apple-bindgen/** - The `apple-bindgen` CLI tool and library for generating framework bindings
+- **crates/apple-sys-prebuilt-macosx/** - Pre-generated macOS bindings for faster builds without local SDK
+- **crates/apple-sys-prebuilt-iphoneos/** - Pre-generated iOS bindings for `prebuilt` builds targeting iOS
 
 ## Build Commands
 

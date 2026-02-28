@@ -2,7 +2,13 @@
 //!
 //! Demonstrates SKProductsRequest creation and SKStoreReviewController.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{
+    INSArray, INSBundle, INSMutableSet, INSSet, INSURL, NSAutoreleasePool, NSBundle, NSMutableSet,
+    NSSet,
+};
 use apple_sys::StoreKit::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring;

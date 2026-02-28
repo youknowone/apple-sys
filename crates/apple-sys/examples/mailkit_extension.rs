@@ -3,6 +3,9 @@
 //! Creates MEEmailAddress, MEMessageAction factory instances, and
 //! MEAddressAnnotation objects to verify the generated MailKit bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
+
 use apple_sys::MailKit::*;
 
 mod common;

@@ -4,6 +4,9 @@
 //! work for the AppleScriptKit framework.
 
 use apple_sys::AppleScriptKit::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
+use apple_sys::objc::id;
 use objc2::msg_send;
 
 mod common;

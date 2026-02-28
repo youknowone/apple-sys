@@ -3,6 +3,11 @@
 //! Creates an OSLogStore for the current process scope
 //! and queries recent log entries.
 
+use apple_sys::CoreFoundation::{INSObject, PNSObject};
+use apple_sys::Foundation::{
+    INSEnumerator, INSError, NSAutoreleasePool, NSDate, NSDate_NSDateCreation,
+    NSDate_NSExtendedDate, NSError, NSPredicate,
+};
 use apple_sys::OSLog::*;
 
 #[link(name = "OSLog", kind = "framework")]

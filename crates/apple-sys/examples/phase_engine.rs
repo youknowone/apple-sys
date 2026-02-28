@@ -3,6 +3,8 @@
 //! Demonstrates the PHASE (Physical Audio Spatialization Engine) framework
 //! by creating an engine and querying its configuration.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::PHASE::*;
 
 mod common;

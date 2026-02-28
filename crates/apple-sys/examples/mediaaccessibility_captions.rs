@@ -4,6 +4,10 @@
 //! the user's caption display type, selected languages,
 //! preferred media characteristics, font style, and colors.
 
+use apple_sys::CoreFoundation::{
+    CFArrayGetCount, CFArrayGetValueAtIndex, CFRelease, CFStringGetCString, CFStringGetLength,
+    CFStringGetMaximumSizeForEncoding, CFStringRef, CFTypeRef,
+};
 use apple_sys::MediaAccessibility::*;
 
 const DOMAIN_DEFAULT: MACaptionAppearanceDomain = 0;

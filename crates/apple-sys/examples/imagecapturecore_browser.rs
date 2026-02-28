@@ -3,6 +3,10 @@
 //! Creates ICDeviceBrowser and checks its browsing state, device type mask,
 //! and exercises start/stop lifecycle.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
+use apple_sys::objc::id;
+
 use apple_sys::ImageCaptureCore::*;
 
 mod common;

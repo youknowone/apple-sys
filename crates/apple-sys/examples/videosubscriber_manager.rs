@@ -1,6 +1,8 @@
 //! Verify VideoSubscriberAccount bindings by creating a VSAccountManager,
 //! VSAccountMetadataRequest, and inspecting VSSubscriptionRegistrationCenter.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::VideoSubscriberAccount::*;
 
 mod common;

@@ -1,6 +1,8 @@
 //! Verify SecurityInterface bindings by exercising SFCertificatePanel,
 //! SFCertificateTrustPanel, and SFChooseIdentityPanel.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::SecurityInterface::*;
 
 mod common;

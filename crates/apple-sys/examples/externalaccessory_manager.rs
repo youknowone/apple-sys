@@ -3,7 +3,10 @@
 //! Gets EAAccessoryManager.sharedAccessoryManager and queries
 //! the list of connected accessories using the generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::ExternalAccessory::*;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool, NSString};
+use apple_sys::objc::{NSObject, id};
 
 mod common;
 use common::nsobj_to_string;

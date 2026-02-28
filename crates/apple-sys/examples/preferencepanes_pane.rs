@@ -3,6 +3,8 @@
 //! Demonstrates PreferencePanes framework by creating an NSPreferencePane
 //! instance with the main bundle and querying its properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSBundle, NSAutoreleasePool, NSBundle};
 use apple_sys::PreferencePanes::*;
 
 mod common;

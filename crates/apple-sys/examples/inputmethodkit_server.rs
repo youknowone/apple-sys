@@ -3,7 +3,10 @@
 //! Creates an IMKServer with a connection name and bundle identifier,
 //! and queries its properties using the generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::InputMethodKit::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

@@ -3,6 +3,9 @@
 //! Uses CalCalendarStore to enumerate available calendars.
 
 use apple_sys::CalendarStore::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

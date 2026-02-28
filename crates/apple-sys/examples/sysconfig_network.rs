@@ -3,6 +3,10 @@
 //! Queries all network interfaces and prints their BSD name, display name,
 //! hardware address, and interface type.
 
+use apple_sys::CoreFoundation::{
+    CFArrayGetCount, CFArrayGetValueAtIndex, CFIndex, CFRelease, CFStringGetCString, CFStringRef,
+    CFTypeRef,
+};
 use apple_sys::SystemConfiguration::*;
 
 fn cfstring_to_string(cf: CFStringRef) -> Option<String> {

@@ -3,7 +3,10 @@
 //! Creates InstallerSection and InstallerState instances, querying
 //! their default property values through the generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
 use apple_sys::InstallerPlugins::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

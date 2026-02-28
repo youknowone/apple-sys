@@ -3,7 +3,9 @@
 //! Creates DRBurnSetupPanel and DREraseSetupPanel instances
 //! and queries their properties.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::DiscRecordingUI::*;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 mod common;
 use common::nsobj_to_string;

@@ -3,6 +3,8 @@
 //! Uses ATTrackingManager to read the current trackingAuthorizationStatus.
 
 use apple_sys::AppTrackingTransparency::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 fn main() {
     unsafe {

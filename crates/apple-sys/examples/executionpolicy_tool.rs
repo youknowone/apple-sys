@@ -2,7 +2,9 @@
 //!
 //! Creates an EPDeveloperTool and queries its authorizationStatus.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::ExecutionPolicy::*;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 mod common;
 use common::nsobj_to_string;

@@ -3,7 +3,8 @@
 //! Uses QLThumbnailGenerator and QLThumbnailGenerationRequest to
 //! create a thumbnail request and query its properties.
 
-use apple_sys::CoreFoundation::CGSize;
+use apple_sys::CoreFoundation::{CGSize, INSObject};
+use apple_sys::Foundation::{INSURL, NSAutoreleasePool, NSURL};
 use apple_sys::QuickLookThumbnailing::*;
 
 mod common;

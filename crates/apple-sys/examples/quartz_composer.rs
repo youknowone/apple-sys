@@ -3,7 +3,13 @@
 //! Gets the shared QCCompositionRepository and queries allCompositions
 //! to list available Quartz Composer compositions.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{
+    INSArray, INSDictionary, NSArray, NSArray_NSArrayCreation, NSAutoreleasePool, NSDictionary,
+    NSString,
+};
 use apple_sys::Quartz::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring;

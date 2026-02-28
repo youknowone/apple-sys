@@ -3,6 +3,8 @@
 //! Creates HKHealthStore, checks isHealthDataAvailable, and queries
 //! HKQuantityType for step count and other common types.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::HealthKit::*;
 
 mod common;

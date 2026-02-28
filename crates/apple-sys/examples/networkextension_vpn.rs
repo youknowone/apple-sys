@@ -3,7 +3,10 @@
 //! Gets the shared NEVPNManager instance and queries connection status
 //! and protocol configuration details via generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
 use apple_sys::NetworkExtension::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

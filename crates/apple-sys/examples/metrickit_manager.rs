@@ -3,7 +3,10 @@
 //! Uses MXMetricManager to inspect available metric
 //! payload types and diagnostic categories.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
 use apple_sys::MetricKit::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

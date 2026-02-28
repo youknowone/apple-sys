@@ -4,6 +4,8 @@
 //! identifier and tracking enabled status.
 
 use apple_sys::AdSupport::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 mod common;
 use common::nsobj_to_string;

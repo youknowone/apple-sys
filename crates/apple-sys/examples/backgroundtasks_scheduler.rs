@@ -2,6 +2,9 @@
 //!
 //! Queries the shared scheduler, creates task requests, and inspects their properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
+
 use apple_sys::BackgroundTasks::*;
 
 mod common;

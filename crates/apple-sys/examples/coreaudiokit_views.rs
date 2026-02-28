@@ -4,6 +4,9 @@
 //! and queries its properties through the generated bindings.
 
 use apple_sys::CoreAudioKit::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
+use apple_sys::objc::BOOL;
 
 mod common;
 use common::nsobj_to_string;

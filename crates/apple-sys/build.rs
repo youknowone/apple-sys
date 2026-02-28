@@ -22,9 +22,9 @@ fn main() {
 /// When an ObjC selector part like `setPDFView:` generates `msg_send!(..., setPDFView : PDFView)`,
 /// `PDFView` resolves to the type constructor instead of the parameter `PDFView_`.
 /// This function detects such collisions and appends `_` to use the parameter name.
-fn fix_msg_send_type_collisions(source: &str) -> String {
-    use std::collections::HashSet;
-    let mut shadow_names: HashSet<&str> = HashSet::new();
+/// Collect all `pub struct` and `pub const` names from a source string.
+fn collect_shadow_names(source: &str) -> std::collections::HashSet<String> {
+    let mut names = std::collections::HashSet::new();
     for line in source.lines() {
         let trimmed = line.trim();
         let rest = trimmed
@@ -36,11 +36,25 @@ fn fix_msg_send_type_collisions(source: &str) -> String {
                 .next()
             {
                 if !name.is_empty() {
-                    shadow_names.insert(name);
+                    names.insert(name.to_string());
                 }
             }
         }
     }
+    names
+}
+
+fn fix_msg_send_type_collisions(
+    source: &str,
+    extra_shadow_names: &std::collections::HashSet<String>,
+) -> String {
+    use std::collections::HashSet;
+    let local_names = collect_shadow_names(source);
+    let shadow_names: HashSet<&str> = local_names
+        .iter()
+        .chain(extra_shadow_names.iter())
+        .map(|s| s.as_str())
+        .collect();
     if shadow_names.is_empty() {
         return source.to_string();
     }
@@ -70,7 +84,8 @@ fn fix_msg_send_type_collisions(source: &str) -> String {
             }
         }
 
-        if line.contains("msg_send!") {
+        // Match both `msg_send!` and `msg_send !` (space before bang)
+        if line.contains("msg_send") && line.contains('!') {
             let mut fixed = line.to_string();
             for &name in &shadow_names {
                 let pattern = format!(" : {name})");
@@ -124,6 +139,169 @@ fn fix_msg_send_type_collisions(source: &str) -> String {
             result.push_str(line);
         }
         result.push('\n');
+    }
+    result
+}
+
+/// Fix duplicate parameter names in function signatures.
+///
+/// When bindgen generates ObjC methods like `dividerImageForLeftSegmentState:rightSegmentState:`,
+/// both parameters get named `state`, causing E0415. This appends a numeric suffix to duplicates.
+fn fix_duplicate_params(source: &str) -> String {
+    use std::collections::HashMap;
+    let lines: Vec<&str> = source.lines().collect();
+    let mut result = String::with_capacity(source.len());
+    let mut i = 0;
+    while i < lines.len() {
+        let trimmed = lines[i].trim();
+        if trimmed.starts_with("unsafe fn ") || trimmed.starts_with("pub unsafe fn ") {
+            // Collect the entire function signature (up to the opening brace)
+            let sig_start = i;
+            let mut sig_end = i;
+            let mut found_brace = false;
+            for j in i..lines.len() {
+                if lines[j].contains('{') {
+                    sig_end = j;
+                    found_brace = true;
+                    break;
+                }
+            }
+            if !found_brace {
+                result.push_str(lines[i]);
+                result.push('\n');
+                i += 1;
+                continue;
+            }
+
+            // Extract parameter names from the signature
+            let mut param_counts: HashMap<String, usize> = HashMap::new();
+            let mut has_dups = false;
+            for j in sig_start..=sig_end {
+                let line = lines[j].trim();
+                // Match parameter patterns like `name: Type` (indented, or after comma/paren)
+                if let Some(colon_pos) = line.find(": ") {
+                    let before = &line[..colon_pos];
+                    let param_name = before
+                        .rsplit(|c: char| !c.is_alphanumeric() && c != '_')
+                        .next()
+                        .unwrap_or("");
+                    if !param_name.is_empty()
+                        && param_name != "&self"
+                        && param_name != "self"
+                        && param_name != "&mut"
+                    {
+                        let count = param_counts.entry(param_name.to_string()).or_insert(0);
+                        *count += 1;
+                        if *count > 1 {
+                            has_dups = true;
+                        }
+                    }
+                }
+            }
+
+            if !has_dups {
+                // No duplicates, output as-is
+                for j in sig_start..=sig_end {
+                    result.push_str(lines[j]);
+                    result.push('\n');
+                }
+                i = sig_end + 1;
+                continue;
+            }
+
+            // Find the method body end (matching braces)
+            let mut brace_depth: i32 = 0;
+            let mut method_end = sig_end;
+            for j in sig_end..lines.len() {
+                for ch in lines[j].chars() {
+                    if ch == '{' {
+                        brace_depth += 1;
+                    } else if ch == '}' {
+                        brace_depth -= 1;
+                    }
+                }
+                if brace_depth == 0 {
+                    method_end = j;
+                    break;
+                }
+            }
+
+            // Build rename map for duplicate parameters
+            let mut seen: HashMap<String, usize> = HashMap::new();
+            let mut renames: Vec<(String, String)> = Vec::new();
+            for j in sig_start..=sig_end {
+                let line = lines[j].trim();
+                if let Some(colon_pos) = line.find(": ") {
+                    let before = &line[..colon_pos];
+                    let param_name = before
+                        .rsplit(|c: char| !c.is_alphanumeric() && c != '_')
+                        .next()
+                        .unwrap_or("");
+                    if !param_name.is_empty()
+                        && param_name != "&self"
+                        && param_name != "self"
+                        && param_name != "&mut"
+                    {
+                        let count = seen.entry(param_name.to_string()).or_insert(0);
+                        *count += 1;
+                        if *count > 1 {
+                            renames.push((
+                                param_name.to_string(),
+                                format!("{}_{}", param_name, count),
+                            ));
+                        }
+                    }
+                }
+            }
+
+            // Apply renames to the entire method (signature + body)
+            // Process from sig_start to method_end
+            let mut rename_idx = 0;
+            let mut seen2: HashMap<String, usize> = HashMap::new();
+            for j in sig_start..=method_end {
+                let mut line_out = lines[j].to_string();
+                // For parameter declaration lines, rename the Nth occurrence
+                if j <= sig_end {
+                    let trimmed_line = lines[j].trim();
+                    if let Some(colon_pos) = trimmed_line.find(": ") {
+                        let before = &trimmed_line[..colon_pos];
+                        let param_name = before
+                            .rsplit(|c: char| !c.is_alphanumeric() && c != '_')
+                            .next()
+                            .unwrap_or("");
+                        if !param_name.is_empty() {
+                            let count = seen2.entry(param_name.to_string()).or_insert(0);
+                            *count += 1;
+                            if *count > 1 {
+                                if rename_idx < renames.len() {
+                                    let (ref old, ref new) = renames[rename_idx];
+                                    // Rename in parameter declaration
+                                    let pattern = format!("{old}: ");
+                                    let replacement = format!("{new}: ");
+                                    line_out = line_out.replacen(&pattern, &replacement, 1);
+                                    rename_idx += 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                // For body lines with msg_send, rename the matching selector arguments
+                if j > sig_end && lines[j].contains("msg_send") {
+                    for (old, new) in &renames {
+                        let pattern = format!(" : {old}");
+                        let replacement = format!(" : {new}");
+                        line_out = line_out.replace(&pattern, &replacement);
+                    }
+                }
+                result.push_str(&line_out);
+                result.push('\n');
+            }
+            i = method_end + 1;
+        } else {
+            result.push_str(lines[i]);
+            result.push('\n');
+            i += 1;
+        }
     }
     result
 }
@@ -331,7 +509,11 @@ mod prebuilt_impl {
             let patched = super::strip_incompatible_msg_send(&patched);
 
             // Fix msg_send! arguments that collide with type names
-            let patched = super::fix_msg_send_type_collisions(&patched);
+            let empty = std::collections::HashSet::new();
+            let patched = super::fix_msg_send_type_collisions(&patched, &empty);
+
+            // Fix duplicate parameter names (e.g. UIKit's state/state)
+            let patched = super::fix_duplicate_params(&patched);
 
             let dst = out_dir.join(format!("{framework}.rs"));
             let mut file = std::fs::File::create(&dst).expect("could not create output file");
@@ -926,11 +1108,7 @@ mod prebuilt_impl {
             .chars()
             .take_while(|c| c.is_alphanumeric() || *c == '_')
             .collect();
-        if name.is_empty() {
-            None
-        } else {
-            Some(name)
-        }
+        if name.is_empty() { None } else { Some(name) }
     }
 
     /// Extract the target type name from an impl block header line.
@@ -982,11 +1160,7 @@ mod prebuilt_impl {
             .chars()
             .take_while(|c| c.is_alphanumeric() || *c == '_')
             .collect();
-        if name.is_empty() {
-            None
-        } else {
-            Some(name)
-        }
+        if name.is_empty() { None } else { Some(name) }
     }
 
     /// Check if a line starts a plain impl block (no trait, no `for` keyword).
@@ -1102,10 +1276,10 @@ mod prebuilt_impl {
 #[cfg(all(feature = "bindgen", not(feature = "prebuilt")))]
 mod bindgen_impl {
     use apple_bindgen::{
-        build_dependency_graphs, c_integer_primitive, compute_reachable, filter_to_reachable,
-        is_builtin, load_cached_framework, load_deps, save_cached_symbols, scan_framework_headers,
-        scan_objc_headers, scan_sub_frameworks, scan_system_types, topological_sort, Builder,
-        CacheKey, DependencyGraphs, FrameworkSymbols, SdkPath,
+        Builder, CacheKey, DependencyGraphs, FrameworkSymbols, SdkPath, build_dependency_graphs,
+        c_integer_primitive, compute_reachable, filter_to_reachable, is_builtin,
+        load_cached_framework, load_deps, save_cached_symbols, scan_framework_headers,
+        scan_objc_headers, scan_sub_frameworks, scan_system_types, topological_sort,
     };
     use rayon::prelude::*;
     use std::collections::{HashMap, HashSet};
@@ -1408,7 +1582,6 @@ mod bindgen_impl {
                     available_for_filter.extend(dep_syms.iter().cloned());
                 }
             }
-
             let mut filtered = filter_to_reachable(
                 generated,
                 unique,
@@ -1533,24 +1706,7 @@ mod bindgen_impl {
         }
         eprintln!("Phase 4 completed in {:?}", t4.elapsed());
 
-        // Phase 5: Strip trait methods whose msg_send! calls exceed objc's
-        // 12-parameter MessageArguments limit. Runs after rustfmt so the code
-        // has predictable formatting (one statement per line).
-        for path in &rs_files {
-            let source = std::fs::read_to_string(path).unwrap();
-            let stripped = super::strip_incompatible_msg_send(&source);
-            let stripped = super::fix_msg_send_type_collisions(&stripped);
-            if stripped.len() != source.len() {
-                let fw = path.file_stem().unwrap().to_string_lossy();
-                eprintln!(
-                    "  {fw}: stripped {} bytes of oversized msg_send methods",
-                    source.len() - stripped.len()
-                );
-                std::fs::write(path, stripped).unwrap();
-            }
-        }
-
-        // Phase 6: Convert objc 0.2 → objc2 0.6 syntax.
+        // Phase 5: Convert objc 0.2 → objc2 0.6 syntax.
         // Runs after rustfmt so the code has predictable formatting for
         // pattern matching (e.g. `use objc::{...};` on a single line).
         for path in &rs_files {
@@ -1558,6 +1714,36 @@ mod bindgen_impl {
             let migrated = apple_bindgen::objc2::migrate(&source);
             if migrated != source {
                 std::fs::write(path, migrated).unwrap();
+            }
+        }
+
+        // Phase 6: Post-migration fixups. Now that msg_send uses the objc2 format
+        // (msg_send!(&*receiver, sel : arg, sel : arg)), we can reliably detect
+        // and fix parameter/type name collisions.
+        //
+        // Build a global set of all pub struct/const names across all framework files
+        // so that imported types (e.g. CGContext from CoreGraphics used in AddressBook)
+        // are also detected as shadow names.
+        let global_shadow_names: HashSet<String> = rs_files
+            .iter()
+            .flat_map(|path| {
+                let source = std::fs::read_to_string(path).unwrap_or_default();
+                super::collect_shadow_names(&source)
+            })
+            .collect();
+
+        for path in &rs_files {
+            let source = std::fs::read_to_string(path).unwrap();
+            let fixed = super::strip_incompatible_msg_send(&source);
+            let fixed = super::fix_msg_send_type_collisions(&fixed, &global_shadow_names);
+            let fixed = super::fix_duplicate_params(&fixed);
+            if fixed.len() != source.len() {
+                let fw = path.file_stem().unwrap().to_string_lossy();
+                eprintln!(
+                    "  {fw}: post-migration fixups applied ({} byte delta)",
+                    source.len() as i64 - fixed.len() as i64
+                );
+                std::fs::write(path, fixed).unwrap();
             }
         }
 
@@ -1830,15 +2016,14 @@ mod bindgen_impl {
             let (_, graphs) = phase1.get(framework).unwrap();
             let unique = framework_defined.get(framework).unwrap();
 
-            // Discover needed frameworks from definition_deps of unique symbols.
-            // Uses direct deps (not BFS) to avoid false positives from transitive
-            // type chains that get replaced by primitives in Phase 3.
-            // Includes frameworks that come later in topological order, since the
-            // relaxed dependency closure now preserves symbols whose deps are owned
-            // by any built framework.
+            // Discover needed frameworks from all_deps (definition + impl block deps)
+            // of unique symbols. Uses direct deps (not BFS) to avoid false positives.
+            // all_deps includes impl block deps (e.g., trait conformance references)
+            // which are needed so filter_to_reachable knows that foreign traits like
+            // PNSSecureCoding are available via imports and should not be re-defined.
             let mut needed_frameworks: HashSet<&str> = HashSet::new();
             for sym in unique {
-                if let Some(sym_deps) = graphs.definition_deps.get(sym) {
+                if let Some(sym_deps) = graphs.all_deps.get(sym) {
                     for dep in sym_deps {
                         if unique.contains(dep) {
                             continue;

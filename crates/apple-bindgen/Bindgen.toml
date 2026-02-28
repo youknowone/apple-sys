@@ -64,13 +64,4 @@ replacements = [
         recordId2: NSString,""",
     "newRecordIdentifier : recordId #=># newRecordIdentifier : recordId2",
 ]
-[Quartz]
-deps = ["PDFKit"]
-[QuickLookUI]
-deps = ["PDFKit"]
-
 # iOS
-[ARKit]
-deps = ["PDFKit"]
-[QuickLook]
-deps = ["PDFKit"]

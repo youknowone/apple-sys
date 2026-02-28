@@ -1,6 +1,8 @@
 //! Verify SharedWithYouCore bindings by exercising SWCollaborationCoordinator,
 //! SWCollaborationMetadata, and SWCollaborationOption.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::SharedWithYouCore::*;
 
 mod common;

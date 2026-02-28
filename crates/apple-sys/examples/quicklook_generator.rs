@@ -4,6 +4,7 @@
 
 #![allow(non_upper_case_globals)]
 
+use apple_sys::CoreFoundation::*;
 use apple_sys::CoreGraphics::*;
 use apple_sys::QuickLook::*;
 use std::ptr;

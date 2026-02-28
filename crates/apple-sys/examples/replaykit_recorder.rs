@@ -3,6 +3,8 @@
 //! Retrieves the shared screen recorder and checks availability,
 //! microphone, and camera recording states via generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::ReplayKit::*;
 
 mod common;

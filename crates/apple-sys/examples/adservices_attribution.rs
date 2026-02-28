@@ -3,6 +3,8 @@
 //! Attempts to retrieve an attribution token via AAAttribution.
 
 use apple_sys::AdServices::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSError, INSString, NSAutoreleasePool, NSError, NSString};
 mod common;
 use common::nsstring_to_string;
 

@@ -4,6 +4,12 @@
 
 #![allow(non_upper_case_globals)]
 
+use apple_sys::CoreFoundation::{
+    CFArrayGetCount, CFArrayGetValueAtIndex, CFArrayRef, CFDictionaryGetValueIfPresent,
+    CFDictionaryRef, CFNumberGetValue, CFNumberRef, CFRelease, CFStringCreateWithCString,
+    CFStringEncoding, CFStringGetCString, CFStringGetLength, CFStringGetMaximumSizeForEncoding,
+    CFStringRef, CFTypeRef, kCFAllocatorDefault,
+};
 use apple_sys::CoreMedia::*;
 use apple_sys::VideoToolbox::*;
 use std::ptr;

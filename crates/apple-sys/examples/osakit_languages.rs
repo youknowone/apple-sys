@@ -3,7 +3,10 @@
 //! Uses OSALanguage to enumerate installed scripting
 //! languages (AppleScript, JavaScript for Automation, etc.).
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
 use apple_sys::OSAKit::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

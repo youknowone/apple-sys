@@ -3,7 +3,13 @@
 //! Uses NLLanguageRecognizer to identify the dominant language
 //! and get probability scores for multiple language hypotheses.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{
+    INSArray, INSDictionary, INSNumber, NSAutoreleasePool, NSDictionary_NSExtendedDictionary,
+    NSNumber, NSString,
+};
 use apple_sys::NaturalLanguage::*;
+use apple_sys::objc::id;
 mod common;
 use common::nsstring;
 use common::nsstring_to_string;

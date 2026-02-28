@@ -4,7 +4,10 @@
 //! to demonstrate PencilKit tool creation.
 
 use apple_sys::AppKit::{INSColor, NSColor};
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, INSData, NSAutoreleasePool};
 use apple_sys::PencilKit::*;
+use apple_sys::objc::id;
 mod common;
 use common::nsstring;
 use common::nsstring_to_string;

@@ -4,7 +4,10 @@
 //! geometric shapes: box, sphere, and plane, then inspects their
 //! vertex data and creates an MDLAsset.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSArray, NSAutoreleasePool};
 use apple_sys::ModelIO::*;
+use apple_sys::objc::{BOOL, id};
 
 mod common;
 use common::nsstring_to_string;

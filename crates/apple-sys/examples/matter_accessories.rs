@@ -3,6 +3,10 @@
 //!
 //! apple-sys provides framework linking and type definitions.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
+use apple_sys::objc::id;
+
 use apple_sys::Matter::*;
 
 mod common;

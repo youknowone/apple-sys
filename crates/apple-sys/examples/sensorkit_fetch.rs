@@ -1,6 +1,8 @@
 //! Verify SensorKit bindings by creating an SRSensorReader, querying
 //! authorization status, and inspecting SRDevice and SRFetchRequest.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::SensorKit::*;
 
 mod common;

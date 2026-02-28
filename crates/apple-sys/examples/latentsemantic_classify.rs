@@ -3,6 +3,9 @@
 //! Creates an LSM map, trains it with sample text categories,
 //! then classifies new text against the trained categories.
 
+use apple_sys::CoreFoundation::{
+    CFRelease, CFStringCreateWithCString, CFStringEncoding, CFStringRef, kCFAllocatorDefault,
+};
 use apple_sys::LatentSemanticMapping::*;
 use std::ffi::CString;
 

@@ -3,7 +3,10 @@
 //! Demonstrates MCPeerID and MCNearbyServiceBrowser creation
 //! for local network device discovery.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool, NSDictionary};
 use apple_sys::MultipeerConnectivity::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring;

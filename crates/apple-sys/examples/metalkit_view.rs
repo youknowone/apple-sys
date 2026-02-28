@@ -3,6 +3,8 @@
 //! Demonstrates MetalKit by creating an MTKView with a Metal device,
 //! then querying preferredFramesPerSecond, colorPixelFormat, and more.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{NSAutoreleasePool, NSString};
 use apple_sys::Metal::*;
 use apple_sys::MetalKit::*;
 use objc2::runtime::AnyObject;

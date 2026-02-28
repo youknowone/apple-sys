@@ -3,7 +3,10 @@
 //! Queries VZVirtualMachineConfiguration for supported
 //! hardware and available VM configuration options.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSError, NSAutoreleasePool, NSError};
 use apple_sys::Virtualization::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

@@ -3,7 +3,10 @@
 //! Uses LAContext to query whether Touch ID, Face ID, or Optic ID
 //! is available on this system.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSError, NSAutoreleasePool, NSError};
 use apple_sys::LocalAuthentication::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

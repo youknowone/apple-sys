@@ -3,6 +3,9 @@
 //! Uses the Accounts framework to inspect supported social account types.
 
 use apple_sys::Accounts::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring;

@@ -3,6 +3,9 @@
 //! Creates an AEAssessmentConfiguration and examines its properties.
 
 use apple_sys::AutomaticAssessmentConfiguration::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
+
 mod common;
 
 fn main() {

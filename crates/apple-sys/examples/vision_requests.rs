@@ -3,7 +3,10 @@
 //! Demonstrates VNDetectFaceRectanglesRequest, VNRecognizeTextRequest,
 //! and VNDetectBarcodesRequest creation and configuration.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, INSIndexSet, NSAutoreleasePool, NSError, NSString};
 use apple_sys::Vision::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

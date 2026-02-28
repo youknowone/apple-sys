@@ -3,6 +3,10 @@
 //! Demonstrates creating SCNBox, SCNSphere, SCNCylinder, SCNCone
 //! and querying their geometric properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
+use apple_sys::objc::id;
+
 use apple_sys::SceneKit::*;
 
 mod common;

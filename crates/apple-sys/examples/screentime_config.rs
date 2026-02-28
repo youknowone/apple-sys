@@ -1,6 +1,8 @@
 //! Verify ScreenTime bindings by exercising STWebpageController
 //! and STWebHistory APIs.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{NSAutoreleasePool, NSError, NSString};
 use apple_sys::ScreenTime::*;
 
 mod common;

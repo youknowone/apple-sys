@@ -3,6 +3,8 @@
 //! Creates MPSImageDescriptor instances with various configurations and
 //! inspects MPS data type layout via generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::MetalPerformanceShaders::*;
 
 mod common;

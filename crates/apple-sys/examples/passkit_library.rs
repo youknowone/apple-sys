@@ -3,6 +3,10 @@
 //! Demonstrates PassKit framework by creating a PKPassLibrary,
 //! querying passes, and checking library capabilities.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
+use apple_sys::objc::id;
+
 use apple_sys::PassKit::*;
 
 mod common;

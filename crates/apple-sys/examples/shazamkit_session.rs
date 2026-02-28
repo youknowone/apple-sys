@@ -1,6 +1,9 @@
 //! Verify ShazamKit bindings by creating an SHSession, querying its
 //! catalog, and getting the default SHMediaLibrary.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
+
 use apple_sys::ShazamKit::*;
 
 mod common;

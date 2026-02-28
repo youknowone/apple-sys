@@ -1,7 +1,10 @@
 //! Verify SyncServices bindings by getting the shared ISyncManager
 //! and querying its state.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
 use apple_sys::SyncServices::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

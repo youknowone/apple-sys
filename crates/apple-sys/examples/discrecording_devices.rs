@@ -3,6 +3,11 @@
 //! Uses DRCopyDeviceArray to enumerate available
 //! CD/DVD burners and their capabilities.
 
+use apple_sys::CoreFoundation::{
+    CFArrayGetCount, CFArrayGetValueAtIndex, CFDictionaryGetValue, CFRelease,
+    CFStringCreateWithCString, CFStringEncoding, CFStringGetCString, CFStringGetLength,
+    CFStringGetMaximumSizeForEncoding, CFStringRef,
+};
 use apple_sys::DiscRecording::*;
 
 const UTF8_ENCODING: CFStringEncoding = 0x08000100;

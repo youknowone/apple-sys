@@ -3,7 +3,13 @@
 //! Demonstrates MetalPerformanceShadersGraph by creating an MPSGraph,
 //! adding placeholder tensors, and inspecting the graph structure.
 
+use apple_sys::CoreFoundation::{INSObject, PNSObject};
+use apple_sys::Foundation::{
+    INSArray, INSNumber, NSArray, NSArray_NSArrayCreation, NSAutoreleasePool, NSNumber,
+    NSNumber_NSNumberCreation,
+};
 use apple_sys::MetalPerformanceShadersGraph::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring;

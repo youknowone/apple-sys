@@ -4,6 +4,9 @@
 //! creates an AMWorkflow and an AMWorkflowController.
 
 use apple_sys::Automator::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

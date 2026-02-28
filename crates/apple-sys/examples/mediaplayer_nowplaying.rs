@@ -3,6 +3,8 @@
 //! Uses MPNowPlayingInfoCenter and MPRemoteCommandCenter
 //! to check media playback command availability.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSDictionary, NSAutoreleasePool, NSString};
 use apple_sys::MediaPlayer::*;
 use apple_sys::objc::id;
 mod common;

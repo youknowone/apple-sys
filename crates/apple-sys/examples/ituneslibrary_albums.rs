@@ -3,7 +3,10 @@
 //! Retrieves all media items from the music library and groups
 //! them by album, showing track counts.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, INSError, NSAutoreleasePool, NSError, NSString};
 use apple_sys::iTunesLibrary::*;
+use apple_sys::objc::id;
 use std::collections::BTreeMap;
 
 mod common;

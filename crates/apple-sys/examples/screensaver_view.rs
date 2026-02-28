@@ -3,7 +3,10 @@
 //! Creates ScreenSaverDefaults with a module name and creates a
 //! ScreenSaverView instance to query its properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSUserDefaults, NSAutoreleasePool, NSPoint, NSRect, NSSize};
 use apple_sys::ScreenSaver::*;
+use apple_sys::objc::BOOL;
 
 mod common;
 use common::nsobj_to_string;

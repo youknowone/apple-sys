@@ -3,6 +3,8 @@
 //! Queries the crash detection manager for device support and
 //! authorization status via generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::SafetyKit::*;
 
 mod common;

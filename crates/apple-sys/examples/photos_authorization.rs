@@ -3,6 +3,9 @@
 //! Uses PHPhotoLibrary to check authorization and
 //! list available PHAssetCollectionType values.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
+
 use apple_sys::Photos::*;
 
 fn main() {

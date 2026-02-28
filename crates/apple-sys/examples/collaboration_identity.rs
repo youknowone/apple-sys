@@ -4,6 +4,11 @@
 //! and searches for the current user identity.
 
 use apple_sys::Collaboration::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{
+    INSArray, INSDictionary, INSProcessInfo, NSAutoreleasePool, NSProcessInfo, NSString,
+};
+use apple_sys::objc::id;
 mod common;
 use common::nsobj_to_string;
 use common::nsstring;

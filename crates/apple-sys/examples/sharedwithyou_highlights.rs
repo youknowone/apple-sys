@@ -1,7 +1,10 @@
 //! Verify SharedWithYou bindings by creating an SWHighlightCenter,
 //! querying highlights, and checking class method availability.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool};
 use apple_sys::SharedWithYou::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

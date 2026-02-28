@@ -3,6 +3,8 @@
 //! Demonstrates ParavirtualizedGraphics framework by creating descriptors
 //! and querying their properties through generated trait methods.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{NSAutoreleasePool, NSSize};
 use apple_sys::ParavirtualizedGraphics::*;
 
 mod common;

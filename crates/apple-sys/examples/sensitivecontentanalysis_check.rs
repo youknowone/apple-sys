@@ -3,6 +3,9 @@
 //! Creates an SCSensitivityAnalyzer instance and queries its
 //! analysis policy and capabilities.
 
+use apple_sys::CoreFoundation::{INSObject, PNSObject};
+use apple_sys::Foundation::NSAutoreleasePool;
+
 use apple_sys::SensitiveContentAnalysis::*;
 
 mod common;

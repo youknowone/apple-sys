@@ -3,7 +3,10 @@
 //! Creates MEFormatReaderInstantiationOptions, MEFileInfo, and METrackInfo
 //! instances, setting and querying their properties.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::MediaExtension::*;
+use apple_sys::objc::BOOL;
 
 mod common;
 use common::nsstring;

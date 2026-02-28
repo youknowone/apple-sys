@@ -3,7 +3,10 @@
 //! Demonstrates PushKit framework by creating a PKPushRegistry
 //! and inspecting desired push types and delegate configuration.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{INSSet, NSAutoreleasePool};
 use apple_sys::PushKit::*;
+use apple_sys::objc::{NSObject, id};
 
 use objc2::runtime::AnyObject;
 

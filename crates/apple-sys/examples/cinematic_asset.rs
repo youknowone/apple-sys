@@ -4,8 +4,9 @@
 //! using the generated Cinematic framework bindings.
 
 use apple_sys::Cinematic::*;
-use apple_sys::CoreFoundation::{CGPoint, CGRect, CGSize};
+use apple_sys::CoreFoundation::{CGPoint, CGRect, CGSize, INSObject};
 use apple_sys::CoreMedia::CMTime;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 mod common;
 use common::nsstring_to_string;

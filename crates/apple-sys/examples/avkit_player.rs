@@ -3,6 +3,8 @@
 //! Uses the AVKit framework to examine player view properties.
 
 use apple_sys::AVKit::*;
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 
 mod common;
 

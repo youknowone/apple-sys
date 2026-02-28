@@ -3,7 +3,12 @@
 //! Creates CTTelephonyNetworkInfo and queries the current radio access
 //! technology and data service identifier.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::CoreTelephony::*;
+use apple_sys::Foundation::{
+    INSArray, INSDictionary, NSAutoreleasePool, NSDictionary_NSExtendedDictionary, NSString,
+};
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

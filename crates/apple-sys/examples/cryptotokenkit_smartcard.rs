@@ -3,7 +3,10 @@
 //! Uses TKSmartCardSlotManager to enumerate available
 //! smart card reader slots.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::CryptoTokenKit::*;
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool, NSString};
+use apple_sys::objc::id;
 
 mod common;
 use common::nsstring_to_string;

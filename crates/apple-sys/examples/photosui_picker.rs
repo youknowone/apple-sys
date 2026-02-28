@@ -3,6 +3,8 @@
 //! Demonstrates PhotosUI framework by creating a picker configuration
 //! and setting various filter and selection options.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::PhotosUI::*;
 
 #[link(name = "PhotosUI", kind = "framework")]

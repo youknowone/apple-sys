@@ -3,7 +3,13 @@
 //! Demonstrates MediaLibrary framework by creating an MLMediaLibrary
 //! instance with options and querying its media sources.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{
+    INSArray, INSDictionary, NSAutoreleasePool, NSDictionary, NSDictionary_NSExtendedDictionary,
+    NSString,
+};
 use apple_sys::MediaLibrary::*;
+use apple_sys::objc::id;
 
 mod common;
 use common::nsobj_to_string;

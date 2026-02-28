@@ -4,7 +4,8 @@
 //! by creating an authentication view and querying its properties.
 
 use apple_sys::AppKit::INSView;
-use apple_sys::CoreFoundation::PNSObject;
+use apple_sys::CoreFoundation::{INSObject, PNSObject};
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::LocalAuthentication::*;
 use apple_sys::LocalAuthenticationEmbeddedUI::*;
 

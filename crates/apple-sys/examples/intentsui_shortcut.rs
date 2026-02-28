@@ -3,6 +3,8 @@
 //! Creates INUIAddVoiceShortcutButton with a style, queries and modifies
 //! its properties (style, cornerRadius) through the generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::IntentsUI::*;
 
 mod common;

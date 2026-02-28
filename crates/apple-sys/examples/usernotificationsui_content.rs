@@ -3,6 +3,8 @@
 //! Demonstrates UNMutableNotificationContent creation,
 //! UNUserNotificationCenter access, and UserNotificationsUI constants.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::UserNotifications::*;
 use apple_sys::UserNotificationsUI::*;
 mod common;

@@ -6,6 +6,12 @@
 
 #![allow(non_upper_case_globals)]
 
+use apple_sys::CoreFoundation::{
+    CFDataCreate, CFDictionaryCreate, CFIndex, CFNumberCreate, CFNumberType, CFRelease,
+    CFStringEncoding, CFStringGetCString, CFStringGetLength, CFStringGetMaximumSizeForEncoding,
+    CFStringRef, CFTypeRef, OSStatus, kCFAllocatorDefault, kCFTypeDictionaryKeyCallBacks,
+    kCFTypeDictionaryValueCallBacks,
+};
 use apple_sys::VideoDecodeAcceleration::*;
 use std::ptr;
 

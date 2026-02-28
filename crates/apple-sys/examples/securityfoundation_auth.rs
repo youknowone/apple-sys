@@ -1,6 +1,8 @@
 //! Verify SecurityFoundation bindings by exercising SFAuthorization
 //! class methods and instance methods.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::SecurityFoundation::*;
 
 mod common;

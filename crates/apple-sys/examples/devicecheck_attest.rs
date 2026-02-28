@@ -3,6 +3,9 @@
 //! Queries DCDevice.currentDevice.isSupported and
 //! DCAppAttestService.shared.isSupported.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
+
 use apple_sys::DeviceCheck::*;
 
 mod common;

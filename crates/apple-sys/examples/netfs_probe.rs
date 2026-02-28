@@ -5,6 +5,11 @@
 
 #![allow(non_upper_case_globals)]
 
+use apple_sys::CoreFoundation::{
+    CFRelease, CFStringCreateWithCString, CFStringEncoding, CFStringGetCString, CFStringGetLength,
+    CFStringGetMaximumSizeForEncoding, CFStringRef, CFTypeRef, CFURLCreateWithString,
+    CFURLGetString, kCFAllocatorDefault,
+};
 use apple_sys::NetFS::*;
 use std::ptr;
 

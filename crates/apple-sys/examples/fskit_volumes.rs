@@ -3,7 +3,9 @@
 //! Creates FSEntityIdentifier, FSFileName, FSItemAttributes, and FSContainerStatus
 //! instances using the generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
 use apple_sys::FSKit::*;
+use apple_sys::Foundation::{INSData, NSAutoreleasePool, NSUUID};
 
 mod common;
 use common::nsobj_to_string;

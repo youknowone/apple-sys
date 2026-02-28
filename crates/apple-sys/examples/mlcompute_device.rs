@@ -3,7 +3,10 @@
 //! Gets MLCDevice for CPU and GPU, checks device type and description,
 //! and explores MLCGraph and MLCTensor creation.
 
+use apple_sys::CoreFoundation::{INSObject, PNSObject};
+use apple_sys::Foundation::{INSArray, NSAutoreleasePool, NSString};
 use apple_sys::MLCompute::*;
+use apple_sys::objc::id;
 
 use objc2::runtime::AnyObject;
 mod common;

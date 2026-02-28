@@ -3,6 +3,8 @@
 //! Uses GKLocalPlayer and GKLeaderboard to check
 //! Game Center authentication status.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::NSAutoreleasePool;
 use apple_sys::GameKit::*;
 
 mod common;

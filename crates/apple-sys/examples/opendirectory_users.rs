@@ -3,6 +3,10 @@
 //! Uses ODSession, ODNode, and ODQuery to enumerate user records
 //! from the local directory service via generated bindings.
 
+use apple_sys::CoreFoundation::INSObject;
+use apple_sys::Foundation::{
+    INSArray, INSError, NSArray, NSArray_NSArrayCreation, NSAutoreleasePool, NSError,
+};
 use apple_sys::OpenDirectory::*;
 use apple_sys::objc::{BOOL, id};
 mod common;
