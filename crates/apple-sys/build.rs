@@ -61,6 +61,8 @@ fn fix_msg_send_type_collisions(
 
     let mut in_trait = false;
     let mut trait_brace_depth: i32 = 0;
+    let mut in_msg_send = false;
+    let mut msg_send_depth: i32 = 0;
 
     let mut result = String::with_capacity(source.len());
     for line in source.lines() {
@@ -84,8 +86,27 @@ fn fix_msg_send_type_collisions(
             }
         }
 
-        // Match both `msg_send!` and `msg_send !` (space before bang)
-        if line.contains("msg_send") && line.contains('!') {
+        // Track multi-line msg_send! blocks (save state before updating)
+        let is_in_msg_send = in_msg_send;
+        if !in_msg_send && trimmed.contains("msg_send") {
+            in_msg_send = true;
+            msg_send_depth = 0;
+        }
+        if in_msg_send {
+            for c in line.chars() {
+                match c {
+                    '(' => msg_send_depth += 1,
+                    ')' => msg_send_depth -= 1,
+                    _ => {}
+                }
+            }
+            if msg_send_depth <= 0 {
+                in_msg_send = false;
+            }
+        }
+
+        // Match msg_send! lines and continuation lines of multi-line msg_send! blocks
+        if line.contains("msg_send") || is_in_msg_send {
             let mut fixed = line.to_string();
             for &name in &shadow_names {
                 let pattern = format!(" : {name})");
@@ -102,6 +123,15 @@ fn fix_msg_send_type_collisions(
                 let replacement3 = format!(" : {name}_,");
                 if fixed.contains(&pattern3) {
                     fixed = fixed.replace(&pattern3, &replacement3);
+                }
+                // End of line in multi-line msg_send (e.g. `fraction : fraction\n`)
+                if fixed.trim_end().ends_with(&format!(" : {name}")) {
+                    let trimmed_len = fixed.trim_end().len();
+                    let suffix = &fixed[trimmed_len..];
+                    fixed = format!(
+                        "{} : {name}_{suffix}",
+                        &fixed[..trimmed_len - format!(" : {name}").len()]
+                    );
                 }
             }
             result.push_str(&fixed);

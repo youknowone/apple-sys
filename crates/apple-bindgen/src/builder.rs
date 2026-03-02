@@ -177,6 +177,8 @@ fn fix_msg_send_type_collisions(source: &str) -> String {
 
     let mut in_trait = false;
     let mut trait_brace_depth: i32 = 0;
+    let mut in_msg_send = false;
+    let mut msg_send_depth: i32 = 0;
 
     let mut result = String::with_capacity(source.len());
     for line in source.lines() {
@@ -200,11 +202,31 @@ fn fix_msg_send_type_collisions(source: &str) -> String {
             }
         }
 
+        // Track multi-line msg_send! blocks (save state before updating)
+        let is_in_msg_send = in_msg_send;
+        if !in_msg_send && trimmed.contains("msg_send") {
+            in_msg_send = true;
+            msg_send_depth = 0;
+        }
+        if in_msg_send {
+            for c in line.chars() {
+                match c {
+                    '(' => msg_send_depth += 1,
+                    ')' => msg_send_depth -= 1,
+                    _ => {}
+                }
+            }
+            if msg_send_depth <= 0 {
+                in_msg_send = false;
+            }
+        }
+
         let mut fixed = line.to_string();
         let mut did_fix = false;
 
         // msg_send! arguments: ` : name` where name shadows a top-level item
-        if fixed.contains("msg_send") {
+        // Also handle continuation lines of multi-line msg_send! blocks
+        if fixed.contains("msg_send") || is_in_msg_send {
             let new_fixed = msg_arg_re.replace_all(&fixed, |caps: &regex::Captures| {
                 let name = caps.get(1).unwrap().as_str();
                 if shadow_names.contains(name) {
@@ -272,19 +294,6 @@ fn fix_msg_send_type_collisions(source: &str) -> String {
                     fixed = new_fixed.into_owned();
                     did_fix = true;
                 }
-            }
-        }
-
-        // Multi-line msg_send continuation: `            : name`
-        if in_trait && !fixed.contains("msg_send") && trimmed.starts_with(": ") {
-            let after_colon_space = &trimmed[2..];
-            let name = after_colon_space
-                .split(|c: char| !c.is_alphanumeric() && c != '_')
-                .next()
-                .unwrap_or("");
-            if !name.is_empty() && shadow_names.contains(name) {
-                fixed = fixed.replacen(&format!(": {}", name), &format!(": {}_", name), 1);
-                did_fix = true;
             }
         }
 
