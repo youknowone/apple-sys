@@ -205,6 +205,7 @@ pub trait ISLComposeSheetConfigurationItem: Sized + std::ops::Deref {
         msg_send!(&** self, setTapHandler : tapHandler)
     }
 }
+pub type TWRequestMethod = SLRequestMethod;
 pub type TWRequestHandler = SLRequestHandler;
 #[repr(transparent)]
 #[derive(Debug, Copy, Clone)]

@@ -12,6 +12,8 @@ replacements = [
     "componentsInTimeZone : timezone #=># componentsInTimeZone : timezone_",
     "cString: *const ::std::os::raw::c_char, #=># c_string: *const ::std::os::raw::c_char,",
     "stringWithCString : cString #=># stringWithCString : c_string",
+    # AppKit NSImage parameter collision with CoreServices struct field
+    "fraction : fraction) #=># fraction : fraction_)",
 
     # caregory bug rust-bindgen#2241
     "pub trait NSImage_: Sized + std::ops::Deref {} #=># ",
