@@ -127,7 +127,7 @@ impl Builder {
                     r#"
 impl ::std::fmt::Debug for {ty} {{
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {{
-        f.debug_struct(stringify!(#ty))
+        f.debug_struct(stringify!({ty}))
             .finish()
     }}
 }}

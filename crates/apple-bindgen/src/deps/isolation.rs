@@ -374,7 +374,7 @@ fn use_references_unreachable(tree: &syn::UseTree, reachable: &HashSet<String>) 
             // External paths (crate::, std::, etc.) are always kept
             if matches!(
                 segment.as_str(),
-                "crate" | "super" | "std" | "core" | "alloc" | "objc"
+                "crate" | "super" | "std" | "core" | "alloc" | "objc" | "objc2"
             ) {
                 return false;
             }
@@ -400,6 +400,17 @@ fn use_references_unreachable(tree: &syn::UseTree, reachable: &HashSet<String>) 
                 .iter()
                 .all(|t| use_references_unreachable(t, reachable))
         }
+    }
+}
+
+/// Extract source and alias from a `use self::Source as Alias;` tree.
+fn extract_use_rename(tree: &syn::UseTree) -> Option<(String, String)> {
+    match tree {
+        syn::UseTree::Path(path) if path.ident == "self" => extract_use_rename(&path.tree),
+        syn::UseTree::Rename(rename) => {
+            Some((rename.ident.to_string(), rename.rename.to_string()))
+        }
+        _ => None,
     }
 }
 
@@ -543,6 +554,19 @@ pub fn filter_to_reachable(
             Item::Use(use_item) => {
                 if !use_references_unreachable(&use_item.tree, reachable) {
                     filtered_items.push(item);
+                } else if let Some(avail) = available {
+                    // `pub use self::X as Y;` where Y is reachable but X is owned by
+                    // another framework. Convert to `pub type Y = X;` so it compiles
+                    // when X is imported via `use crate::OtherFramework::*;`.
+                    if let Some((source, alias)) = extract_use_rename(&use_item.tree) {
+                        if reachable.contains(&alias) && avail.contains(&source) {
+                            let type_alias: Item = syn::parse_str(&format!(
+                                "pub type {alias} = {source};"
+                            ))
+                            .expect("failed to parse type alias");
+                            filtered_items.push(type_alias);
+                        }
+                    }
                 }
             }
             _ => {
