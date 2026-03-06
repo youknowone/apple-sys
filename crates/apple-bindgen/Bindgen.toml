@@ -1,0 +1,69 @@
+[default]
+opaque_types = [
+    # rust-bindgen#2240
+    "FndrOpaqueInfo", "HFSCatalogFolder", "HFSPlusCatalogFolder", "HFSCatalogFile", "HFSPlusCatalogFile"
+]
+impl_debugs = [
+    "IORPCMessage",
+]
+replacements = [
+    # Foundation name collisions (not detectable as pub const/struct)
+    "timezone: NSTimeZone, #=># timezone_: NSTimeZone,",
+    "componentsInTimeZone : timezone #=># componentsInTimeZone : timezone_",
+    "cString: *const ::std::os::raw::c_char, #=># c_string: *const ::std::os::raw::c_char,",
+    "stringWithCString : cString #=># stringWithCString : c_string",
+    # AppKit NSImage parameter collision with CoreServices struct field
+    "fraction : fraction) #=># fraction : fraction_)",
+
+    # caregory bug rust-bindgen#2241
+    "pub trait NSImage_: Sized + std::ops::Deref {} #=># ",
+
+    # AppKit - very fragile - rust-bindgen#2241
+    """    }
+}
+impl NSScreen_ for NSScreen {}
+pub trait NSScreen_: Sized + std::ops::Deref { #=># }
+""",
+    """impl NSImage_ for NSImage {}\n\n #=># """,
+
+    # UIKit
+    """unsafe fn dividerImageForLeftSegmentState_rightSegmentState_(
+        &self,
+        state: UIControlState,
+        state: UIControlState,
+    ) -> UIImage
+    where
+        <Self as std::ops::Deref>::Target: objc::Message + Sized,
+    {
+        msg_send ! (* self , dividerImageForLeftSegmentState : state rightSegmentState : state)
+    } #=># unsafe fn dividerImageForLeftSegmentState_rightSegmentState_(
+        &self,
+        leftState: UIControlState,
+        rightState: UIControlState,
+    ) -> UIImage
+    where
+        <Self as std::ops::Deref>::Target: objc::Message + Sized,
+    {
+        msg_send ! (* self , dividerImageForLeftSegmentState : leftState rightSegmentState : rightState)
+    }"""
+]
+[BrowserEngineCore]
+blocklist_items = [
+    # bindgen 0.72 does not recognize ABI 15 (Apple-specific)
+    "be_memory_inline_jit_restrict_rwx_to_rw_with_witness_impl",
+    "be_memory_inline_jit_restrict_rwx_to_rx_with_witness_impl",
+]
+[BrowserEngineKit]
+blocklist_items = [
+    # bindgen 0.72 does not recognize ABI 15 (Apple-specific)
+    "be_memory_inline_jit_restrict_rwx_to_rw_with_witness_impl",
+    "be_memory_inline_jit_restrict_rwx_to_rx_with_witness_impl",
+]
+[SyncServices]
+replacements = [
+    """formattedRecord: NSDictionary,
+        recordId: NSString, #=># formattedRecord: NSDictionary,
+        recordId2: NSString,""",
+    "newRecordIdentifier : recordId #=># newRecordIdentifier : recordId2",
+]
+# iOS

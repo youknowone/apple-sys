@@ -1,6 +1,16 @@
 [workspace]
-resolver = "2"
+resolver = "3"
 members = [
-    "sys",
-    "bindgen",
+    "crates/apple-sys",
+    "crates/apple-bindgen",
+    "crates/apple-sys-prebuilt-macosx",
+    "crates/apple-sys-prebuilt-iphoneos",
 ]
+
+[workspace.package]
+edition = "2024"
+version = "0.3.0"
+authors = ["Jeong YunWon <jeong@youknowone.org>"]
+repository = "https://github.com/youknowone/apple-sys/"
+license = "BSD-2-Clause"
+readme = "README.md"

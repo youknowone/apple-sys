@@ -11,19 +11,18 @@ env:
 
 jobs:
   bindgen:
-    runs-on: macos-latest
+    runs-on: macos-26
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Test
-      run: cargo test  --manifest-path=bindgen/Cargo.toml --verbose
+      run: cargo test  --manifest-path=crates/apple-bindgen/Cargo.toml --verbose
     - name: Tool
-      run: cargo run --features=bin --manifest-path=bindgen/Cargo.toml --verbose CoreFoundation --sdk macosx
+      run: cargo run --features=bin --manifest-path=crates/apple-bindgen/Cargo.toml --verbose -- generate CoreFoundation --sdk macosx
 
   sys-macos:
     strategy:
       matrix:
         feature: [
-          AGL,
           AVFAudio,
           AVFoundation,
           AVKit,
@@ -34,7 +33,6 @@ jobs:
           AdServices,
           AdSupport,
           AddressBook,
-          AppIntents,
           AppKit,
           AppTrackingTransparency,
           AppleScriptKit,
@@ -78,7 +76,6 @@ jobs:
           CoreSpotlight,
           CoreTelephony,
           CoreText,
-          CoreTransferable,
           CoreVideo,
           CoreWLAN,
           CryptoTokenKit,
@@ -93,7 +90,6 @@ jobs:
           ExceptionHandling,
           ExecutionPolicy,
           ExposureNotification,
-          ExtensionFoundation,
           ExtensionKit,
           ExternalAccessory,
           FileProvider,
@@ -110,7 +106,6 @@ jobs:
           HealthKit,
           Hypervisor,
           ICADevices,
-          IMServicePlugIn,
           IOBluetooth,
           IOBluetoothUI,
           IOKit,
@@ -124,12 +119,9 @@ jobs:
           InstantMessage,
           Intents,
           IntentsUI,
-          JavaNativeFoundation,
           JavaRuntimeSupport,
           JavaScriptCore,
           Kerberos,
-          KernelManagement,
-          LDAP,
           LatentSemanticMapping,
           LinkPresentation,
           LocalAuthentication,
@@ -219,11 +211,56 @@ jobs:
           iTunesLibrary,
           vmnet
         ]
-    runs-on: macos-latest
+    runs-on: macos-26
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Build
-      run: cargo build  --manifest-path=sys/Cargo.toml --verbose --features ${{ matrix.feature }}
+      run: cargo build  --manifest-path=crates/apple-sys/Cargo.toml --verbose --features ${{ matrix.feature }}
+
+  prebuilt-examples:
+    runs-on: macos-26
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build examples
+      run: >
+        cargo build --manifest-path=crates/apple-sys/Cargo.toml
+        --no-default-features
+        --features "prebuilt,
+        AVFAudio,AVFoundation,AVKit,AVRouting,Accelerate,Accessibility,Accounts,
+        AdServices,AdSupport,AddressBook,AppKit,AppTrackingTransparency,AppleScriptKit,
+        AppleScriptObjC,ApplicationServices,AudioToolbox,AudioUnit,AudioVideoBridging,
+        AuthenticationServices,AutomaticAssessmentConfiguration,Automator,BackgroundAssets,
+        BackgroundTasks,BrowserEngineCore,BusinessChat,CFNetwork,CalendarStore,CallKit,
+        Carbon,Cinematic,ClassKit,CloudKit,Cocoa,Collaboration,ColorSync,Contacts,
+        ContactsUI,CoreAudio,CoreAudioKit,CoreBluetooth,CoreData,CoreFoundation,
+        CoreGraphics,CoreHaptics,CoreImage,CoreLocation,CoreMIDI,CoreML,CoreMedia,
+        CoreMediaIO,CoreMotion,CoreServices,CoreSpotlight,CoreTelephony,CoreText,
+        CoreVideo,CoreWLAN,CryptoTokenKit,DVDPlayback,DataDetection,DeviceCheck,
+        DeviceDiscoveryExtension,DirectoryService,DiscRecording,DiscRecordingUI,
+        DiskArbitration,EventKit,ExceptionHandling,ExecutionPolicy,ExtensionKit,
+        ExternalAccessory,FSKit,FileProvider,FileProviderUI,FinderSync,ForceFeedback,
+        Foundation,GLKit,GLUT,GSS,GameController,GameKit,GameSave,GameplayKit,
+        HealthKit,Hypervisor,ICADevices,IOBluetooth,IOBluetoothUI,IOKit,IOSurface,
+        IOUSBHost,IdentityLookup,ImageCaptureCore,ImageIO,InputMethodKit,InstallerPlugins,
+        InstantMessage,Intents,IntentsUI,JavaRuntimeSupport,JavaScriptCore,Kerberos,
+        LatentSemanticMapping,LinkPresentation,LocalAuthentication,
+        LocalAuthenticationEmbeddedUI,MLCompute,MailKit,MapKit,Matter,MediaAccessibility,
+        MediaExtension,MediaLibrary,MediaPlayer,MediaToolbox,Metal,MetalFX,MetalKit,
+        MetalPerformanceShaders,MetalPerformanceShadersGraph,MetricKit,ModelIO,
+        MultipeerConnectivity,NaturalLanguage,NearbyInteraction,NetFS,Network,
+        NetworkExtension,NotificationCenter,OSAKit,OSLog,OpenAL,OpenCL,OpenDirectory,
+        OpenGL,PCSC,PDFKit,PHASE,ParavirtualizedGraphics,PassKit,PencilKit,Photos,
+        PhotosUI,PreferencePanes,PushKit,Quartz,QuartzCore,QuickLook,QuickLookThumbnailing,
+        QuickLookUI,ReplayKit,SafariServices,SafetyKit,SceneKit,
+        ScreenSaver,ScreenTime,ScriptingBridge,Security,SecurityFoundation,
+        SecurityInterface,SecurityUI,SensitiveContentAnalysis,SensorKit,ServiceManagement,
+        SharedWithYou,SharedWithYouCore,ShazamKit,Social,SoundAnalysis,Speech,SpriteKit,
+        StoreKit,SwiftUI,Symbols,SyncServices,SystemConfiguration,SystemExtensions,
+        TWAIN,Tcl,ThreadNetwork,UniformTypeIdentifiers,UserNotifications,
+        UserNotificationsUI,VideoDecodeAcceleration,VideoSubscriberAccount,VideoToolbox,
+        Virtualization,Vision,WebKit,WidgetKit,iTunesLibrary,vmnet"
+        --examples
+
   sys-ios:
     strategy:
       matrix:
@@ -236,13 +273,11 @@ jobs:
           Accelerate,
           Accessibility,
           Accounts,
-          ActivityKit,
           AdServices,
           AdSupport,
           AddressBook,
           # AddressBookUI,
           AppClip,
-          AppIntents,
           AppTrackingTransparency,
           AssetsLibrary,
           AudioToolbox,
@@ -280,7 +315,6 @@ jobs:
           CoreSpotlight,
           CoreTelephony,
           CoreText,
-          CoreTransferable,
           CoreVideo,
           CryptoTokenKit,
           DataDetection,
@@ -289,7 +323,6 @@ jobs:
           EventKit,
           EventKitUI,
           ExposureNotification,
-          ExtensionFoundation,
           ExtensionKit,
           ExternalAccessory,
           FileProvider,
@@ -317,7 +350,6 @@ jobs:
           MLCompute,
           MapKit,
           Matter,
-          MatterSupport,
           MediaAccessibility,
           MediaPlayer,
           MediaSetup,
@@ -337,7 +369,6 @@ jobs:
           NearbyInteraction,
           Network,
           NetworkExtension,
-          NewsstandKit,
           NotificationCenter,
           OSLog,
           OpenAL,
@@ -348,14 +379,12 @@ jobs:
           PencilKit,
           Photos,
           PhotosUI,
-          ProximityReader,
           PushKit,
           PushToTalk,
           QuartzCore,
           QuickLook,
           QuickLookThumbnailing,
           ReplayKit,
-          RoomPlan,
           SafariServices,
           SafetyKit,
           SceneKit,
@@ -387,12 +416,12 @@ jobs:
           WidgetKit,
           iAd
         ]
-    runs-on: macos-latest
+    runs-on: macos-26
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: prepare iOS build
       uses: dtolnay/rust-toolchain@stable
       with:
         target: aarch64-apple-ios
     - name: Build
-      run: cargo build --target=aarch64-apple-ios --manifest-path=sys/Cargo.toml --verbose --features ${{ matrix.feature }}
+      run: cargo build --target=aarch64-apple-ios --manifest-path=crates/apple-sys/Cargo.toml --verbose --features ${{ matrix.feature }}
