@@ -17,8 +17,8 @@ autoexamples = false
 [dependencies]
 libc = "0.2"
 objc2 = { version = "0.6" }
-apple-sys-prebuilt-macosx = { path = "../apple-sys-prebuilt-macosx", version = "0.0.0", optional = true }
-apple-sys-prebuilt-iphoneos = { path = "../apple-sys-prebuilt-iphoneos", version = "0.0.0", optional = true }
+apple-sys-prebuilt-macosx = { path = "../apple-sys-prebuilt-macosx", version = "0.26.2", optional = true }
+apple-sys-prebuilt-iphoneos = { path = "../apple-sys-prebuilt-iphoneos", version = "0.26.2", optional = true }
 
 [build-dependencies]
 apple-bindgen = { path = "../apple-bindgen", version = "0.3.0", default-features = false, optional = true }
@@ -778,7 +778,7 @@ name = "vmnet_shared"
 required-features = ["vmnet", "Foundation", "prebuilt"]
 
 [features]
-default = ["bindgen"]
+default = ["prebuilt"]
 bindgen = ["dep:apple-bindgen", "dep:apple-sdk", "dep:rayon"]
 prebuilt = ["dep:apple-sys-prebuilt-macosx", "dep:apple-sys-prebuilt-iphoneos"]
 __allow_empty = []

@@ -1,6 +1,6 @@
 # apple-sys
 
-Apple platforms have a rather monotonous programming environment compared to other platforms. On several development machines, we will dependably obtain the same [bindgen](https://github.com/rust-lang/rust-bindgen) result. Then why not simply having bindgen configurations for the frameworks?
+Apple platforms have a rather monotonous programming environment compared to other platforms. On several development machines, we will dependably obtain the same [bindgen](https://github.com/rust-lang/rust-bindgen) result. Then why not simply have bindgen configurations for the frameworks?
 
 ## Workspace Structure
 
@@ -43,20 +43,17 @@ use apple_sys::{CoreFoundation, IOKit};
 // IOKit::<any name>
 ```
 
-### Prebuilt Bindings
+### Prebuilt vs Bindgen
 
-By default, `apple-sys` generates bindings from your local SDK at build time. If you want faster builds without requiring Xcode SDK, enable the `prebuilt` feature:
+By default, `apple-sys` uses prebuilt bindings, so no local SDK is required. If you need to generate bindings from your local SDK instead, disable default features and enable `bindgen`:
 
 ```toml
-apple-sys = { version = "0.3", features = ["CoreFoundation", "prebuilt"] }
+apple-sys = { version = "0.3", default-features = false, features = ["bindgen", "CoreFoundation"] }
 ```
-
-Prebuilt bindings are available via `apple-sys-prebuilt-macosx` (macOS) and
-`apple-sys-prebuilt-iphoneos` (iOS).
 
 ## apple-bindgen
 
-The bindgen tool is installable and generating the same result to apple-sys crates.
+The bindgen tool is installable and generates the same result as apple-sys crates.
 To create a new `-sys` project, starting with `apple-bindgen` result will be a convenient way.
 
 Install:
@@ -81,7 +78,7 @@ $ apple-bindgen analyze-deps AppKit --sdk macosx
 
 ## Examples
 
-The `apple-sys` crate includes 188 examples demonstrating usage of various Apple frameworks. Each example targets a specific framework.
+The `apple-sys` crate includes numerous examples demonstrating usage of various Apple frameworks. Each example targets a specific framework.
 
 ```sh
 # Run an example (requires the corresponding framework features)
@@ -99,6 +96,8 @@ $ cargo run --manifest-path=crates/apple-sys/Cargo.toml \
 ## Why not apple-sys?
 
 Continually using the same SDKs doesn't sound realistic. I agree. Don't trust apple-sys. Use the managed versions as best you can. For `CoreFoundation`, for instance, use [core-foundation-sys](https://github.com/servo/core-foundation-rs).
+
+The [objc2](https://github.com/madsmtm/objc2) project provides human-curated bindings with safe Rust APIs for most Apple frameworks.
 
 Then why do I use apple-sys? I created apple-sys for minor and unmanaged frameworks. apple-sys will be the last fallback.
 
