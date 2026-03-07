@@ -123,21 +123,75 @@ def test_framework_buildable(sdk_path, framework_name):
         os.unlink(temp_file)
 
 
-def get_sdk_path(sdk_name):
-    """Get SDK path using xcrun."""
-    sdk_map = {
-        "MacOSX": "macosx",
-        "iPhoneOS": "iphoneos",
-        "iPhoneSimulator": "iphonesimulator",
-    }
-    xcrun_name = sdk_map.get(sdk_name, sdk_name.lower())
+SDK_MAP = {
+    "MacOSX": "macosx",
+    "iPhoneOS": "iphoneos",
+    "iPhoneSimulator": "iphonesimulator",
+}
+
+
+def _xcrun_sdk(sdk_name, flag):
+    xcrun_name = SDK_MAP.get(sdk_name, sdk_name.lower())
     result = subprocess.run(
-        ["xcrun", "--sdk", xcrun_name, "--show-sdk-path"],
+        ["xcrun", "--sdk", xcrun_name, flag],
         capture_output=True, text=True
     )
     if result.returncode != 0:
         return None
     return result.stdout.rstrip()
+
+
+def get_sdk_path(sdk_name):
+    """Get SDK path using xcrun."""
+    return _xcrun_sdk(sdk_name, "--show-sdk-path")
+
+
+def get_sdk_version(sdk_name):
+    """Get SDK version using xcrun."""
+    return _xcrun_sdk(sdk_name, "--show-sdk-version")
+
+
+def update_prebuilt_versions(sdk_versions):
+    """Update prebuilt crate versions based on SDK versions.
+
+    Sets version to 0.{sdk_version} (e.g. SDK 26.2 -> version 0.26.2).
+    Updates both the prebuilt Cargo.toml files and the apple-sys dependency versions.
+    """
+    prebuilt_map = {
+        "MacOSX": ("apple-sys-prebuilt-macosx", "../apple-sys-prebuilt-macosx/Cargo.toml"),
+        "iPhoneOS": ("apple-sys-prebuilt-iphoneos", "../apple-sys-prebuilt-iphoneos/Cargo.toml"),
+    }
+
+    for sdk_name, sdk_version in sdk_versions.items():
+        if sdk_name not in prebuilt_map:
+            continue
+        dep_name, toml_path = prebuilt_map[sdk_name]
+        crate_version = f"0.{sdk_version}"
+
+        # Update prebuilt Cargo.toml
+        if os.path.isfile(toml_path):
+            content = open(toml_path).read()
+            content = re.sub(
+                r'^version\s*=\s*"[^"]*"',
+                f'version = "{crate_version}"',
+                content,
+                count=1,
+                flags=re.MULTILINE,
+            )
+            with open(toml_path, "w") as f:
+                f.write(content)
+            print(f"Updated {toml_path} version to {crate_version}")
+
+        # Update apple-sys/Cargo.toml dependency version
+        cargo_toml = open("Cargo.toml").read()
+        cargo_toml = re.sub(
+            rf'({dep_name}\s*=\s*\{{[^}}]*version\s*=\s*")[^"]*(")',
+            rf'\g<1>{crate_version}\2',
+            cargo_toml,
+        )
+        with open("Cargo.toml", "w") as f:
+            f.write(cargo_toml)
+        print(f"Updated {dep_name} dependency to {crate_version}")
 
 
 def framework_path(sdk_path):
@@ -495,6 +549,15 @@ def main(sdk_names):
             sdk_paths[sdk_name] = path
         else:
             print(f"Warning: SDK {sdk_name} not found, skipping")
+
+    # Get SDK versions and update prebuilt crate versions
+    sdk_versions = {}
+    for sdk_name in sdk_paths:
+        version = get_sdk_version(sdk_name)
+        if version:
+            sdk_versions[sdk_name] = version
+            print(f"SDK {sdk_name} version: {version}")
+    update_prebuilt_versions(sdk_versions)
 
     framework_names = {
         sdk_name: list(sorted(find_framework_names(sdk_path)))
